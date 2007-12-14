@@ -1,4 +1,4 @@
-<?
+<?php
 $npsql_dbconfig = null;
 
 function encodeSQLValue($strVal, $sqlType) {

@@ -92,8 +92,8 @@ require_once("npshop/skin.php");
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="<?= SKIN_ROOT; ?>../../flows/account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?= SKIN_ROOT; ?>../../flows/cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
 			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php">Ayuda</a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>

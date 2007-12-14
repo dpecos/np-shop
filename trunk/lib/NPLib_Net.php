@@ -10,7 +10,7 @@ function redirect($page) {
 	        $uri  = rtrim($_ENV["SCRIPT_URL"], '/\\');
     } else {
         $host  = $_SERVER['HTTP_HOST'];
-        if (endsWith($_ENV["SCRIPT_URL"], ".php"))
+        if (endsWith($_SERVER["SCRIPT_NAME"], ".php"))
 	        $uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 	    else
 	        $uri  = rtrim($_SERVER['PHP_SELF'], '/\\');

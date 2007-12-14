@@ -1,4 +1,4 @@
-<?
+<?php
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/lib/NPLib_Sql.php");
 require_once(APP_ROOT."/config/cart.sql.php");
@@ -282,7 +282,7 @@ class Cart {
 		
 		$this->_dbStore_ShippingCost(1);
 		
-		return true;
+		return $this->orderId != null;
 	}
 	
 	function deleteOrder() {

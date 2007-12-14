@@ -1,4 +1,4 @@
-<?
+<?php
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/lib/NPLib_Sql.php");
 require_once(APP_ROOT."/config/item.sql.php");

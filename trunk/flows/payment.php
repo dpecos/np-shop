@@ -64,8 +64,12 @@ if (isset($_GET["result"])) {
 	} else {
         
         if ($cart->createOrder()) {
-            redirect(APP_ROOT."/flows/TPV_".$npshop["tpv"]["class"].".php");
+            update_cart($cart);
+            
+            include_once(APP_ROOT."/common/modules/payment/TPV_".$npshop["tpv"]["class"].".php");
         } else {
+            update_cart($cart);
+            
             $errorMsg = "Hubo problemas al almacenar el pedido";
             showSkin(basename(__FILE__), "ok");
         }

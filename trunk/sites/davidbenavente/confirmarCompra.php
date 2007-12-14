@@ -94,7 +94,7 @@ $cart = get_cart();
 		</td>
 	</tr>
 </table>	
-<?
+<?php
 global $billingData_province ,$billingData_country, $shippingData_province, $shippingData_country, $paymentResult, $errorMsg;
 ?>
 <table width="100%" cellpadding="3" cellspacing="0" border="0" >
@@ -102,13 +102,13 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
 			<span class="pie">1. Selección de productos</span>&nbsp;
 			<span class="pie">2. Datos facturación y envío</span>&nbsp;
-<? if (isset($paymentResult)) { ?>
+<?php if (isset($paymentResult)) { ?>
 			<span class="pie">3. Comprobación y compra</span>&nbsp;
 			<span><strong>4. Resultado</strong></span>&nbsp;
-<? } else { ?>
+<?php } else { ?>
 			<span><strong>3. Comprobación y compra</strong></span>&nbsp;
 			<span class="pie">4. Resultado</span>&nbsp;
-<? } ?>
+<?php } ?>
 		</td>
 	</tr>
 </table>	
@@ -118,19 +118,19 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 <table cellpadding=6 cellspacing=0 border=0 width=100%>
     <tr>
         <td colspan="2">
-<? if (isset($paymentResult)) { 
+<?php if (isset($paymentResult)) { 
     if ($paymentResult == "ok") { ?>
 <p class="rojo">Muchas gracias. La compra ha sido realizada con éxito.<br>
 		Estos son los datos de tu pedido, que también te los enviaremos por e-mail:</p>
-<?   } else { ?>
+<?php   } else { ?>
 <p class="rojo">Se ha producido algún error en el proceso de pago con la entidad bancaria.</p>
-<?   }?>
-<? } else { ?>
-<?   if (isset($errorMsg)) { ?>
-<p class="rojo">ERROR: <?= $errorMsg ?></p>
-<?   }?>
+<?php   }?>
+<?php } else { ?>
+<?php   if (isset($errorMsg)) { ?>
+<p class="rojo">ERROR: <?php echo $errorMsg ?></p>
+<?php   }?>
 <p>Por favor, comprueba que los datos de tu pedido son correctos:</p>
-<? }?>
+<?php }?>
         </td>
     </tr>
 	<tr>
@@ -140,13 +140,13 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 				<tr>
 					<td class="t-01" valign="top" height="100%" width=100% align=right style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 						<br><ul>
-							<?= $cart->user->billingData['name'] ?> <?= $cart->user->billingData['surname'] ?><br>
-							<?= $cart->user->billingData['address'] ?> <?= $cart->user->billingData['address2'] ?><br>
-							<?= $cart->user->billingData['postalCode'] ?> <?= $cart->user->billingData['city'] ?><br>
-							<?= $billingData_province ?><br>
-							<?= $billingData_country ?><br>
-							<?= $cart->user->billingData['phone'] ?><br>
-							<?= $cart->user->email ?><br><br>
+							<?php echo $cart->user->billingData['name'] ?> <?php echo $cart->user->billingData['surname'] ?><br>
+							<?php echo $cart->user->billingData['address'] ?> <?php echo $cart->user->billingData['address2'] ?><br>
+							<?php echo $cart->user->billingData['postalCode'] ?> <?php echo $cart->user->billingData['city'] ?><br>
+							<?php echo $billingData_province ?><br>
+							<?php echo $billingData_country ?><br>
+							<?php echo $cart->user->billingData['phone'] ?><br>
+							<?php echo $cart->user->email ?><br><br>
 
 							
 
@@ -161,13 +161,13 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 				<tr>
 					<td class="t-01"  height="100%" valign="top" width=35% align=right style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 						<br><ul>
-							<?= $cart->user->shippingData['name'] ?> <?= $cart->user->shippingData['surname'] ?><br>
-							<?= $cart->user->shippingData['address'] ?> <?= $cart->user->shippingData['address2'] ?><br>
-							<?= $cart->user->shippingData['postalCode'] ?> <?= $cart->user->shippingData['city'] ?><br>
-							<?= $shippingData_province ?><br>
-							<?= $shippingData_country ?><br>
-							<?= $cart->user->shippingData['phone'] ?><br>
-							<?= $cart->user->email ?><br><br>
+							<?php echo $cart->user->shippingData['name'] ?> <?php echo $cart->user->shippingData['surname'] ?><br>
+							<?php echo $cart->user->shippingData['address'] ?> <?php echo $cart->user->shippingData['address2'] ?><br>
+							<?php echo $cart->user->shippingData['postalCode'] ?> <?php echo $cart->user->shippingData['city'] ?><br>
+							<?php echo $shippingData_province ?><br>
+							<?php echo $shippingData_country ?><br>
+							<?php echo $cart->user->shippingData['phone'] ?><br>
+							<?php echo $cart->user->email ?><br><br>
 
 
 					</td>
@@ -179,9 +179,9 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 	</tr>
 	<tr>
 		<td colspan="2">&nbsp;
-<? if (!isset($paymentResult)) { ?>
+<?php if (!isset($paymentResult)) { ?>
 			<span class=p-dere><a href="personalData.php" onmouseover="rollOn('b6_');" onmouseout="rollOff('b6_');chequear('b6_');" target=_self><img src="/interface/b06-modificar-datos-off.gif" border=0  align=right name=b6_></a>
-<? } ?>
+<?php } ?>
 		</td>
 	</tr>
 				
@@ -195,10 +195,10 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 	</tr>
 	<tr>
 			<td class="t-01" width=500 colspan="5" style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;">
-<? if (isset($paymentResult)) { ?>
-                <span>Nº de tu pedido: <?= formatOrderId($cart) ?></span>
-<? } ?>
-				<!--span>El plazo de entrega de tu pedido es de <?= $cart->shippingDays ?> días</span-->
+<?php if (isset($paymentResult)) { ?>
+                <span>Nº de tu pedido: <?php echo formatOrderId($cart) ?></span>
+<?php } ?>
+				<!--span>El plazo de entrega de tu pedido es de <?php echo $cart->shippingDays ?> días</span-->
 			</td>
 	</tr>
 	<tr>
@@ -207,23 +207,23 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;"><span class=titulo2>Precio</span></td>
 			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;"><span class=titulo2 >Total</span></td>
 	</tr>
-<?
+<?php
 foreach ($cart->items as $itemId => $item) {
 ?>
 	<tr>
 		<td class="00" width=200 style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;">
-			<img src="<?php echo SKIN_ROOT; ?>../../images/<?= $item->id ?>_p.jpg" border=0>
+			<img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_p.jpg" border=0>
 		</td>
 		<td class="t-01" width=300 style="border-bottom:1px #DADADA solid;">
-				<B><?= $item->name ?></B><br>
-				Ref. <?= $item->id ?></a> <br>
-				<? if (showValue($item->weight)) { ?>Peso: <?= $item->weight ?> gr<br><? } ?>
+				<B><?php echo $item->name ?></B><br>
+				Ref. <?php echo $item->id ?></a> <br>
+				<?php if (showValue($item->weight)) { ?>Peso: <?php echo $item->weight ?> gr<br><?php } ?>
 		</td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?= $item->quantity ?></td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?= $item->prize ?> €</td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"  style="border-right:1px #DADADA solid;"><span class=titulo2><?= $item->getSubTotal() ?> €</span></td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?php echo $item->quantity ?></td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?php echo $item->prize ?> €</td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"  style="border-right:1px #DADADA solid;"><span class=titulo2><?php echo $item->getSubTotal() ?> €</span></td>
 	</tr>
-<?
+<?php
 }
 ?>
 </table>
@@ -231,21 +231,21 @@ foreach ($cart->items as $itemId => $item) {
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
 		<td class="t-03" style="border-left:1px #DADADA solid;"><B>Subtotal:</B></td>
-		<td class="t-03" style="border-right:1px #DADADA solid;"><B><?= $cart->getSubTotal() ?> €</B></td>
+		<td class="t-03" style="border-right:1px #DADADA solid;"><B><?php echo $cart->getSubTotal() ?> €</B></td>
 	</tr>
 	<tr>
 		<td class="t-03" style="border-left:1px #DADADA solid;">Gastos de envío:</td>
-		<td class="t-03" style="border-right:1px #DADADA solid;"><?= $cart->getShippingCost(1) ?> €</td>
+		<td class="t-03" style="border-right:1px #DADADA solid;"><?php echo $cart->getShippingCost(1) ?> €</td>
 	</tr>
 	<tr>
 		<td class="t-03" style="border-left:1px #DADADA solid;"><span class=titulo3>Total de tu pedido:</span></td>
-		<td class="t-03" style="border-right:1px #DADADA solid;"><span class=titulo3><?= $cart->getTotal(1) ?> €</span></td>
+		<td class="t-03" style="border-right:1px #DADADA solid;"><span class=titulo3><?php echo $cart->getTotal(1) ?> €</span></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="t-03" style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">&nbsp;
-<? if (!isset($paymentResult)) { ?>
+<?php if (!isset($paymentResult)) { ?>
 		    <a href="cart.php" onmouseover="rollOn('b7_');" onmouseout="rollOff('b7_');chequear('b7_');" target=_self><img src="/interface/b07-modificar-pedido-off.gif" border=0  align=right name=b7_></a>
-<? } ?>
+<?php } ?>
 		</td>	
 	</tr>
 </table>
@@ -253,9 +253,9 @@ foreach ($cart->items as $itemId => $item) {
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
 		<td colspan="2" class="t-03">&nbsp;
-<? if (!isset($paymentResult)) { ?>
+<?php if (!isset($paymentResult)) { ?>
 		    <a href="payment.php" onmouseover="rollOn('b4_');" onmouseout="rollOff('b4_');chequear('b4_');" target=_self><img src="/interface/b04-finalizar-compra-off.gif" border=0  align=right name=b4_></a>
-<? } ?>
+<?php } ?>
 		</td>	
 	</tr>
 </table>

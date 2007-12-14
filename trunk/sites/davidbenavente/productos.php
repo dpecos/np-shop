@@ -109,22 +109,22 @@ require_once("npshop/skin.php");
 </table>	
 <br>
 <center>
-<?
+<?php
 global $categoryTitle, $msg;
 ?>
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
-			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1><?=$categoryTitle?></span></td>
+			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1><?php echo$categoryTitle?></span></td>
 			<td class="t-03" style="border-bottom:3px #DADADA solid;">
 			    <form method="get" id="categoryForm">
-			        <!--input type="hidden" name="sourceCategoryId" value="<?= $_GET['categoryId'] ?>"/-->
+			        <!--input type="hidden" name="sourceCategoryId" value="<?php echo $_GET['categoryId'] ?>"/-->
 					<select class="fd5" name="categoryId" onchange="javascript:showCategory()">			
-<?
+<?php
 global $categories;
 foreach ($categories as $cat) { 
 ?>					    
-						<option value="<?=$cat[0]?>" <?= $_GET['categoryId']==$cat[0]?"selected":""?>><?=$cat[1]?></option>
-<?
+						<option value="<?php echo$cat[0]?>" <?php echo $_GET['categoryId']==$cat[0]?"selected":""?>><?php echo$cat[1]?></option>
+<?php
 }
 ?>
 					</select>
@@ -138,7 +138,7 @@ foreach ($categories as $cat) {
 <center>
 
 <table width="80%" cellpadding="8" cellspacing="0" border="0">
-<?
+<?php
 global $items;
 $i = 0;
 foreach ($items as $item) {
@@ -146,46 +146,46 @@ foreach ($items as $item) {
 ?>
 	<tr>
 	    <td width="50%" valign="top"  style="border-right:1px #E7E7E7 solid; border-bottom:1px #E7E7E7 solid;">
-<?  
+<?php  
     } else {
 ?>	
 		<td width="50%" valign="top" style="border-bottom:1px #E7E7E7 solid;">
-<?  
+<?php  
     }
 ?>
 			<table width="100%" cellpadding="5" cellspacing="0" border="0">
 				<tr>
-					<td width="100%" colspan="2" valign="top"><a class="mas" href="showItem.php?itemId=<?= $item->id ?>"><B><?= $item->name ?></B></a></td>
+					<td width="100%" colspan="2" valign="top"><a class="mas" href="showItem.php?itemId=<?php echo $item->id ?>"><B><?php echo $item->name ?></B></a></td>
 				</tr>
 				<tr>
-					<td valign="top"><a class="mas" href="showItem.php?itemId=<?= $item->id ?>"><img src="<?php echo SKIN_ROOT; ?>../../images/<?= $item->id ?>_p.jpg" border=0 width="200" ></a></td>
+					<td valign="top"><a class="mas" href="showItem.php?itemId=<?php echo $item->id ?>"><img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_p.jpg" border=0 width="200" ></a></td>
 				</tr>
 				<tr>
 					<td valign="top" class="tienda" >
 						<ul>
-									<li>Ref. <?= $item->id ?>
-									<? /* if (showValue($item->tradeMark)) { ?><li><?= $item->tradeMark ?><br><? } */?>
-									<? if (showValue($item->height)) { ?><li>Altura: <?= $item->height ?> mm <br><? } ?>
-									<? if (showValue($item->depth)) { ?><li>Profundidad: <?= $item->depth ?> mm <br><? } ?>
-									<? if (showValue($item->length)) { ?><li>Longitud: <?= $item->length ?> mm <br><? } ?>								    
-									<? if (showValue($item->complement)) { ?><li><?= $item->complement ?><br><? } ?>
-									<? if (showValue($item->complement2)) { ?><li><?= $item->complement2 ?><br><? } ?>
-									<br><li class="li-blanco"><span class=titulo6><?= $item->prize ?> €</span>
+									<li>Ref. <?php echo $item->id ?>
+									<?php /* if (showValue($item->tradeMark)) { ?><li><?php echo $item->tradeMark ?><br><?php } */?>
+									<?php if (showValue($item->height)) { ?><li>Altura: <?php echo $item->height ?> mm <br><?php } ?>
+									<?php if (showValue($item->depth)) { ?><li>Profundidad: <?php echo $item->depth ?> mm <br><?php } ?>
+									<?php if (showValue($item->length)) { ?><li>Longitud: <?php echo $item->length ?> mm <br><?php } ?>								    
+									<?php if (showValue($item->complement)) { ?><li><?php echo $item->complement ?><br><?php } ?>
+									<?php if (showValue($item->complement2)) { ?><li><?php echo $item->complement2 ?><br><?php } ?>
+									<br><li class="li-blanco"><span class=titulo6><?php echo $item->prize ?> €</span>
 						</ul>
-<? if ($item->stock > 0) { ?>
-						<a href="cart.php?action=add&itemId=<?= $item->id ?>" onmouseover="rollOn('b1_');" onmouseout="rollOff('b1_');chequear('b1_');" target=_self><img src="/interface/b01-anadir-off.gif" border=0  align=left name=b1_></a>
-<? } else { ?>
+<?php if ($item->stock > 0) { ?>
+						<a href="cart.php?action=add&itemId=<?php echo $item->id ?>" onmouseover="rollOn('b1_');" onmouseout="rollOff('b1_');chequear('b1_');" target=_self><img src="/interface/b01-anadir-off.gif" border=0  align=left name=b1_></a>
+<?php } else { ?>
                         AGOTADO TEMPORALMENTE
-<? } ?>
+<?php } ?>
 					</td>
 				</tr>
 			</table>
 		</td>
-<?
+<?php
 if ($i % 2 != 0) {
 ?>
 	</tr>
-<?  
+<?php  
     }
     $i++;
 }
@@ -195,9 +195,9 @@ if ($i % 2 != 0) {
 
 <center>
 
-<? if (isset($msg) && $msg != null) { ?>
-    <span class="t-01"><?= $msg ?></span>
-<? } ?>
+<?php if (isset($msg) && $msg != null) { ?>
+    <span class="t-01"><?php echo $msg ?></span>
+<?php } ?>
 
 
 

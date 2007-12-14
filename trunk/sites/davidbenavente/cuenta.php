@@ -119,7 +119,7 @@ $cart = get_cart();
 	<tr>
 		<td width="100%" valign="top">
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
-				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>¿Qué tal <?= $cart->user->billingData["name"] ?>?</span></td></tr>
+				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>¿Qué tal <?php echo $cart->user->billingData["name"] ?>?</span></td></tr>
 				<tr>
 					<td class="t-01" width=35% >
 						<br><p>¿Qué quieres hacer?
