@@ -102,13 +102,13 @@ require_once("npshop/skin.php");
 	<tr>
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
 			<span class="pie">1. Selección de productos</span>&nbsp;
-<? 
+<?php 
 global $referrer;
 if (isset($referrer) && $referrer == "confirmCart.php") { ?>
 			<span><strong>2. Datos facturación y envío</strong></span>&nbsp;
-<? } else { ?>
+<?php } else { ?>
 			<span class="pie">2. Datos facturación y envío</span>&nbsp;
-<? } ?>
+<?php } ?>
 			<span class="pie">3. Comprobación y compra</span>&nbsp;
 			<span class="pie">4. Resultado</span>&nbsp;
 		</td>
@@ -118,23 +118,23 @@ if (isset($referrer) && $referrer == "confirmCart.php") { ?>
 
 
 <table cellpadding=6 cellspacing=0 border=0 width=100%  >
-<? 
+<?php 
     global $errorMsg;
     if (isset($errorMsg) && trim($errorMsg) != "") { 
 ?>
     <tr>
-        <td class="t-01" colspan="2"><span class=error>ATENCIÓN: <?= $errorMsg ?></span></td>
+        <td class="t-01" colspan="2"><span class=error>ATENCIÓN: <?php echo $errorMsg ?></span></td>
     </tr>
-<? } ?>
+<?php } ?>
 
 	<tr>
 		<td width="50%" valign="top">
 		<form id="npshop_form_login" action="login.php" method="POST">
-<?
+<?php
 if (isset($referrer)) { 
 ?>
-<input type="hidden" name="referrer" value="<?= $referrer ?>"/>
-<? } ?>
+<input type="hidden" name="referrer" value="<?php echo $referrer ?>"/>
+<?php } ?>
 <input type="hidden" name="action"/>
 
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
@@ -170,12 +170,12 @@ if (isset($referrer)) {
 		</td>
 		<td width="50%" valign="top">
 		<form id="npshop_form_register" action="login.php" method="POST">    
-<?
+<?php
 global $referrer;
 if (isset($referrer)) { 
 ?>
-<input type="hidden" name="referrer" value="<?= $referrer ?>"/>
-<? } ?>
+<input type="hidden" name="referrer" value="<?php echo $referrer ?>"/>
+<?php } ?>
 <input type="hidden" name="action"/>
 
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >

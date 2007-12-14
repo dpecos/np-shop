@@ -1,5 +1,12 @@
 <?php
 define('DEBUG', true);
+
+$_SERVER_DATA = null;
+if (isset($_SERVER))
+    $_SERVER_DATA=$_SERVER;
+else if (isset($_ENV))
+    $_SERVER_DATA=$_ENV;
+    
 require_once(APP_ROOT."/lib/NPLib_Sql.php");
 
 function doConfig() {
@@ -19,11 +26,15 @@ function doConfig() {
 	
 	// Datos de configuracion de la BBDD
 	$ddbb = array();
-	$ddbb["HOST"] = "llda252.servidoresdns.net";
+	/*$ddbb["HOST"] = "llda252.servidoresdns.net";
 	$ddbb["USER"] = "qcq501";
 	$ddbb["PASSWD"] = "Qcq501";
-	$ddbb["NAME"] = "qcq501";
-	$ddbb["PREFIX"] = "NPS_";	
+	$ddbb["NAME"] = "qcq501";*/
+	$ddbb["HOST"] = "localhost";
+	$ddbb["USER"] = "root";
+	$ddbb["PASSWD"] = "";
+	$ddbb["NAME"] = "NPShop";
+	$ddbb["PREFIX"] = "NPS_";
 	
 	// Datos de configuracion del TPV
 	$tpv = array();

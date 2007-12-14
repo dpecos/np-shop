@@ -98,7 +98,7 @@ if ($referrer == "confirmCart.php") {
 
 	showSkin(basename(__FILE__));
 		
-} else if (endswith(__FILE__, $referrer) && $_ENV["REQUEST_METHOD"] == "POST") { // data modified
+} else if (endswith(__FILE__, $referrer) && $_SERVER_DATA["REQUEST_METHOD"] == "POST") { // data modified
    
 	$cart = get_cart();
 	
@@ -123,7 +123,7 @@ if ($referrer == "confirmCart.php") {
     $cart = get_cart();
 
     if (isset($cart->user)) {
-        if (endswith(__FILE__, $referrer) && $_ENV["REQUEST_METHOD"] == "GET")
+        if (endswith(__FILE__, $referrer) && $_SERVER_DATA["REQUEST_METHOD"] == "GET")
             $referrer = APP_ROOT;
         $extended = true;
        

@@ -13,7 +13,7 @@ require_once("npshop/skin.php");
     </head>
     <body>
     <h2>Conectando con la entidad financiera...</h2>
-    <? printForm(); ?>
+    <?php printForm(); ?>
     <input type="button" tabindex="0" value="Pagar con tarjeta" onClick="javascript:npshop_submit();"><br/>
     Tarjeta de pruebas: 4548812049400004<br/>
     Caducidad: 12/07<br/>

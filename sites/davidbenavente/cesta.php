@@ -111,14 +111,14 @@ $cart = get_cart();
 </table>	
 <br>
 <table cellpadding=6 cellspacing=0 border=0 width=550>
-<? 
+<?php 
     global $errorMsg, $errors;
     if (isset($errorMsg) && trim($errorMsg) != "") { 
 ?>
     <tr>
-	    <td class="t-01" width="90%" colspan="2"><span class=error>ATENCIÓN: <?= $errorMsg ?></span></td>
+	    <td class="t-01" width="90%" colspan="2"><span class=error>ATENCIÓN: <?php echo $errorMsg ?></span></td>
 	</tr>
-<? } ?>
+<?php } ?>
     <tr>
 		<td class="t-01" style="border-bottom:3px #DADADA solid;"><span class=titulo1>Tu cesta</span></td>
 		<!--td class="t-01" style="border-bottom:3px #DADADA solid;text-align:right;"><span class=titulo1>Envío mediante: Paquete Azul de Correos</span></td-->
@@ -135,27 +135,27 @@ $cart = get_cart();
 			<td class="t-02" width=50 style="border-bottom:3px #DADADA solid;"><span class=titulo2>Precio</span></td>
 			<td class="t-02" width=50 style="border-bottom:3px #DADADA solid;"><span class=titulo2>Total</span></td>
 	</tr>
-<?
+<?php
 foreach ($cart->items as $itemId => $item) {
 ?>
 	<tr>
 		<td class="00" width=200 style="border-bottom:1px #DADADA solid;">
-			<img src="<?php echo SKIN_ROOT; ?>../../images/<?= $item->id ?>_p.jpg" border=0>
+			<img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_p.jpg" border=0>
 		</td>
 		<td class="t-01" width=300 style="border-bottom:1px #DADADA solid;">
-			<B><?= $item->name ?></B><br>
-				Ref. <?= $item->id ?></a> <br>	
-				<? if (showValue($item->height)) { ?>Altura: <?= $item->height ?> mm <br><? } ?>
-				<? if (showValue($item->depth)) { ?>Profundidad: <?= $item->depth ?> mm <br><? } ?>
-				<? if (showValue($item->length)) { ?>Longitud: <?= $item->length ?> mm <br><? } ?>							   
-				<? if (showValue($item->weight)) { ?>Peso: <?= $item->weight ?> gr<br><? } ?>
-				<? if (isset($errors[$item->id])) { ?> <br/><span class=error><?= $errors[$item->id] ?></span> <? } ?>
+			<B><?php echo $item->name ?></B><br>
+				Ref. <?php echo $item->id ?></a> <br>	
+				<?php if (showValue($item->height)) { ?>Altura: <?php echo $item->height ?> mm <br><?php } ?>
+				<?php if (showValue($item->depth)) { ?>Profundidad: <?php echo $item->depth ?> mm <br><?php } ?>
+				<?php if (showValue($item->length)) { ?>Longitud: <?php echo $item->length ?> mm <br><?php } ?>							   
+				<?php if (showValue($item->weight)) { ?>Peso: <?php echo $item->weight ?> gr<br><?php } ?>
+				<?php if (isset($errors[$item->id])) { ?> <br/><span class=error><?php echo $errors[$item->id] ?></span> <?php } ?>
 		</td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"><input class="fd3" value="<?= $item->quantity ?>" type="text" maxlength=60 name="<?= $item->id ?>_quantity"><input type="hidden" name="<?= $item->id ?>_id" value="<?= $item->id ?>"/><br><a class="rojo" href="cart.php?action=delete&itemId=<?= $item->id ?>">eliminar</a></td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?= $item->prize ?> €</td>
-		<td class="t-02" style="border-bottom:1px #DADADA solid;"><span class=titulo2><?= $item->getSubTotal() ?> €</span></td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"><input class="fd3" value="<?php echo $item->quantity ?>" type="text" maxlength=60 name="<?php echo $item->id ?>_quantity"><input type="hidden" name="<?php echo $item->id ?>_id" value="<?php echo $item->id ?>"/><br><a class="rojo" href="cart.php?action=delete&itemId=<?php echo $item->id ?>">eliminar</a></td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?php echo $item->prize ?> €</td>
+		<td class="t-02" style="border-bottom:1px #DADADA solid;"><span class=titulo2><?php echo $item->getSubTotal() ?> €</span></td>
 	</tr>
-<?
+<?php
 }
 ?>
 </table>
@@ -163,11 +163,11 @@ foreach ($cart->items as $itemId => $item) {
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
 		<td class="t-03" style="border-top:2px #DADADA solid;"><B>Subtotal:</B></td>
-		<td class="t-03" style="border-top:2px #DADADA solid;"><B><?= $cart->getSubTotal() ?> €</B></td>
+		<td class="t-03" style="border-top:2px #DADADA solid;"><B><?php echo $cart->getSubTotal() ?> €</B></td>
 	</tr>
 	<tr>
 		<td class="t-03">Gastos de envío en España (*):</td>
-		<td class="t-03"><?= $cart->getShippingCost(1) ?> €</td>
+		<td class="t-03"><?php echo $cart->getShippingCost(1) ?> €</td>
 	</tr>
 	<!--tr>
 		<td class="t-03">Gastos para envíos fuera de España <select class="fd5" name="portafolio" >
@@ -181,11 +181,11 @@ foreach ($cart->items as $itemId => $item) {
 						<option>País 7</option>
 
 						</select></td>
-		<td class="t-03"><?= $cart->getShippingCost(1) ?> €</td>
+		<td class="t-03"><?php echo $cart->getShippingCost(1) ?> €</td>
 	</tr-->
 	<tr>
 		<td class="t-03"><span class=titulo3>Total de tu pedido:</span></td>
-		<td class="t-03"><span class=titulo3><?= $cart->getTotal(1) ?> €</span></td>
+		<td class="t-03"><span class=titulo3><?php echo $cart->getTotal(1) ?> €</span></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="t-03" style="border-bottom:3px #DADADA solid;"><a href="javascript:npshop_submit('update')" onmouseover="rollOn('b2_');" onmouseout="rollOff('b2_');chequear('b2_');" target=_self><img src="/interface/b02-actualizar-subtotal-off.gif" border=0  align=right name=b2_></a></td>	
@@ -199,12 +199,12 @@ foreach ($cart->items as $itemId => $item) {
 		<td colspan="2" class="t-03">
 			<!--a href="listCategory.php" onmouseover="rollOn('b8_');" onmouseout="rollOff('b8_');chequear('b8_');" target=_self><img src="/interface/b08-seguir-comprando-off.gif" border=0  name=b8_></a-->
 			<a href="javascript:npshop_submit('update_continue');" onmouseover="rollOn('b8_');" onmouseout="rollOff('b8_');chequear('b8_');" target=_self><img src="/interface/b08-seguir-comprando-off.gif" border=0  name=b8_></a>
-<? 
+<?php 
 if (sizeof($cart->items) > 0) {
 ?>
 			<!--a href="confirmCart.php" onmouseover="rollOn('b5_');" onmouseout="rollOff('b5_');chequear('b5_');" target=_self><img src="/interface/b05-finalizar-pedido-off.gif" border=0  name=b5_></a-->
 			<a href="javascript:npshop_submit('update_confirm');" onmouseover="rollOn('b5_');" onmouseout="rollOff('b5_');chequear('b5_');" target=_self><img src="/interface/b05-finalizar-pedido-off.gif" border=0  name=b5_></a>
-<? } ?>
+<?php } ?>
         </td>
 	</tr>
 </table>

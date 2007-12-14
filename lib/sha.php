@@ -1,4 +1,4 @@
-<?PHP
+<?php
 // sha1 algorithm
 class SHA { 
 	var $A, $B, $C, $D, $E;
