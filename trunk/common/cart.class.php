@@ -150,75 +150,15 @@ class Cart {
 	
 	function _dbLoad() {
     	global $ddbb_table, $ddbb_mapping, $ddbb_types, $npshop;
-		$objectVars = get_object_vars($this);
 		
-		$first = true;
-		$sql = "SELECT ";
-		foreach (get_object_vars($this) as $var => $value) {
-			if (array_key_exists($var, $ddbb_mapping["Cart"])) {
-				if (is_array($ddbb_mapping["Cart"][$var])) {
-					foreach (get_object_vars($this->$var) as $objvar => $objvalue) {
-						if (array_key_exists($objvar, $ddbb_mapping["Cart"][$var])) {
-							if (is_array($ddbb_mapping["Cart"][$var][$objvar])) {
-								foreach ($this->$var->$objvar as $subobjvar => $subobjvalue) {
-									if (!$first) {
-										$sql .= ", ";
-									} else
-										$first = false;
-									$sql .= $ddbb_mapping["Cart"][$var][$objvar][$subobjvar];
-								}
-							} else {
-								if (!$first) {
-									$sql .= ", ";
-								} else
-									$first = false;
-								$sql .= $ddbb_mapping["Cart"][$var][$objvar];		
-							}
-						}
-					}
-				} else {
-					if (!$first) {
-						$sql .= ", ";
-					} else
-						$first = false;
-					$sql .= $ddbb_mapping["Cart"][$var];
-				}
-			} else {
-				//TODO: ERROR
-			}
-		}
-		$sql .= " FROM ".$ddbb_table["Cart"]." WHERE ".$ddbb_mapping["Cart"]['orderId']."=".$this->orderId;
+		$sql = NP_createSELECT($this, $ddbb_table["Cart"], $ddbb_mapping["Cart"], $ddbb_types["Cart"], $ddbb_mapping["Cart"]['orderId']."=".$this->orderId);
 		
 		$data = NP_executePKSelect($sql);
-		//echo $sql;
-	
-	    if (is_array($data)) {	        
-			foreach (array_keys($data) as $dbFieldName) {
-				$objectFieldName = _obtainKeyForValue($ddbb_mapping["Cart"], $dbFieldName);
-				if (is_array($objectFieldName)) {
-					if (array_key_exists($objectFieldName[0], $objectVars) && array_key_exists($objectFieldName[1], $this->$objectFieldName[0])) {
-					    $field = $this->$objectFieldName[0];
-					    if (is_array($field->$objectFieldName[1])) {
-					        $arrayField = $field->$objectFieldName[1];
-					        $arrayField[$objectFieldName[2]] = decodeSQLValue($data[$dbFieldName], $ddbb_types["Cart"][$objectFieldName[0]][$objectFieldName[1]][$objectFieldName[2]]);
-					        $field->$objectFieldName[1] = $arrayField;
-					        $this->$objectFieldName[0] = $field;
-					    } else {
-					       	$field->$objectFieldName[1] = decodeSQLValue($data[$dbFieldName], $ddbb_types["Cart"][$objectFieldName[0]][$objectFieldName[1]]);
-    						$this->$objectFieldName[0] = $field;
-					    }
-					} else {
-						die("El campo ".$objectFieldName[0]."->".$objectFieldName[1]."(".$dbFieldName.") no se ha definido en el objeto "."Cart");
-					}
-				} else {
-					if ($objectFieldName != null && array_key_exists($objectFieldName, $objectVars)) {
-						$this->$objectFieldName = decodeSQLValue($data[$dbFieldName], $ddbb_types["Cart"][$objectFieldName]);	
-					} else 
-						die("El campo ".$objectFieldName."(".$dbFieldName.") no se ha definido en el objeto "."Cart");
-				}
 				
-			}
-			
+	    if (is_array($data)) {	 
+	        
+	        NP_loadData($this, $data, $ddbb_mapping["Cart"], $ddbb_types["Cart"]);
+	        
 			$GLOBALS['items'] = &$this->items; // pass by reference
 			
 			$funcCode = 
