@@ -63,60 +63,19 @@ class User {
 	
 	function _dbLoad($id = null) {
     	global $ddbb_table, $ddbb_mapping, $ddbb_types;
-		$objectVars = get_object_vars($this);
-		
-		$first = true;
-		$sql = "SELECT ";
-		foreach (array_keys($objectVars) as $var) {
-			if (array_key_exists($var, $ddbb_mapping["User"])) {				
-				if (is_array($ddbb_mapping["User"][$var])) {	
-					foreach (array_keys($ddbb_mapping["User"][$var]) as $subvar) {
-						if (!$first) 
-							$sql .= ", ";
-						else
-							$first = false;
-						$sql .= $ddbb_mapping["User"][$var][$subvar];
-					}
-				} else {
-					if (!$first) 
-						$sql .= ", ";
-					else
-						$first = false;
-					$sql .= $ddbb_mapping["User"][$var];
-				}
-			} else {
-				//TODO: ERROR
-			}
-		}
-		
-		if ($id != null) {
-		    $sql .= " FROM ".$ddbb_table["User"]." WHERE ".$ddbb_mapping["User"]['id']."=".$id;
+
+        if ($id != null) {
+		    $where = $ddbb_mapping["User"]['id']."=".$id;
 		} else {
-		    $sql .= " FROM ".$ddbb_table["User"]." WHERE ".$ddbb_mapping["User"]['email']."='".$this->email."'".
-			    " AND ".$ddbb_mapping["User"]['password']."='".$this->password."'";
+		    $where = $ddbb_mapping["User"]['email']."='".$this->email."' AND ".$ddbb_mapping["User"]['password']."='".$this->password."'";
 		}
+		
+		$sql = NP_createSELECT($this, $ddbb_table["User"], $ddbb_mapping["User"], $ddbb_types["User"], $where);
 		
 		$data = NP_executePKSelect($sql);
 	
 		if (is_array($data)) {
-			foreach (array_keys($data) as $dbFieldName) {
-				$objectFieldName = _obtainKeyForValue($ddbb_mapping["User"], $dbFieldName);
-				if (is_array($objectFieldName)) {
-					if (array_key_exists($objectFieldName[0], $objectVars) && array_key_exists($objectFieldName[1], $this->$objectFieldName[0])) {
-						$arrayField = $this->$objectFieldName[0];
-						$arrayField[$objectFieldName[1]] = decodeSQLValue($data[$dbFieldName], $ddbb_types["User"][$objectFieldName[0]][$objectFieldName[1]]);
-						$this->$objectFieldName[0] = $arrayField;
-					} else {
-						die("El campo ".$objectFieldName[0]."->".$objectFieldName[1]."(".$dbFieldName.") no se ha definido en el objeto "."User");
-					}
-				} else {
-					if ($objectFieldName != null && array_key_exists($objectFieldName, $objectVars)) {
-						$this->$objectFieldName = decodeSQLValue($data[$dbFieldName], $ddbb_types["User"][$objectFieldName]);	
-					} else 
-						die("El campo ".$objectFieldName."(".$dbFieldName.") no se ha definido en el objeto "."User");
-				}
-				
-			}
+			 NP_loadData($this, $data, $ddbb_mapping["User"], $ddbb_types["User"]);
 		} else {
 			$this->email = null;
 			$this->password = null;
