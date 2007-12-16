@@ -16,25 +16,36 @@ NP_executeSelect($sql, 'recoverOrders');
 
 ?>
 <html>
+    <head>
+        <style>
+            <? include_once(APP_ROOT.'/admin/style.css'); ?>
+        </style>
+    </head>
     <body>
-        <table border="1">
+        <h1>Listado de pedidos</h1>
+        <center>
+        <table border="1" width="80%">
             <thead>
                 <tr>
-                    <th>Identificador pedido</th>
                     <th>Fecha</th>
                     <th>Estado del pedido</th>
+                    <th>Identificador pedido</th>
+                    <th>Importe</th>
+                    <th>Num. Productos</th>
                     <th>Datos facturación</th>
                     <th>Datos envío</th>
-                    <th>Datos TPV</th>
+                    <!--th>Datos TPV</th-->
                 </tr>
             </thead>
             <tbody>
 <? foreach ($orders as $order) { ?>
     <? //print_r($order); ?>
                 <tr>
-                    <td><?= $order->orderId ?></td> 
-                    <td><?= date("d/m/Y H:i:s", $order->date) ?></td> 
-                    <td><?= $order->orderStatus ?></td> 
+                    <td width="130px" align="center"><?= date("d/m/Y H:i:s", $order->date) ?></td> 
+                    <td align="center"><?= $order->orderStatus ?></td> 
+                    <td align="center"><a href="orderDetail.php?orderId=<?= $order->orderId ?>"><?= formatOrderId($order) ?></a></td> 
+                    <td align="right"><?= $order->getTotal(1) ?> &euro;</td>
+                    <td align="center"><?= count($order->items) ?></td> 
                     <td>
                         <?= $order->user->billingData['name'] ?> <?= $order->user->billingData['surname'] ?><br>
                         <?= $order->user->billingData['address'] ?> <?= $order->user->billingData['address2'] ?><br>
@@ -49,10 +60,11 @@ NP_executeSelect($sql, 'recoverOrders');
                         CP: <?= $order->user->shippingData['postalCode'] ?> <?= $order->user->shippingData['city'] ?><br>
                         <?= getProvinceName($order->user->shippingData['province']) ?> <?= getCountryName($order->user->shippingData['country']) ?> 
                     </td> 
-                    <td><?= $order->tpvData ?></td>
+                    <!--td><?= $order->tpvData ?></td-->
                 </tr>
 <? } ?>        
             </tbody>
         </table>
+        </center>
     </body>
 </html>
