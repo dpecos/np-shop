@@ -1,4 +1,4 @@
-<? 
+<?php 
 define('APP_ROOT', "../");
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/common/commonFunctions.php");
@@ -18,7 +18,7 @@ NP_executeSelect($sql, 'recoverOrders');
 <html>
     <head>
         <style>
-            <? include_once(APP_ROOT.'/admin/style.css'); ?>
+            <?php include_once(APP_ROOT.'/admin/style.css'); ?>
         </style>
     </head>
     <body>
@@ -38,31 +38,30 @@ NP_executeSelect($sql, 'recoverOrders');
                 </tr>
             </thead>
             <tbody>
-<? foreach ($orders as $order) { ?>
-    <? //print_r($order); ?>
+<?php foreach ($orders as $order) { ?>
                 <tr>
-                    <td width="130px" align="center"><?= date("d/m/Y H:i:s", $order->date) ?></td> 
-                    <td align="center"><?= $order->orderStatus ?></td> 
-                    <td align="center"><a href="orderDetail.php?orderId=<?= $order->orderId ?>"><?= formatOrderId($order) ?></a></td> 
-                    <td align="right"><?= $order->getTotal(1) ?> &euro;</td>
-                    <td align="center"><?= count($order->items) ?></td> 
+                    <td width="130px" align="center"><?php echo date("d/m/Y H:i:s", $order->date) ?></td> 
+                    <td align="center"><?php echo $order->orderStatus ?></td> 
+                    <td align="center"><a href="orderDetail.php?orderId=<?php echo $order->orderId ?>"><?php echo formatOrderId($order) ?></a></td> 
+                    <td align="right"><?php echo $order->getTotal(1) ?> &euro;</td>
+                    <td align="center"><?php echo count($order->items) ?></td> 
                     <td>
-                        <?= $order->user->billingData['name'] ?> <?= $order->user->billingData['surname'] ?><br>
-                        <?= $order->user->billingData['address'] ?> <?= $order->user->billingData['address2'] ?><br>
-                        Telf. <?= $order->user->billingData['phone'] ?><br>
-                        CP: <?= $order->user->billingData['postalCode'] ?> <?= $order->user->billingData['city'] ?><br>
-                        <?= getProvinceName($order->user->billingData['province']) ?> <?= getCountryName($order->user->billingData['country']) ?> 
+                        <?php echo $order->user->billingData['name'] ?> <?php echo $order->user->billingData['surname'] ?><br>
+                        <?php echo $order->user->billingData['address'] ?> <?php echo $order->user->billingData['address2'] ?><br>
+                        <nobr>Telf: <?php echo $order->user->billingData['phone'] ?></nobr><br>
+                        CP: <?php echo $order->user->billingData['postalCode'] ?> <?php echo $order->user->billingData['city'] ?><br>
+                        <?php echo getProvinceName($order->user->billingData['province']) ?> (<?php echo getCountryName($order->user->billingData['country']) ?>)
                     </td> 
                     <td>
-                        <?= $order->user->shippingData['name'] ?> <?= $order->user->shippingData['surname'] ?><br>
-                        <?= $order->user->shippingData['address'] ?> <?= $order->user->shippingData['address2'] ?><br>
-                        Telf. <?= $order->user->shippingData['phone'] ?><br>
-                        CP: <?= $order->user->shippingData['postalCode'] ?> <?= $order->user->shippingData['city'] ?><br>
-                        <?= getProvinceName($order->user->shippingData['province']) ?> <?= getCountryName($order->user->shippingData['country']) ?> 
+                        <?php echo $order->user->shippingData['name'] ?> <?php echo $order->user->shippingData['surname'] ?><br>
+                        <?php echo $order->user->shippingData['address'] ?> <?php echo $order->user->shippingData['address2'] ?><br>
+                        <nobr>Telf: <?php echo $order->user->shippingData['phone'] ?></nobr><br>
+                        CP: <?php echo $order->user->shippingData['postalCode'] ?> <?php echo $order->user->shippingData['city'] ?><br>
+                        <?php echo getProvinceName($order->user->shippingData['province']) ?> (<?php echo getCountryName($order->user->shippingData['country']) ?>)
                     </td> 
-                    <!--td><?= $order->tpvData ?></td-->
+                    <!--td><?php echo $order->tpvData ?></td-->
                 </tr>
-<? } ?>        
+<?php } ?>        
             </tbody>
         </table>
         </center>
