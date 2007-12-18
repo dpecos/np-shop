@@ -17,10 +17,14 @@ function doConfig() {
 	$constants["EMAIL_SUBJECT"] = "Pedido en la tienda de David Benavente: ";
 	$constants["EMAIL_NOTIFICATION"] = "pedidos@davidbenavente.com";
 	
-	$constants["ORDER_STATUS_PENDENT"] = "P";
-	$constants["ORDER_STATUS_PAYMENT_OK"] = "E";
-	$constants["ORDER_STATUS_PAYMENT_ERROR"] = "D";
-	$constants["ORDER_STATUS_SENT"] = "F";
+	$constants["ORDER_STATUS"]["PENDENT"] =         "PROCESO DE PAGO";
+	$constants["ORDER_STATUS"]["PAYMENT_OK"] =      "PAGO TPV OK";
+	$constants["ORDER_STATUS"]["PAYMENT_ERROR"] =   "PAGO TPV ERROR";
+	$constants["ORDER_STATUS"]["PENDING_SENT"] =    "PDTE ENVIO A CLIENTE";
+	$constants["ORDER_STATUS"]["SENT"] =            "ENVIADO A CLIENTE";
+	$constants["ORDER_STATUS"]["RETURNED"] =        "DEVOLUCION CLIENTE";
+	$constants["ORDER_STATUS"]["CLOSED"] =          "FINALIZADO";
+
 	
 	$constants["NOTIFY_CHANGE_STATUS"] = array("ORDER_STATUS_PAYMENT_OK");
 	
@@ -43,18 +47,16 @@ function doConfig() {
 	$tpv['productDescription'] = "Pedido David Benavente - ";
 	$tpv['terminal'] = "001";
 	$tpv['currency'] = "978";
-	// Datos reales
-	/*
+	
+	/*// Datos reales
 	$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
-	$tpv['key'] = "4017ND0N71U11603";
+	$tpv['key'] = "U998T5183NU3OM8U";
 	$tpv['code'] = "285517991";
 	*/
 	// Datos de prueba
-	
 	$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
 	$tpv['key'] = "qwertyasdf0123456789";
-	$tpv['code'] = "285517991";
-	            
+	$tpv['code'] = "285517991";        
 	
 	$skin = array();
 	$skin['name'] = "davidbenavente";

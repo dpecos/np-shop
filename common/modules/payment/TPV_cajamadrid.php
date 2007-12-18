@@ -15,9 +15,9 @@ if ($_SERVER_DATA["REQUEST_METHOD"] == "POST") {
         //$cart->orderId = $orderId;
         
         if (is_numeric($orderStatus) && intval($orderStatus) < 100) {
-            $cart->changeStatus($npshop["constants"]["ORDER_STATUS_PAYMENT_OK"], $tpvData);
+            $cart->changeStatus($npshop["constants"]["ORDER_STATUS"]["PAYMENT_OK"], $tpvData);
         } else {
-            $cart->changeStatus($npshop["constants"]["ORDER_STATUS_PAYMENT_ERROR"], $tpvData);
+            $cart->changeStatus($npshop["constants"]["ORDER_STATUS"]["PAYMENT_ERROR"], $tpvData);
         }
     }
   

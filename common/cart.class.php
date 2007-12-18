@@ -292,7 +292,7 @@ class Cart {
     	$text .= "   </tr>";
     	$text .= "</table></center><br/>";
     	
-    	if ($this->orderStatus == $npshop['constants']['ORDER_STATUS_PAYMENT_OK'])
+    	if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK'])
     	    $text .= "El pedido <b>queda confirmado</b>.<br/>";
     	else
     	    $text .= "El pedido <b>no ha podido ser confirmado</b>.<br/>";
@@ -330,7 +330,7 @@ class Cart {
 	    NP_executeInsertUpdate($sql);
 	       
 	    
-	    if ($status == $npshop['constants']['ORDER_STATUS_PAYMENT_OK']) {
+	    if ($status == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK']) {
     	    foreach ($this->items as $item) {
     			$item->retireFromStock();
     		}	

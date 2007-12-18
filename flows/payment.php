@@ -47,7 +47,7 @@ if (isset($_GET["result"])) {
         $cart->orderDate = null;
         $cart->orderStatus = null;
     } else if (!isset($cart->orderStatus)) {
-        $cart->orderStatus = $npshop["constants"]["ORDER_STATUS_PENDENT"];
+        $cart->orderStatus = $npshop["constants"]["ORDER_STATUS"]["PENDENT"];
     }
       
     // recheck stock
