@@ -27,20 +27,20 @@ NP_executeSelect($sql, 'recoverOrders');
         <table border="1" width="80%">
             <thead>
                 <tr>
-                    <th>Fecha</th>
-                    <th>Estado del pedido</th>
-                    <th>Identificador pedido</th>
-                    <th>Importe</th>
-                    <th>Num. Productos</th>
-                    <th>Datos facturación</th>
-                    <th>Datos envío</th>
+                    <th width="15%">Fecha</th>
+                    <th width="20%">Estado del pedido</th>
+                    <th width="10%">Identificador pedido</th>
+                    <th width="10%">Importe</th>
+                    <th width="5%">Num. Productos</th>
+                    <th width="20%">Datos facturación</th>
+                    <th width="20%">Datos envío</th>
                     <!--th>Datos TPV</th-->
                 </tr>
             </thead>
             <tbody>
 <?php foreach ($orders as $order) { ?>
                 <tr>
-                    <td width="130px" align="center"><?php echo date("d/m/Y H:i:s", $order->date) ?></td> 
+                    <td align="center"><?php echo date("d/m/Y H:i:s", $order->date) ?></td> 
                     <td align="center"><?php echo $order->orderStatus ?></td> 
                     <td align="center"><a href="orderDetail.php?orderId=<?php echo $order->orderId ?>"><?php echo formatOrderId($order) ?></a></td> 
                     <td align="right"><?php echo $order->getTotal(1) ?> &euro;</td>
