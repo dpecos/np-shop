@@ -55,22 +55,27 @@ class Cart {
 	
 	function getShippingCost($shippingAgentCode) {
 	    global $npshop;
-		$normalWeight = 0.0;
-		$shippingCost = 0.0;
-		foreach ($this->items as $itemId => $item) {
-			if ($item->specialShipping) { 
-				$shippingCost += $item->specialShippingCost * $item->quantity;
-			} else {
-				$normalWeight += $item->weight * $item->quantity;
-			}
-		}	 
-		if ($normalWeight > 0)
-		    $normalWeight += $npshop['constants']['EXTRA_WEIGHT_SHIPPING_COST'];
-	
-		$shippingCost += (float)$this->__obtainShippingCost($normalWeight, $shippingAgentCode);
-		
-		//return number_format($shippingCost, 2, '.', '');
-		return $shippingCost;
+	    
+	    if (isset($this->totalShippingCost) && ($this->totalShippingCost != null)) {
+	        return $this->totalShippingCost;
+	    } else {
+    		$normalWeight = 0.0;
+    		$shippingCost = 0.0;
+    		foreach ($this->items as $itemId => $item) {
+    			if ($item->specialShipping) { 
+    				$shippingCost += $item->specialShippingCost * $item->quantity;
+    			} else {
+    				$normalWeight += $item->weight * $item->quantity;
+    			}
+    		}	 
+    		if ($normalWeight > 0)
+    		    $normalWeight += $npshop['constants']['EXTRA_WEIGHT_SHIPPING_COST'];
+    	
+    		$shippingCost += (float)$this->__obtainShippingCost($normalWeight, $shippingAgentCode);
+    		
+    		//return number_format($shippingCost, 2, '.', '');
+    		return $shippingCost;
+	    }
 	}
 	
 	function updateOrderShippingDays() {
@@ -171,6 +176,16 @@ class Cart {
         	$sql = "SELECT * FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSLINEAS WHERE ".$ddbb_mapping["Cart"]['orderId']."=".encodeSQLValue($this->orderId, "STRING")." ORDER BY PEL_NU_LINEA";
         	
         	NP_executeSelect($sql, $f);
+        	      	
+        	$sql = "SELECT SUM(PEC_IM_IMPORTE) AS COSTS FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES WHERE ".$ddbb_mapping["Cart"]['orderId']."=".encodeSQLValue($this->orderId, "STRING");
+        	
+        	$data = NP_executePKSelect($sql);
+        	
+            if (isset($data["COSTS"]) && trim($data["COSTS"]) != "")
+        	    $this->totalShippingCost = $data["COSTS"];
+        	else if (count($this->items) > 0)
+        	    $this->totalShippingCost = "0";
+      
 		}
 	}
 	
@@ -341,12 +356,16 @@ class Cart {
 	    $user = new User();
 	    $user->_dbLoad($this->user->id);
 	    
-        $statusKey = _obtainKeyForValue($npshop['constants']['NOTIFY_CHANGE_STATUS'], $status);
-	    if (in_array($statusKey, $npshop['constants']['NOTIFY_CHANGE_STATUS'])) {
+	    $statusKey = _obtainKeyForValue($npshop['constants']['ORDER_STATUS'], $status);
+                
+        //TODO: fix in_array
+	    //if (in_array($statusKey, $npshop['constants']['NOTIFY_CHANGE_STATUS'])) {
+	    if ($statusKey == "PENDING_SENT" || $statusKey == "PAYMENT_ERROR") {
 	        $mailContent = $this->_buildMail();
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $this->user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
 	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+	        if ($statusKey == "PENDING_SENT")
+	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
 	    }
 	}
 }

@@ -22,17 +22,32 @@ $order = new Cart($orderId);
         </script>
     </head>
     <body>
-        <div style="width: 320px;">
+        <div style="width: 480px;">
             <center>
             <table class="etiquetas">
+                <tr class="remitente">
+                    <td>
+                        Remitente:
+                        <blockquote>
+                            <nobr>David Benavente - Estudio de Bonsai</nobr><br/>
+                            <br/>
+                            <nobr>Gral. Ramirez de Madrid 8-10</nobr><br/>
+                            Madrid 28020<br/>
+                            <br/>
+                            Telef: 687 327 796<br/>
+                        </blockquote>
+                    </td>
+                </tr>
                 <tr>
                     <td>
-                        <?php echo $order->user->shippingData['name'] ?> <?php echo $order->user->shippingData['surname'] ?><br>
+                        <nobr><?php echo $order->user->shippingData['name'] ?> <?php echo $order->user->shippingData['surname'] ?></nobr><br>
                         <br/>
-                        <?php echo $order->user->shippingData['address'] ?> <?php echo $order->user->shippingData['address2'] ?><br>
+                        <nobr><?php echo $order->user->shippingData['address'] ?> <?php echo $order->user->shippingData['address2'] ?></nobr><br>
                         <?php echo $order->user->shippingData['postalCode'] ?> <?php echo $order->user->shippingData['city'] ?><br>
                         <?php echo getProvinceName($order->user->shippingData['province']) ?><br>
-                        <?php echo getCountryName($order->user->shippingData['country']) ?> 
+                        <?php echo getCountryName($order->user->shippingData['country']) ?><br/> 
+                        <br/>
+                        Telef: <?php echo $order->user->shippingData['phone'] ?> 
                     </td>
                 </tr>
             </table>
