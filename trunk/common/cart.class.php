@@ -341,17 +341,12 @@ class Cart {
 	    $user = new User();
 	    $user->_dbLoad($this->user->id);
 	    
-   	    // TODO: estas líneas son solo para probar el envio de mails, solo se deben enviar cuando haya notificación OK por el TPV
-	    sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].formatOrderId($this), $this->_buildMail());
-	    sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].formatOrderId($this), $this->_buildMail());
-
         $statusKey = _obtainKeyForValue($npshop['constants']['NOTIFY_CHANGE_STATUS'], $status);
 	    if (in_array($statusKey, $npshop['constants']['NOTIFY_CHANGE_STATUS'])) {
-	        /*
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $this->user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $this->_buildMail());
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $this->_buildMail());
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $this->_buildMail());
-	        */
+	        $mailContent = $this->_buildMail();
+	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $this->user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
 	    }
 	}
 }

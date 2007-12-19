@@ -1,5 +1,11 @@
 <?php
 
+if (!defined('APP_ROOT')) {
+    define('APP_ROOT', "../../..");
+    require_once(APP_ROOT."/config/main.php");
+    require_once(APP_ROOT."/common/commonFunctions.php");
+}
+
 if ($_SERVER_DATA["REQUEST_METHOD"] == "POST") {
     // backend TPV response 
     
@@ -16,6 +22,9 @@ if ($_SERVER_DATA["REQUEST_METHOD"] == "POST") {
         
         if (is_numeric($orderStatus) && intval($orderStatus) < 100) {
             $cart->changeStatus($npshop["constants"]["ORDER_STATUS"]["PAYMENT_OK"], $tpvData);
+            
+            //immediatelly step to next status
+            $cart->changeStatus($npshop["constants"]["ORDER_STATUS"]["PENDING_SENT"]);
         } else {
             $cart->changeStatus($npshop["constants"]["ORDER_STATUS"]["PAYMENT_ERROR"], $tpvData);
         }
@@ -40,7 +49,7 @@ if ($_SERVER_DATA["REQUEST_METHOD"] == "POST") {
         $cart = get_cart();
     	$tpv = $npshop['tpv'];
     	    
-        $scriptURL = dirname(dirname($_SERVER_DATA["PHP_SELF"]));
+        $scriptURL = dirname(dirname($_SERVER["PHP_SELF"]));
     
     	$amount = $cart->getTotal(1) * 100;
     	
