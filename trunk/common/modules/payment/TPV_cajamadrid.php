@@ -6,15 +6,22 @@ if (!defined('APP_ROOT')) {
     require_once(APP_ROOT."/common/commonFunctions.php");
 }
 
-if ($_SERVER_DATA["REQUEST_METHOD"] == "POST") {
+global $_SERVER_DATA;
+
+$METHOD = "POST";
+
+if ($_SERVER_DATA["REQUEST_METHOD"] == $METHOD) {
     // backend TPV response 
     
-    if (isset($_POST['Ds_MerchantData']) && trim($_POST['Ds_MerchantData']) != "") {
-        $orderId = $_POST['Ds_MerchantData'];
-        $orderStatus = $_POST['Ds_Response'];
-        
+    $_DATA = null;
+    eval("\$_DATA=\$_".$METHOD.";");
+  
+    if (isset($_DATA['Ds_MerchantData']) && trim($_DATA['Ds_MerchantData']) != "") {
+        $orderId = $_DATA['Ds_MerchantData'];
+        $orderStatus = $_DATA['Ds_Response'];
+       
         $tpvData = null;
-        foreach($_POST as $k => $v)
+        foreach($_DATA as $k => $v)
             $tpvData .= $k."=".$v."; ";
             
         $cart = new Cart($orderId);

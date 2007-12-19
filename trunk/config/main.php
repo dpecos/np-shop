@@ -3,10 +3,11 @@ define('DEBUG', true);
 
 $_SERVER_DATA = null;
 
-if (isset($_ENV))
+if (isset($_ENV) && ($_ENV != null)) {
     $_SERVER_DATA=$_ENV;
-else if (isset($_SERVER))
+} else if (isset($_SERVER)) {
     $_SERVER_DATA=$_SERVER;
+}
     
 require_once(APP_ROOT."/lib/NPLib_Sql.php");
 
@@ -26,18 +27,18 @@ function doConfig() {
 	$constants["EMAIL_SUBJECT"] = "Pedido en la tienda de David Benavente: ";
 	$constants["EMAIL_NOTIFICATION"] = "pedidos@davidbenavente.com";
 		
-	$constants["NOTIFY_CHANGE_STATUS"] = array($constants["ORDER_STATUS"]["PENDING_SENT"]);
+	$constants["NOTIFY_CHANGE_STATUS"] = array("PENDING_SENT","PAYMENT_ERROR");
 	
 	// Datos de configuracion de la BBDD
 	$ddbb = array();
-	$ddbb["HOST"] = "llda252.servidoresdns.net";
+	/*$ddbb["HOST"] = "llda252.servidoresdns.net";
 	$ddbb["USER"] = "qcq501";
 	$ddbb["PASSWD"] = "Qcq501";
-	$ddbb["NAME"] = "qcq501";
-	/*$ddbb["HOST"] = "localhost";
+	$ddbb["NAME"] = "qcq501";*/
+	$ddbb["HOST"] = "localhost";
 	$ddbb["USER"] = "root";
 	$ddbb["PASSWD"] = "";
-	$ddbb["NAME"] = "NPShop";*/
+	$ddbb["NAME"] = "NPShop";
 	$ddbb["PREFIX"] = "NPS_";
 	
 	// Datos de configuracion del TPV
@@ -49,19 +50,21 @@ function doConfig() {
 	$tpv['currency'] = "978";
 	
 	// Datos reales
-	$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
+	/*$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
 	$tpv['key'] = "U998T5183NU3OM8U";
-	$tpv['code'] = "285517991";
+	$tpv['code'] = "285517991";*/
 	
 	// Datos de prueba
-	/*$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
+	$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
 	$tpv['key'] = "qwertyasdf0123456789";
 	$tpv['code'] = "285517991";
 	
-	// Tarjeta de pruebas:
-	//    4548812049400004
-	//    12/07
-	//    123456
+	
+	/*
+	     Tarjeta de pruebas:
+	        4548812049400004
+	        12/07
+	        123456
 	*/
 	
 	$skin = array();

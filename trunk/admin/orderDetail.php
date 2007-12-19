@@ -50,7 +50,7 @@ $user->_dbLoad($order->user->id);
             <tr><td>Email del comprador:</td><td><?php echo $user->email ?></td></tr>
         </table>
         <br/>
-        <a href="#" onclick="javascript:window.open('shippingLabel.php?orderId=<?php echo $order->orderId ?>', 'Etiqueta', 'width=340,height=280,status=no,toolbar=no,location=no,scrollbars=no,resizble=no'); return false;">Generar etiqueta de envío</a>
+        <a href="#" onclick="javascript:window.open('shippingLabel.php?orderId=<?php echo $order->orderId ?>', 'Etiqueta', 'width=500,height=540,status=no,toolbar=no,location=no,scrollbars=no,resizble=no'); return false;">Generar etiqueta de envío</a>
         </center>
         <br/>
     
