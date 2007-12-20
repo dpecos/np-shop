@@ -78,7 +78,7 @@ foreach ($itemIds as $id) {
 global $categories;
 foreach ($categories as $cat) { 
 ?>					    
-			    <option value="<?php echo$cat[0]?>" <?php echo $_GET['categoryId']==$cat[0]?"selected":""?>><?php echo$cat[1]?></option>
+			    <option value="<?php echo $cat[0]?>" <?php echo $_GET['categoryId']==$cat[0]?"selected":""?>><?php echo $cat[1]?></option>
 <?php
 }
 ?>

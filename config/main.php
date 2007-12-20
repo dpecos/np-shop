@@ -26,8 +26,6 @@ function doConfig() {
 	$constants["EMAIL_FROM"] = "Pedidos DavidBenavente.com <pedidos@davidbenavente.com>";
 	$constants["EMAIL_SUBJECT"] = "Pedido en la tienda de David Benavente: ";
 	$constants["EMAIL_NOTIFICATION"] = "pedidos@davidbenavente.com";
-		
-	$constants["NOTIFY_CHANGE_STATUS"] = array("PENDING_SENT","PAYMENT_ERROR");
 	
 	// Datos de configuracion de la BBDD
 	$ddbb = array();

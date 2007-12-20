@@ -6,10 +6,13 @@ require_once(APP_ROOT."/common/commonFunctions.php");
 $orderId = $_GET['orderId'];
 
 $order = new Cart($orderId);
+
+if (isset($_POST['newStatus'])) {
+    $order->changeStatus($npshop['constants']["ORDER_STATUS"][$_POST['newStatus']], null, false);
+}
+
 $user = new User();
 $user->_dbLoad($order->user->id);
-//$order->user = $user;
-
 ?>
 
 <html>
@@ -25,7 +28,25 @@ $user->_dbLoad($order->user->id);
         <center>
         <table boder="0">
             <tr><td>Fecha:</td><td><?php echo date("d/m/Y H:i:s", $order->date) ?></td></tr>
-            <tr><td>Estado:</td><td><?php echo $order->orderStatus ?></td></tr>
+            <tr><td>Estado:</td>
+                <td>
+                    <form method="post">
+                        <select name="newStatus">
+<?php
+global $npshop;
+foreach ($npshop['constants']["ORDER_STATUS"] as $statusKey => $statusName) { 
+?>					    
+			    <option value="<?php echo $statusKey?>" <?php echo $order->orderStatus==$statusName?"selected":""?>><?php echo $statusName?></option>
+<?php
+}
+?>
+                        </select>
+                        <input type="submit" value="Grabar"/>
+                    </form>
+<?php if (isset($_POST['newStatus'])) { ?>
+                    <font color="green"><b>Estado modificado correctamente.</b></font>
+<?php } ?>                    
+                </td></tr>
             <tr><td>Importe Total:</td><td><?php echo $order->getTotal(1) ?> &euro;</td></tr>
             <tr>
                 <td>Datos de facturación:</td>
@@ -102,5 +123,8 @@ $user->_dbLoad($order->user->id);
         </table>
         </center>
         <br/-->
+        <!--
+        <?php print_r($order) ?>
+        -->
     </body>
 </html>

@@ -32,6 +32,7 @@ $ddbb_mapping['Cart']['user']['shippingData']['country'] = 		"PED_NU_ENVPAIS";
 $ddbb_mapping['Cart']['user']['shippingData']['phone'] = 		"PED_VA_ENVTELEFONO";
 $ddbb_mapping['Cart']['shippingDays'] = 						"PED_NU_DIASENTREGA";
 $ddbb_mapping['Cart']['tpvData'] =                              "PED_TPV_DATA";
+$ddbb_mapping['Cart']['statusHistory'] = 							"PED_ST_HIST";
 
 $ddbb_types['Cart']['orderId'] = 								"INT";
 $ddbb_types['Cart']['user']['id'] = 							"INT";
@@ -57,4 +58,5 @@ $ddbb_types['Cart']['user']['shippingData']['country'] = 		"INT";
 $ddbb_types['Cart']['user']['shippingData']['phone'] = 			"STRING";
 $ddbb_types['Cart']['shippingDays'] = 							"INT";
 $ddbb_types['Cart']['tpvData'] =                                "STRING";
+$ddbb_types['Cart']['statusHistory'] =                                "STRING";
 ?>

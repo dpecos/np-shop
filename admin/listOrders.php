@@ -3,6 +3,18 @@ define('APP_ROOT', "../");
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/common/commonFunctions.php");
 
+function buildSQL($type = null) {
+    global $ddbb_mapping, $ddbb_table, $npshop;
+    
+    $sql = "SELECT ".$ddbb_mapping['Cart']['orderId']." FROM ".$ddbb_table['Cart'];
+    if (isset($type) && $type != "all") {
+        $sql .= " WHERE ".$ddbb_mapping['Cart']['orderStatus']."='".$npshop['constants']["ORDER_STATUS"][$type]."'";
+    }
+    $sql .= " ORDER BY ".$ddbb_mapping['Cart']['date']." DESC";
+    
+    return $sql;
+}
+
 $orders = array();
 function recoverOrders($data) {
     global $orders;
@@ -10,7 +22,10 @@ function recoverOrders($data) {
 	array_push($orders, $cart);
 }
 
-$sql = "SELECT ".$ddbb_mapping['Cart']['orderId']." FROM ".$ddbb_table['Cart'];
+if (!isset($_GET['type']) || $_GET['type'] == null)
+    $_GET['type']="all";
+
+$sql = buildSQL($_GET['type']);
 
 NP_executeSelect($sql, 'recoverOrders');
 
@@ -20,9 +35,34 @@ NP_executeSelect($sql, 'recoverOrders');
         <style>
             <?php include_once(APP_ROOT.'/admin/style.css'); ?>
         </style>
+        <script>
+            function showType() {
+			    form = document.getElementById("typeForm");
+			    form.submit();
+			}
+        </script>
     </head>
     <body>
-        <h1>Listado de pedidos</h1>
+        <div style="float:left"><h1>Listado de pedidos</h1></div>
+        <div style="float:right">
+        <form method="get" id="typeForm">
+            <br/>
+			<select class="fd5" name="type" onchange="javascript:showType()">		
+			    <option value="all">Todos</option>	
+<?php
+global $npshop;
+foreach ($npshop['constants']["ORDER_STATUS"] as $statusKey => $statusName) { 
+?>					    
+			    <option value="<?php echo $statusKey?>" <?php echo $_GET['type']==$statusKey?"selected":""?>><?php echo $statusName?></option>
+<?php
+}
+?>
+		    </select>
+	    <form>
+	    </div>
+	    
+	    <div style="clear:both"/>
+
         <center>
         <table border="1" width="80%">
             <thead>

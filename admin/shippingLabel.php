@@ -34,7 +34,7 @@ $order = new Cart($orderId);
                             <nobr>Gral. Ramirez de Madrid 8-10</nobr><br/>
                             Madrid 28020<br/>
                             <br/>
-                            Telef: 687 327 796<br/>
+                            Telf.: 687 327 796<br/>
                         </blockquote>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@ $order = new Cart($orderId);
                         <?php echo getProvinceName($order->user->shippingData['province']) ?><br>
                         <?php echo getCountryName($order->user->shippingData['country']) ?><br/> 
                         <br/>
-                        Telef: <?php echo $order->user->shippingData['phone'] ?> 
+                        Telf.: <?php echo $order->user->shippingData['phone'] ?> 
                     </td>
                 </tr>
             </table>
