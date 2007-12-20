@@ -309,8 +309,10 @@ class Cart {
     	
     	if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK'])
     	    $text .= "El pedido <b>queda confirmado</b>.<br/>";
-    	else
+    	else if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_ERROR'])
     	    $text .= "El pedido <b>no ha podido ser confirmado</b>.<br/>";
+    	else 
+    	    $text .= "El pedido queda con estado <b>".$this->orderStatus."</b>.<br/>";
     	
 	    $text .= "<br/>";
 	    $text .= "Un saludo";
@@ -320,10 +322,20 @@ class Cart {
 	    return $text;
 	}
 	
-	function changeStatus($status, $tpvData = null) {
+	function changeStatus($status, $tpvData = null, $sendMail = true) {
 	    global $ddbb_table, $ddbb_mapping, $ddbb_types, $npshop;
 	    
-	    $this->orderStatus = $status;
+	    // status changes history
+	    if ($this->orderStatus != $status) {
+
+    	    $this->orderStatus = $status;
+
+    	    if ($this->statusHistory == null || trim($this->statusHistory == ""))
+    	        $this->statusHistory = "";
+    	    else
+    	        $this->statusHistory .= " @ ";
+    	    $this->statusHistory .= "[".date("d/m/Y H:i:s")." : ".$this->orderStatus."]";
+	    }
 	    
 	    if ($tpvData != null && trim($tpvData) != "") {
 	        $tpvData = "[".trim($tpvData)."]";
@@ -331,17 +343,18 @@ class Cart {
 	            $tpvData = $this->tpvData." @ ".$tpvData;
 	        }
 	    }
-	    
+	      
 	    $sql = "UPDATE ".$ddbb_table["Cart"].
 			" SET ".$ddbb_mapping['Cart']['orderStatus']."=".encodeSQLValue($status, $ddbb_types['Cart']['orderStatus']).", ".
-			$ddbb_mapping['Cart']['date']."=NOW()";
+			$ddbb_mapping['Cart']['statusHistory']."=".encodeSQLValue($this->statusHistory, $ddbb_types['Cart']['statusHistory']).", ".
+			$ddbb_mapping['Cart']['date']."=".encodeSQLValue($this->date, $ddbb_types['Cart']['date']);
 		if ($tpvData != null) {
 		    $this->tpvData = $tpvData;
 		    update_cart($this);
 		    $sql.= ", ".$ddbb_mapping['Cart']['tpvData']."=".encodeSQLValue($tpvData, $ddbb_types['Cart']['tpvData']); 
 		}
 		$sql.= " WHERE ".$ddbb_mapping['Cart']['orderId']."=".encodeSQLValue($this->orderId, $ddbb_types['Cart']['orderId']); 
-	    
+
 	    NP_executeInsertUpdate($sql);
 	       
 	    
@@ -353,19 +366,21 @@ class Cart {
 	    
 	    update_cart($this);
 	    
-	    $user = new User();
-	    $user->_dbLoad($this->user->id);
-	    
-	    $statusKey = _obtainKeyForValue($npshop['constants']['ORDER_STATUS'], $status);
-                
-        //TODO: fix in_array
-	    //if (in_array($statusKey, $npshop['constants']['NOTIFY_CHANGE_STATUS'])) {
-	    if ($statusKey == "PENDING_SENT" || $statusKey == "PAYMENT_ERROR") {
-	        $mailContent = $this->_buildMail();
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-	        if ($statusKey == "PENDING_SENT")
-	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+	    if ($sendMail) {
+    	    $user = new User();
+    	    $user->_dbLoad($this->user->id);
+    	    
+    	    $statusKey = _obtainKeyForValue($npshop['constants']['ORDER_STATUS'], $status);
+                    
+    	    if ($statusKey == "PAYMENT_OK" || $statusKey == "PAYMENT_ERROR") {
+    	        $mailContent = $this->_buildMail();
+    	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+    	        // debug mails
+    	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+    	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "maisa@cyt.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+    	        if ($statusKey == "PAYMENT_OK")
+    	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+    	    }
 	    }
 	}
 }

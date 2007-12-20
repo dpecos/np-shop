@@ -12,7 +12,7 @@ require_once(APP_ROOT."/common/commonFunctions.php");
     <body>
         <h1>Panel de administración</h1>
         <ul>
-            <li><a href="listOrders.php">Listado de pedidos</a></li>
+            <li><a href="listOrders.php?type=PENDING_SENT">Listado de pedidos</a></li>
             <li><a href="listItems.php">Listado de productos</a></li>
         </ul>
     </body>
