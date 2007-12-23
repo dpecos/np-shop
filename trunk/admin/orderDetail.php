@@ -22,7 +22,10 @@ $user->_dbLoad($order->user->id);
         </style>
     </head>
     <body>
-        <h1>Detalle del pedido <?php echo formatOrderId($order) ?></h1>
+        <div style="float:left"><h1>Detalle del pedido <?php echo formatOrderId($order) ?></h1></div>
+        <div style="float:right"><a href="listOrders.php?type=PENDING_SENT">Volver a listado de pedidos</a></div>
+	    
+	    <div style="clear:both"/>
 
         <h2>Resumen del pedido</h2>
         <center>
