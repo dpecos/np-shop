@@ -29,14 +29,21 @@ function doConfig() {
 	
 	// Datos de configuracion de la BBDD
 	$ddbb = array();
-	/*$ddbb["HOST"] = "llda252.servidoresdns.net";
+	// REAL
+	$ddbb["HOST"] = "llda252.servidoresdns.net";
 	$ddbb["USER"] = "qcq501";
 	$ddbb["PASSWD"] = "Qcq501";
-	$ddbb["NAME"] = "qcq501";*/
-	$ddbb["HOST"] = "localhost";
+	$ddbb["NAME"] = "qcq501";
+    // PRUEBAS
+    /*$ddbb["HOST"] = "llda252.servidoresdns.net";
+	$ddbb["USER"] = "qcv997";
+	$ddbb["PASSWD"] = "Qcv997";
+	$ddbb["NAME"] = "qcv997";*/
+    // LOCALHOST
+	/*$ddbb["HOST"] = "localhost";
 	$ddbb["USER"] = "root";
 	$ddbb["PASSWD"] = "";
-	$ddbb["NAME"] = "NPShop";
+	$ddbb["NAME"] = "NPShop";*/
 	$ddbb["PREFIX"] = "NPS_";
 	
 	// Datos de configuracion del TPV
@@ -48,14 +55,14 @@ function doConfig() {
 	$tpv['currency'] = "978";
 	
 	// Datos reales
-	/*$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
+	$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
 	$tpv['key'] = "U998T5183NU3OM8U";
-	$tpv['code'] = "285517991";*/
+	$tpv['code'] = "285517991";
 	
 	// Datos de prueba
-	$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
+	/*$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
 	$tpv['key'] = "qwertyasdf0123456789";
-	$tpv['code'] = "285517991";
+	$tpv['code'] = "285517991";*/
 	
 	
 	/*
