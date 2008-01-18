@@ -108,10 +108,18 @@ class Item {
 
 	}
 	
-	function retireFromStock() {
+	
+	function modifyStock($quantity) {
 	    global $ddbb_table, $ddbb_mapping;
-	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$ddbb_mapping["Item"]['stock']."-".$this->quantity." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
-	    
+	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$quantity." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+		
+		NP_executeInsertUpdate($sql);
+	}
+	
+	function addToStock($quantity) {
+	    global $ddbb_table, $ddbb_mapping;
+	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$ddbb_mapping["Item"]['stock']."-".$quantity." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+		
 		NP_executeInsertUpdate($sql);
 	}
 	

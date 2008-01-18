@@ -103,7 +103,7 @@ foreach ($categories as $cat) {
             <tbody>
 <?php foreach ($items as $item) { ?>
                 <tr>
-                    <td><?php echo $item->id ?></td>
+                    <td><a href="itemDetail.php?itemId=<?php echo $item->id ?>"><?php echo $item->id ?></a></td>
                     <td><?php echo $item->name ?></td>
                     <td><?php echo $item->tradeMark ?></td>
                     <td align="right"><?php echo $item->stock ?></td>
