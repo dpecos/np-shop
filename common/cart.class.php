@@ -360,7 +360,7 @@ class Cart {
 	    
 	    if ($status == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK']) {
     	    foreach ($this->items as $item) {
-    			$item->retireFromStock();
+    			$item->addToStock(-1 * $item->quantity);
     		}	
 	    }
 	    
