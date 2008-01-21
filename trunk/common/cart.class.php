@@ -372,7 +372,7 @@ class Cart {
     	    
     	    $statusKey = _obtainKeyForValue($npshop['constants']['ORDER_STATUS'], $status);
                     
-    	    if ($statusKey == "PAYMENT_OK" || $statusKey == "PAYMENT_ERROR") {
+    	    if ($statusKey == "PAYMENT_OK") {
     	        $mailContent = $this->_buildMail();
     	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
     	        // debug mails
