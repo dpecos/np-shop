@@ -79,7 +79,11 @@ NP_executeSelect($sqlCategories, "fetchCategories");
                 <tr><td>Envío especial:</td><td><?php echo $item->specialShipping?"Si":"No" ?></td></tr>
                 <?php if (showValue($item->specialShipping)) { ?><tr><td>Coste de envío especial:</td><td><?php echo $item->specialShippingCost ?></td></tr><?php } ?>
                 <tr><td>Número de orden:</td><td><?php echo $item->order ?></td></tr>
-                <tr><td>Retirado:</td><td><input type="checkbox" name="item_retired" value="true" <?php echo $item->retired?"checked":"" ?> onclick="javascript:updateItem('retire')"/></td></tr>
+                <tr><td>Retirado:</td><td><input type="checkbox" name="item_retired" value="true" <?php echo $item->retired?"checked":"" ?> onclick="javascript:updateItem('retire')"/>
+<?php if (isset($_POST['event']) && $_POST['event'] == "retire") { ?>
+                            <font color="green"><b>Indicador modificado correctamente.</b></font>
+<?php } ?>  
+                    </td></tr>
             </table>
             <br/><br/>
         </center>
