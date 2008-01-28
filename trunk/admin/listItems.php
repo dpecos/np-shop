@@ -18,7 +18,7 @@ function buildSQL($categoryId = null) {
     } else {
         $sqlProducts .= " WHERE ";
     }
-    $sqlProducts .= $ddbb_mapping["Item"]["retired"]."= 0 ORDER BY ".$ddbb_mapping["Item"]["order"];
+    $sqlProducts .= " ORDER BY ".$ddbb_mapping["Item"]["order"];
     
     $sqlCategories = "SELECT * FROM NPS_CATEGORIAS ORDER BY 1";
 }

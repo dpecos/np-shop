@@ -123,6 +123,15 @@ class Item {
 		NP_executeInsertUpdate($sql);
 	}
 	
+	function setRetired($isRetired) {
+	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
+	    $this->retired = $isRetired;
+	    
+	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['retired']."=".encodeSQLValue($this->retired, $ddbb_types["Item"]['retired'])." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, $ddbb_types["Item"]['id']);
+		
+		NP_executeInsertUpdate($sql);
+	}
+	
 	function storeSpecialShippingCost($orderId, $lineNumber) {
 		global $npshop;
 		$sql = "INSERT INTO ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES ".
