@@ -14,9 +14,9 @@ function buildSQL($categoryId = null) {
     
     $sqlProducts = "SELECT ".$ddbb_mapping["Item"]["id"]." FROM NPS_PRODUCTOS";
     if (isset($categoryId) && $categoryId!="all") {
-        $sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".$categoryId." AND ";
+        $sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".$categoryId." ";
     } else {
-        $sqlProducts .= " WHERE ";
+        $sqlProducts .= " ";
     }
     $sqlProducts .= " ORDER BY ".$ddbb_mapping["Item"]["order"];
     
