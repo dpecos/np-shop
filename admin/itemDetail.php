@@ -12,8 +12,12 @@ $categories = array();
 $categoryTitle = null;
 
 if (isset($_POST['item_id'])) {
+
     $item = new Item($_POST["item_id"]);
-    $item->modifyStock($_POST["item_stock"]);
+    if ($_POST['event'] == "stock")
+        $item->modifyStock($_POST["item_stock"]);
+    else if ($_POST['event'] == "retire") 
+        $item->setRetired(isset($_POST["item_retired"])."");
 }
 
 if (isset($_GET["itemId"])) {
@@ -35,6 +39,13 @@ NP_executeSelect($sqlCategories, "fetchCategories");
         <style>
             <?php include_once(APP_ROOT.'/admin/style.css'); ?>
         </style>
+        <script>
+            function updateItem(event) {
+                form = document.getElementsByTagName("form")[0];
+                form['event'].value = event;
+                form.submit();
+            }
+        </script>
     </head>
     <body>
         <div style="float:left"><h1>Detalle del producto <?php echo $item->id." - ".$item->name ?></h1></div>
@@ -46,6 +57,7 @@ NP_executeSelect($sqlCategories, "fetchCategories");
         <center>
         <form method="post">
             <input type="hidden" name="item_id" value="<?php echo $item->id ?>"/>
+            <input type="hidden" name="event" value=""/>
             
             <table boder="0" width="50%">
                 <tr><td width="140px">Nombre:</td><td><?php echo $item->name ?></td></tr>
@@ -56,8 +68,8 @@ NP_executeSelect($sqlCategories, "fetchCategories");
                 <tr><td>Stock:</td>
                     <td>
                         <input type="text" name="item_stock" value="<?php echo $item->stock ?>" size="5"/>
-                        <input type="submit" value="Modificar"/>
-<?php if (isset($_POST['item_stock'])) { ?>
+                        <input type="button" value="Modificar" onclick="javascript:updateItem('stock')"/>
+<?php if (isset($_POST['event']) && $_POST['event'] == "stock") { ?>
                             <font color="green"><b>Stock modificado correctamente.</b></font>
 <?php } ?>  
                     </td>
@@ -67,7 +79,7 @@ NP_executeSelect($sqlCategories, "fetchCategories");
                 <tr><td>Envío especial:</td><td><?php echo $item->specialShipping?"Si":"No" ?></td></tr>
                 <?php if (showValue($item->specialShipping)) { ?><tr><td>Coste de envío especial:</td><td><?php echo $item->specialShippingCost ?></td></tr><?php } ?>
                 <tr><td>Número de orden:</td><td><?php echo $item->order ?></td></tr>
-                <tr><td>Retirado:</td><td><?php echo $item->retired?"Si":"No" ?></td></tr>
+                <tr><td>Retirado:</td><td><input type="checkbox" name="item_retired" value="true" <?php echo $item->retired?"checked":"" ?> onclick="javascript:updateItem('retire')"/></td></tr>
             </table>
             <br/><br/>
         </center>
