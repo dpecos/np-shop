@@ -103,6 +103,7 @@ function encodeSQLValue($strVal, $sqlType) {
 				    return 0;
 				else 
 				    return $strVal;
+				  
 			} else
 				return 0;
 		} else if ($sqlType == "DATE") {

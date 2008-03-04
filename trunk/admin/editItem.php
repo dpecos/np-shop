@@ -1,26 +1,25 @@
 <?php
-
-define('APP_ROOT', "..");
+define('APP_ROOT', "../");
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/common/commonFunctions.php");
 
 $sqlCategories = "SELECT * FROM NPS_CATEGORIAS ORDER BY 1";
-
-$item = null;
 $categories = array();
 $categoryTitle = null;
 
-if (isset($_GET["itemId"])) {
+if (isset($_POST['item_id'])) {
+
+    $item = new Item($_POST["item_id"]);
+    //print_r($item);
+    NP_loadDataInto($item, $_POST, "item_");
+		//print_r($item);
+		$item->_dbUpdate();
+		
+		$item = new Item($_POST["item_id"]);
+		
+} else if (isset($_GET["itemId"])) {
     $item = new Item($_GET["itemId"]);
 }
-
-if ($item->categoryId == "all")
-  $categoryTitle = "Todas las categorías";
-else if ($item->categoryId == "new")
-  $categoryTitle = "Novedades";
-
-array_push($categories, array("all", "Todas las categorías"));
-array_push($categories, array("new", "Novedades"));
 
 function fetchCategories($data) {
     global $categories, $categoryTitle, $item;
@@ -31,10 +30,5 @@ function fetchCategories($data) {
 
 NP_executeSelect($sqlCategories, "fetchCategories");
 
-
-if ($item->categoryId == "30")
-    showSkin(basename(__FILE__), "macetas_japo");
-else
-    showSkin(basename(__FILE__), "herramientas");   
-
+showSkin("admin_".basename(__FILE__)); 
 ?>

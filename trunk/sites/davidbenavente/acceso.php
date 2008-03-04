@@ -140,7 +140,7 @@ if (isset($referrer)) {
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
 				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>Si ya tienes una cuenta con nosotros</span></td></tr>
 				<tr><td class="t-03" width=35% align=right style="border-left:1px #DADADA solid;"><br>e-mail</td><td class="t-02" width=75% style="border-right:1px #DADADA solid;"><br><input class="ffd2" type="text" maxlength=60 name="email"></td></tr>
-				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="password"></td></tr>
+				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password (*)</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="password"></td></tr>
 				<tr>
 					<td class="t-03" colspan="2" align=right style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 					<TABLE onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none'" cellSpacing=1 cellPadding=5 width="100%" border=0>
@@ -165,7 +165,16 @@ if (isset($referrer)) {
 						<span class=p-dere><a href="javascript:npshop_submit('login')" onmouseover="rollOn('b3_');" onmouseout="rollOff('b3_');chequear('b3_');" target=_self><img src="/interface/b03-continuar-off.gif" border=0  align=right name=b3_></a>
 					</td>
 				</tr>
-			</table>	
+			</table>
+            
+	<table cellpadding=6 cellspacing=0 border=0 width=100%>
+    	<tr>
+		<td class="t-03" style="text-align: left">(*) Máximo 20 caracteres.</td>
+		</tr>
+
+	</table>	
+	
+    
 		</form>	
 		</td>
 		<td width="50%" valign="top">
@@ -181,16 +190,20 @@ if (isset($referrer)) {
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
 				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>Si eres un usuario nuevo</span></td></tr>
 				<tr><td class="t-03" width=35% align=right style="border-left:1px #DADADA solid;"><br>e-mail</td><td class="t-02" width=75% style="border-right:1px #DADADA solid;"><br><input class="ffd2" type="text" maxlength=60 name="email"></td></tr>
-				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="password1"></td></tr>
+				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password (*)</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="password1"></td></tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Repetir password</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="password2"></td></tr>
 				<tr><td class="t-03" colspan="2" align=right style="border-left:1px #DADADA solid;"  style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 						<span class=p-dere><a href="javascript:npshop_submit('register')" onmouseover="rollOn('b9_');" onmouseout="rollOff('b9_');chequear('b9_');" target=_self><img src="/interface/b09-continuar-registro-off.gif" border=0  align=right name=b9_></a>
 					</td>
 				</tr>
-			</table>	
+			</table>
+	       
 		</td>
         </form>
 	</tr>
+
+	
+
 	<tr>
 				<td width="100%" valign="top" colspan="2"><p>Si eres un <B>usuario nuevo</B>, para acceder en el futuro a tu cuenta, podrás hacerlo con tu e-mail y password. No necesitarás meter de nuevo los datos de facturación y envío para las siguientes compras, aunque por supuesto podrás modificarlos cuando lo necesites. 
 

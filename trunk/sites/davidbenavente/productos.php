@@ -165,6 +165,7 @@ foreach ($items as $item) {
 						<ul>
 									<li>Ref. <?php echo $item->id ?>
 									<?php /* if (showValue($item->tradeMark)) { ?><li><?php echo $item->tradeMark ?><br><?php } */?>
+									<?php if (showValue($item->dimen)) { ?><li>Dimensiones: <?php echo $item->dimen ?> mm <br><?php } ?>
 									<?php if (showValue($item->height)) { ?><li>Altura: <?php echo $item->height ?> mm <br><?php } ?>
 									<?php if (showValue($item->depth)) { ?><li>Profundidad: <?php echo $item->depth ?> mm <br><?php } ?>
 									<?php if (showValue($item->length)) { ?><li>Longitud: <?php echo $item->length ?> mm <br><?php } ?>								    

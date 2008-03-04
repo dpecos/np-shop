@@ -12,6 +12,7 @@ require_once(APP_ROOT."/common/item.class.php");
 require_once(APP_ROOT."/common/user.class.php");
 require_once(APP_ROOT."/lib/NPLib_String.php");
 require_once(APP_ROOT."/lib/NPLib_Net.php");
+require_once(APP_ROOT."/lib/NPLib_Object.php");
 
 function showSkin($file, $id = null) {
 	global $skinFiles, $npshop;

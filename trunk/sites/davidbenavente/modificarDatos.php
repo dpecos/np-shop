@@ -175,7 +175,7 @@ global $extended, $referrer;
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
 				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>Datos de tu cuenta</span></td></tr>
 				<tr><td class="t-03" width=35% align=right style="border-left:1px #DADADA solid;"><br>e-mail</td><td class="t-02" width=75% style="border-right:1px #DADADA solid;"><br><input value="<?php echo $cart->user->email ?>" class="ffd2" type="text" maxlength=60 name="user_email"></td></tr>
-				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password</td><td class="t-02" style="border-right:1px #DADADA solid;">
+				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Password (*)</td><td class="t-02" style="border-right:1px #DADADA solid;">
 <?php if (get_referer() == "login.php") { ?>
 				<input class="ffd2"  value="<?php echo $cart->user->password ?>" type="password" maxlength=60 name="user_password" readonly>
 <?php } else { ?>
@@ -184,7 +184,7 @@ global $extended, $referrer;
 				</td></tr>
 <?php if (get_referer() != "login.php") { ?>
 				<tr><td class="t-01" colspan="2" style="border-right:1px #DADADA solid;" style="border-left:1px #DADADA solid;"><B>Si quieres cambiar tu password:</B></td></tr>
-				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Nuevo password</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="newPassword1"></td></tr>
+				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">Nuevo password (*)</td><td class="t-02" style="border-right:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="newPassword1"></td></tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;"  style="border-bottom:1px #DADADA solid;">Repetir password<br><br></td><td class="t-02" style="border-right:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;"><input class="ffd2" type="password" maxlength=60 name="newPassword2"><br><br></td></tr>
 <?php } ?>
 			</table>	
@@ -193,6 +193,14 @@ global $extended, $referrer;
 	</tr>
 </table>
 <?php } ?>
+
+
+<table cellpadding=6 cellspacing=0 border=0 width=550>
+    <tr>
+		<td class="t-03" style="text-align: left">(*) Máximo 20 caracteres para el password.</td>
+	</tr>
+</table>
+<br>
 
 <center>
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
