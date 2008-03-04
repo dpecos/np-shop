@@ -162,6 +162,7 @@ foreach ($categories as $cat) {
 							<?php if (showValue($item->weight)) { ?><li>Peso: <?php echo $item->weight ?> gr <br><?php } ?>								    
 							<?php if (showValue($item->complement)) { ?><li><?php echo $item->complement ?><br><?php } ?>
 							<?php if (showValue($item->complement2)) { ?><li><?php echo $item->complement2 ?><br><?php } ?>
+
 							<br><li class="li-blanco"><span class=titulo6><?php echo $item->prize ?> €</span>
 						</ul>
 <?php if ($item->stock > 0) { ?>

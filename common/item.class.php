@@ -5,27 +5,27 @@ require_once(APP_ROOT."/config/item.sql.php");
 
 class Item {    
 
-    var $quantity; // not in DDBB
-    
-    function Item($id, $quantity=1) {
-    	global $ddbb_mapping;
-    	
-    	//$classVars = get_class_vars("Item");
-    	foreach (array_keys($ddbb_mapping["Item"]) as $var) {
-    		if (!isset($this->$var))
-				$this->$var = null;
-		}
-		
-		$this->id = $id;
-		$this->quantity = $quantity;
-		
-		if ($this->id != null)
-		    $this->_dbLoad();
-		//print_r(get_object_vars($this));
-    }
-    
-    function _dbStore() {
-    	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+  var $quantity; // not in DDBB
+  
+  function Item($id, $quantity=1) {
+  	global $ddbb_mapping;
+  	
+  	//$classVars = get_class_vars("Item");
+  	foreach (array_keys($ddbb_mapping["Item"]) as $var) {
+  		if (!isset($this->$var))
+			$this->$var = null;
+	}
+	
+	$this->id = $id;
+	$this->quantity = $quantity;
+	
+	if ($this->id != null)
+	    $this->_dbLoad();
+	//print_r(get_object_vars($this));
+  }
+  
+  function _dbStore() { //TODO: no está completado
+  	global $ddbb_table, $ddbb_mapping, $ddbb_types;
 		$varNames = "";
 		$varValues = "";
 		$first = true;	
@@ -37,13 +37,34 @@ class Item {
 				} else
 					$first = false;
 				$varNames .= $ddbb_mapping["Item"][$var];
-				$varValues .= scapeSQLValue($value, $ddbb_types["Item"][$var]);
+				$varValues .= encodeSQLValue($value, $ddbb_types["Item"][$var]);
 			} else {
 				//TODO: ERROR
 			}
 		}
-		$sql = "INSERT INTO ".$ddbb_table." ($varNames) VALUES ($varValues)";	
+		$sql = "INSERT INTO ".$ddbb_table["Item"]." ($varNames) VALUES ($varValues)";	
 		echo $sql;
+	}
+	
+	function _dbUpdate() { 
+  	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+		$varNames = "";
+		$first = true;	
+		foreach (get_object_vars($this) as $var => $value) {
+			if (array_key_exists($var, $ddbb_mapping["Item"])) {
+				if ($var != "id") {
+					if (!$first) {
+						$varNames .= ", ";
+					} else
+						$first = false;
+					$varNames .= $ddbb_mapping["Item"][$var]."=".encodeSQLValue($value, $ddbb_types["Item"][$var]);
+				}
+			} else {
+				//TODO: ERROR
+			}
+		}
+		$sql = "UPDATE ".$ddbb_table["Item"]." SET ".$varNames. " WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");	
+		NP_executeInsertUpdate($sql);
 	}
 	
 	function _dbLoad() {
@@ -80,6 +101,11 @@ class Item {
 			die("Producto con identificador \"".$this->id."\" no encontrado");
 		}
 		//print_r($this);
+	}
+	
+	function _dbDelete() {
+		$sql = "DELETE FROM ".$ddbb_table["Item"]." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+		NP_executeDelete($sql);
 	}
 	
 	function storeIntoOrder($orderId, $lineNumber) {

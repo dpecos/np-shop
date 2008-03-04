@@ -8,27 +8,40 @@ $sqlProducts = null;
 $sqlCategories = null;
 
 if (!isset($_GET['categoryId']) || $_GET['categoryId'] == null)
-    $_GET['categoryId']="all";
+    $_GET['categoryId']="new";
 
 function buildSQL($categoryId = null) {
     global $sqlProducts, $sqlCategories, $ddbb_mapping;
     
     $sqlProducts = "SELECT ".$ddbb_mapping["Item"]["id"]." FROM NPS_PRODUCTOS";
-    if (isset($categoryId) && $categoryId!="all") {
-        $sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".$categoryId." AND ";
+    if (isset($categoryId)) {
+    		if ($categoryId == "all") 
+    			$sqlProducts .= " WHERE ";
+    		else if ($categoryId == "new") 
+    			$sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["new"]."=".encodeSQLValue('true', "BOOL")." AND ";
+    		else
+        	$sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".encodeSQLValue($categoryId, "STRING")." AND ";
     } else {
         $sqlProducts .= " WHERE ";
     }
-    $sqlProducts .= $ddbb_mapping["Item"]["retired"]."= 0 ORDER BY ".$ddbb_mapping["Item"]["order"];
+    $sqlProducts .= $ddbb_mapping["Item"]["retired"]."=".encodeSQLValue('false', "BOOL")." ORDER BY ".$ddbb_mapping["Item"]["order"];
     
     $sqlCategories = "SELECT * FROM NPS_CATEGORIAS ORDER BY 1";
 }
 
 $itemIds = array();
 $categories = array();
-$categoryTitle = "Todas las categorías";
+$categoryTitle = null;
 //$sourceCategoryTitle = "Todas las categorías";
-array_push($categories, array("all", $categoryTitle));
+
+if ($_GET['categoryId'] == "all")
+  $categoryTitle = "Todas las categorías";
+else if ($_GET['categoryId'] == "new")
+  $categoryTitle = "Novedades";
+
+array_push($categories, array("all", "Todas las categorías"));
+array_push($categories, array("new", "Novedades"));
+
 
 function fetchProducts($data) {
     global $itemIds, $ddbb_mapping;

@@ -1,0 +1,42 @@
+body {
+    color: #3F3F3F; 
+    font-size: 10px; 
+    font-family: verdana;
+}
+table {
+    color: #3F3F3F; 
+    font-size: 10px; 
+    font-family: verdana;   
+    border: solid 1px #000000;
+    border-collapse: collapse; 
+}
+th {
+    background-color: #222299;
+    color: #EEEEEE;
+}
+td, th {
+    border: solid 1px #000000;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.etiquetas {
+    color: #000000;
+    font-size:20px;
+    font-weight: bold;
+    border: solid 4px #000000;
+    width:300px;
+}
+
+.etiquetas td {
+    padding: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.etiquetas .remitente {
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 12px;
+}
