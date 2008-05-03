@@ -11,8 +11,11 @@
         </script>
     </head>
     <body>
-        <div style="float:left"><h1>Listado de pedidos</h1></div>
-        <div style="float:right">
+        <div style="float:left; width:35%"><h1>Listado de pedidos</h1></div>
+        <div style="float:left; text-align:center; width:35%">
+            <br/><br/><a href="index.php">Volver</a>
+        </div>
+        <div style="float:right; width:30%; text-align:right;">
         <form method="get" id="typeForm">
             <br/>
 			<select class="fd5" name="type" onchange="javascript:showType()">		
@@ -26,7 +29,7 @@ foreach ($npshop['constants']["ORDER_STATUS"] as $statusKey => $statusName) {
 }
 ?>
 		    </select>
-	    <form>
+	    <form>&nbsp;&nbsp;&nbsp;
 	    </div>
 	    
 	    <div style="clear:both"/>
