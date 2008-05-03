@@ -73,9 +73,9 @@
                 <?php if (showValue($item->height)) { ?><tr><td>Altura:</td><td><?php echo $item->height ?> mm </td></tr><?php } ?>
     			<?php if (showValue($item->depth)) { ?><tr><td>Profundidad:</td><td><?php echo $item->depth ?> mm </td></tr><?php } ?>
     			<?php if (showValue($item->length)) { ?><tr><td>Longitud:</td><td><?php echo $item->length ?> mm </td></tr><?php } ?>								    
-    			<?php if (showValue($item->weight)) { ?><tr><td>Peso:</td><td><?php echo $item->weight ?> gr </td></tr><?php } ?>								    
+    			<?php if (showValue($item->weight)) { ?><tr><td>Peso:</td><td><?php echo $item->weight ?> gr </td></tr><?php } ?>		
+    			<tr><td width="140px">Descripción:</td><td><?php echo $item->description ?></td></tr>						    
     			<?php if (showValue($item->complement)) { ?><tr><td>Detalle 1</td><td><?php echo $item->complement ?></td></tr><?php } ?>
-    			<tr><td width="140px">Descripción:</td><td><?php echo $item->description ?></td></tr>
     			<?php if (showValue($item->complement2)) { ?><tr><td>Detalle 2</td><td><?php echo $item->complement2 ?></td></tr><?php } ?>    
             </table>
         </center>

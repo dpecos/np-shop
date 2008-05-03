@@ -5,27 +5,26 @@ require_once(APP_ROOT."/config/item.sql.php");
 
 class Item {    
 
-  var $quantity; // not in DDBB
+    var $quantity; // not in DDBB
+    
+    function Item($id, $quantity=1) {
+        global $ddbb_mapping;
+        
+        //$classVars = get_class_vars("Item");
+        foreach (array_keys($ddbb_mapping["Item"]) as $var) {
+        	if (!isset($this->$var))
+        		$this->$var = null;
+        }
+        
+        $this->id = $id;
+        $this->quantity = $quantity;
+        
+        if ($this->id != null)
+            $this->_dbLoad();
+    }
   
-  function Item($id, $quantity=1) {
-  	global $ddbb_mapping;
-  	
-  	//$classVars = get_class_vars("Item");
-  	foreach (array_keys($ddbb_mapping["Item"]) as $var) {
-  		if (!isset($this->$var))
-			$this->$var = null;
-	}
-	
-	$this->id = $id;
-	$this->quantity = $quantity;
-	
-	if ($this->id != null)
-	    $this->_dbLoad();
-	//print_r(get_object_vars($this));
-  }
-  
-  function _dbStore() { //TODO: no está completado
-  	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+    function _dbStore() { //TODO: no está completado
+  	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
 		$varNames = "";
 		$varValues = "";
 		$first = true;	
@@ -43,11 +42,11 @@ class Item {
 			}
 		}
 		$sql = "INSERT INTO ".$ddbb_table["Item"]." ($varNames) VALUES ($varValues)";	
-		echo $sql;
+		NP_executeInsertUpdate($sql);
 	}
 	
 	function _dbUpdate() { 
-  	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+  	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
 		$varNames = "";
 		$first = true;	
 		foreach (get_object_vars($this) as $var => $value) {
@@ -98,14 +97,16 @@ class Item {
 				
 			}
 		} else {
-			die("Producto con identificador \"".$this->id."\" no encontrado");
+			//die("Producto con identificador \"".$this->id."\" no encontrado");
+			$this->id = null;
 		}
 		//print_r($this);
 	}
 	
 	function _dbDelete() {
-		$sql = "DELETE FROM ".$ddbb_table["Item"]." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
-		NP_executeDelete($sql);
+	    global $ddbb_table, $ddbb_mapping;
+		$sql = "DELETE FROM ".$ddbb_table["Item"]." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING")." LIMIT 1";
+		return NP_executeDelete($sql);
 	}
 	
 	function storeIntoOrder($orderId, $lineNumber) {

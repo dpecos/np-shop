@@ -235,8 +235,12 @@ function NP_executeInsertUpdate($sql) {
 function NP_executeDelete($sql) {
 	$con = __NP_connectSQL();
 		
-	$resultado = mysql_query($sql);
+	mysql_query($sql);
+	
+	$resultado = mysql_affected_rows($con); 
 	
 	__NP_disconnectSQL($con);
+	
+	return $resultado;
 }
 ?>

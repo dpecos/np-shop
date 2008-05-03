@@ -6,6 +6,13 @@ require_once(APP_ROOT."/common/commonFunctions.php");
 $sqlProducts = null;
 $sqlCategories = null;
 
+if (isset($_POST['deleteId']) && $_POST['deleteId'] != "") {
+   $delItem = new Item($_POST['deleteId']);
+   $deletedRows = $delItem->_dbDelete();
+   if (!isset($deletedRows))
+       $deletedRows = -1;
+}
+
 if (!isset($_GET['categoryId']) || $_GET['categoryId'] == null)
     $_GET['categoryId']="all";
 
