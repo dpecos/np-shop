@@ -30,7 +30,7 @@
 global $users;
 foreach ($users as $user) { ?>
                 <tr>
-                    <td align="center"><?php echo $user->email ?></td> 
+                    <td align="center"><a href="userDetail.php?userId=<?php echo $user->id ?>"><?php echo $user->email ?></a></td> 
                     <td align="center"><?php echo $user->mailing ? "Sí" : "No" ?></td> 
                     <td>
                         <?php echo $user->billingData['name'] ?> <?php echo $user->billingData['surname'] ?><br>
