@@ -26,12 +26,13 @@ $skinFiles['payment.php']['error'] = "cesta.php";
 $skinFiles['admin_index.php'] = "admin/main.php";
 $skinFiles['admin_listItems.php'] = "admin/productos.php";
 $skinFiles['admin_listOrders.php'] = "admin/pedidos.php";
-$skinFiles['admin_listUsers.php'] = "admin/usuarios.php";
 $skinFiles['admin_itemDetail.php'] = "admin/detalleProducto.php";
 $skinFiles['admin_editItem.php'] = "admin/edicionProducto.php";
 $skinFiles['admin_orderDetail.php'] = "admin/detallePedido.php";
 $skinFiles['admin_shippingLabel.php'] = "admin/etiquetaEnvio.php";
-
+$skinFiles['admin_listUsers.php'] = "admin/usuarios.php";
+$skinFiles['admin_userDetail.php'] = "admin/detalleUsuario.php";
+$skinFiles['admin_editUser.php'] = "admin/edicionUsuario.php";
 
 require_once(SKIN_ROOT."/npshop/common.php");
 ?>
