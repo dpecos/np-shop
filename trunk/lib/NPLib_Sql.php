@@ -1,14 +1,14 @@
 <?php
 $npsql_dbconfig = null;
 
-function _createSELECT_Column($colName, $sqlType) {
+function __createSELECT_Column($colName, $sqlType) {
     if ($sqlType == "DATE") {
         return "DATE_FORMAT(".$colName.", '%Y%m%d%H%i%s') AS ".$colName;
     } else
         return $colName;
 }
 
-function _createSELECT_AllColumns($obj, $field, $ddbb_mapping, $ddbb_types, &$first) {
+function __createSELECT_AllColumns($obj, $field, $ddbb_mapping, $ddbb_types, &$first) {
     $sql = "";
   
     if ($obj != null) {      
@@ -25,14 +25,14 @@ function _createSELECT_AllColumns($obj, $field, $ddbb_mapping, $ddbb_types, &$fi
             $vars = get_object_vars($obj);
             foreach (array_keys($vars) as $var) {
                 if (array_key_exists($var, $ddbb_mapping)) {
-                    $sql .= _createSELECT_AllColumns($obj, $var, $ddbb_mapping[$var], $ddbb_types[$var], $first);
+                    $sql .= __createSELECT_AllColumns($obj, $var, $ddbb_mapping[$var], $ddbb_types[$var], $first);
                 }
             }
         } else if (is_array($obj)) {
             //echo "A - ".$obj."<br>\n";
             foreach (array_keys($obj) as $var) {
         		if (array_key_exists($var, $ddbb_mapping)) {
-        	        $sql .= _createSELECT_AllColumns($obj, $var, $ddbb_mapping[$var], $ddbb_types[$var], $first);
+        	        $sql .= __createSELECT_AllColumns($obj, $var, $ddbb_mapping[$var], $ddbb_types[$var], $first);
         		}
         	}
         } else {
@@ -41,7 +41,7 @@ function _createSELECT_AllColumns($obj, $field, $ddbb_mapping, $ddbb_types, &$fi
 				$sql .= ", ";
 			} else
 				$first = false;
-			$sql .= _createSELECT_Column($ddbb_mapping, $ddbb_types);
+			$sql .= __createSELECT_Column($ddbb_mapping, $ddbb_types);
         }
         
     }
@@ -52,7 +52,7 @@ function NP_createSELECT($obj, $ddbb_table, $ddbb_mapping, $ddbb_types, $whereCo
     
     $isFirst = true;
 	$sql = "SELECT ";
-	$sql .= _createSELECT_AllColumns($obj, null, $ddbb_mapping, $ddbb_types, $isFirst);
+	$sql .= __createSELECT_AllColumns($obj, null, $ddbb_mapping, $ddbb_types, $isFirst);
 	$sql .= " FROM ".$ddbb_table." WHERE ".$whereCondition;
     
     return $sql;
@@ -196,7 +196,10 @@ function NP_executePKSelect($sql) {
 	return $datos;
 }
 
-function NP_executeSelect($sql, $f) {
+function NP_executeSelect($sql, $f, $params = NULL) {
+	if ($params == NULL)
+		$params = array();
+
 	$con = __NP_connectSQL();
 
 	$resultado = mysql_query($sql);
@@ -207,7 +210,10 @@ function NP_executeSelect($sql, $f) {
 	}
 
 	while ($datos = mysql_fetch_assoc ($resultado)) {
-		$f ($datos);
+		$func = new ReflectionFunction($f);
+		$p = array_merge(array($datos), $params);
+		$func->invokeArgs($p);
+		//$f($datos, $params);
 	}
 
 	mysql_free_result($resultado);
