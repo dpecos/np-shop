@@ -375,9 +375,6 @@ class Cart {
     	    if ($statusKey == "PAYMENT_OK") {
     	        $mailContent = $this->_buildMail();
     	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-    	        // debug mails
-    	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "dpecos@gmail.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-    	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], "maisa@cyt.com", "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
     	        if ($statusKey == "PAYMENT_OK")
     	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
     	    }
