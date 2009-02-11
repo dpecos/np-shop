@@ -70,7 +70,7 @@
     						</select></td>
     				</tr>
     				<tr><td align="left">País</td><td><select name="user_billingData_country">
-    						<option value="56" selected>España</option>
+    						<option value="1" selected>España</option>
     						</select></td>
     				</tr>
     				<tr><td align="left">Teléfono fijo o móvil</td><td><input type="text" name="user_billingData_phone" value="<?php echo $user->billingData['phone'] ?>"/></td></tr>
@@ -98,7 +98,7 @@
     						</select></td>
     				</tr>
     				<tr><td align="left">País</td><td><select name="user_shippingData_country">
-    						<option value="56" selected>España</option>
+    						<option value="1" selected>España</option>
     						</select></td>
     				</tr>
     				<tr><td align="left">Teléfono fijo o móvil</td><td><input type="text" name="user_shippingData_phone" value="<?php echo $user->shippingData['phone'] ?>"/></td></tr>

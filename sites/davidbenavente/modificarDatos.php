@@ -228,7 +228,7 @@ global $extended, $referrer;
 						</select></td>
 				</tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">País</td><td class="t-02" style="border-right:1px #DADADA solid;"><select class="ffd2" name="user_billingData_country" >
-						<option value="56" selected>España</option>
+						<option value="1" selected>España</option>
 						</select></td>
 				</tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;">Teléfono fijo o móvil<br><br></td><td class="t-02" style="border-right:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;"><input class="ffd2"  value="<?php echo $cart->user->billingData['phone'] ?>" type="text" maxlength=60 name="user_billingData_phone"><br><br></td></tr>
@@ -254,7 +254,7 @@ global $extended, $referrer;
 						</select></td>
 				</tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;">País</td><td class="t-02" style="border-right:1px #DADADA solid;"><select class="ffd2" name="user_shippingData_country" >
-						<option value="56" selected>España</option>
+						<option value="1" selected>España</option>
 						</select></td>
 				</tr>
 				<tr><td class="t-03" align=right style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;">Teléfono fijo o móvil<br><br></td><td class="t-02" style="border-right:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;"><input class="ffd2"  value="<?php echo $cart->user->shippingData['phone'] ?>" type="text" maxlength=60 name="user_shippingData_phone"><br><br></td></tr>

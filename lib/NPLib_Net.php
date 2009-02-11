@@ -2,7 +2,7 @@
 require_once(APP_ROOT."/lib/mail/htmlMimeMail.php");
 
 function redirect($page) {
-    if (isset($_ENV['HTTP_HOST'])) {
+    if (isset($_ENV['HTTP_HOST']) && isset($_ENV["SCRIPT_URL"])) {
 	    $host  = $_ENV['HTTP_HOST'];
 	    if (endsWith($_ENV["SCRIPT_URL"], ".php"))
 	        $uri  = rtrim(dirname($_ENV["SCRIPT_URL"]), '/\\');

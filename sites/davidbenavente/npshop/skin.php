@@ -10,7 +10,7 @@ $skinFiles['listCategory.php'] = "productos.php";
 
 $skinFiles['showItem.php']['herramientas'] = "ficha.php";
 $skinFiles['showItem.php']['macetas_japo'] = "fichamacetajapo.php";
-
+$skinFiles['showItem.php']['mesas'] = "fichamesa.php";
 
 $skinFiles['cart.php'] = "cesta.php";
 $skinFiles['account.php'] = "cuenta.php";

@@ -34,7 +34,11 @@ NP_executeSelect($sqlCategories, "fetchCategories");
 
 if ($item->categoryId == "30")
     showSkin(basename(__FILE__), "macetas_japo");
-else
+    elseif ($item->categoryId == "40")
+    showSkin(basename(__FILE__), "mesas");
+    elseif ($item->categoryId == "50")
+    showSkin(basename(__FILE__), "macetas_japo");
+    else
     showSkin(basename(__FILE__), "herramientas");   
 
 ?>
