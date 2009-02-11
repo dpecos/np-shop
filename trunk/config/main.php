@@ -29,13 +29,9 @@ function doConfig() {
 	
 	// Datos de configuracion de la BBDD
 	$ddbb = array();
-	// REAL
-	/*$ddbb["HOST"] = "llda252.servidoresdns.net";
-	$ddbb["USER"] = "qcq501";
-	$ddbb["PASSWD"] = "Qcq501";
-	$ddbb["NAME"] = "qcq501";*/
+
     // PRUEBAS
-   $ddbb["HOST"] = "llda252.servidoresdns.net";
+    $ddbb["HOST"] = "llda252.servidoresdns.net";
 	$ddbb["USER"] = "qdq572";
 	$ddbb["PASSWD"] = "Duero2009";
 	$ddbb["NAME"] = "qdq572";
@@ -50,10 +46,6 @@ function doConfig() {
 	$tpv['terminal'] = "001";
 	$tpv['currency'] = "978";
 	
-	// Datos reales
-	/*$tpv['url'] = "https://sis.sermepa.es/sis/realizarPago";
-	$tpv['key'] = "U998T5183NU3OM8U";
-	$tpv['code'] = "285517991";*/
 	
 	// Datos de prueba
 	$tpv['url'] = "https://sis-i.sermepa.es:25443/sis/realizarPago";
