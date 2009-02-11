@@ -39,6 +39,14 @@ class Cart {
 		}
 	}
 	
+	function countItems() {
+		$count = 0;
+		foreach ($this->items as $itemId => $item) {
+			$count += $item->quantity;
+		}
+		return $count;
+	}
+	
 	function getSubTotal() {
 		$prize = 0.0;
 		foreach ($this->items as $itemId => $item) {

@@ -35,15 +35,11 @@ function doConfig() {
 	$ddbb["PASSWD"] = "Qcq501";
 	$ddbb["NAME"] = "qcq501";*/
     // PRUEBAS
-    $ddbb["HOST"] = "llda252.servidoresdns.net";
-	$ddbb["USER"] = "qcv997";
-	$ddbb["PASSWD"] = "Qcv997";
-	$ddbb["NAME"] = "qcv997";
-    // LOCALHOST
-	/*$ddbb["HOST"] = "localhost";
-	$ddbb["USER"] = "root";
-	$ddbb["PASSWD"] = "";
-	$ddbb["NAME"] = "NPShop";*/
+   $ddbb["HOST"] = "llda252.servidoresdns.net";
+	$ddbb["USER"] = "qdq572";
+	$ddbb["PASSWD"] = "Duero2009";
+	$ddbb["NAME"] = "qdq572";
+
 	$ddbb["PREFIX"] = "NPS_";
 	
 	// Datos de configuracion del TPV

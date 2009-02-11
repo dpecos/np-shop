@@ -55,7 +55,7 @@ foreach ($npshop['constants']["ORDER_STATUS"] as $statusKey => $statusName) {
                     <td align="center"><?php echo $order->orderStatus ?></td> 
                     <td align="center"><a href="orderDetail.php?orderId=<?php echo $order->orderId ?>"><?php echo formatOrderId($order) ?></a></td> 
                     <td align="right"><?php echo $order->getTotal(1) ?> &euro;</td>
-                    <td align="center"><?php echo count($order->items) ?></td> 
+                    <td align="center"><?php echo $order->countItems() ?></td> 
                     <td>
                         <?php echo $order->user->billingData['name'] ?> <?php echo $order->user->billingData['surname'] ?><br>
                         <?php echo $order->user->billingData['address'] ?> <?php echo $order->user->billingData['address2'] ?><br>

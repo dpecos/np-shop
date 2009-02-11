@@ -36,14 +36,17 @@ function fetchCategories($data) {
 }
 
 
-if (isset($item) && isset($item->id) && $item->id != null) {
-    NP_executeSelect($sqlCategories, "fetchCategories");
-    
-    if (!isset($item))
-        $categoryTitle = $categories[0][1];
+NP_executeSelect($sqlCategories, "fetchCategories");
 
+if (!isset($item))
+     $categoryTitle = $categories[0][1];
+
+if (isset($item) && isset($item->id) && $item->id != null) {
     showSkin("admin_".basename(__FILE__)); 
 } else {
-    die("Producto con identificador \"".$id."\" no encontrado");
+    if (isset($id)) 
+        die("Producto con identificador \"".$id."\" no encontrado");
+    else
+        showSkin("admin_".basename(__FILE__)); 
 }
 ?>
