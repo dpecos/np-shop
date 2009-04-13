@@ -1,8 +1,8 @@
 <?php
 require_once("npshop/skin.php");
 ?>
-<html><head><title>David Benavente. Estudio de bonsái</title>
-<link rel=stylesheet href="/interface/estilos.css"> 
+<html><head><title><?= _("David Benavente. Estudio de bonsái") ?></title>
+<link rel=stylesheet href="<?= SKIN_ROOT ?>include/estilos.css"> 
 			<script language="javascript">
 			<!--
 			function doRedirect(myObject) {
@@ -11,14 +11,12 @@ require_once("npshop/skin.php");
 				}	else {
 					return false;
 				}
-			}		
-			function showCategory() {
-			    form = document.getElementById("categoryForm");
-			    form.submit();
-			}	
+			}			
 			// -->
 			</script>
-<script language="javaScript" SRC="/interface/botonera.js"></SCRIPT> 
+<script>
+    <?php include_once('include/javascript.php'); ?>
+</script>
 </head>
 <body text=#000000 marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
 <center>
@@ -62,7 +60,7 @@ require_once("npshop/skin.php");
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><br><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
 																<PARAM NAME=movie VALUE="/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
@@ -94,9 +92,9 @@ require_once("npshop/skin.php");
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php">Ayuda</a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
+			<a class="negro" href="account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php"><?= _("Ayuda") ?></a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>
 	</tr>
@@ -104,10 +102,10 @@ require_once("npshop/skin.php");
 <table width="100%" cellpadding="3" cellspacing="0" border="0" >
 	<tr>
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
-			<span><strong>1. Selección de productos</strong></span>&nbsp;
-			<span class="pie">2. Datos facturación y envío</span>&nbsp;
-			<span class="pie">3. Comprobación y compra</span>&nbsp;
-			<span class="pie">4. Resultado</span>&nbsp;
+			<span><strong><?= _("1. Selección de productos") ?></strong></span>&nbsp;
+			<span class="pie"><?= _("2. Datos facturación y envío") ?></span>&nbsp;
+			<span class="pie"><?= _("3. Comprobación y compra") ?></span>&nbsp;
+			<span class="pie"><?= _("4. Resultado") ?></span>&nbsp;
 		</td>
 	</tr>
 </table>	
@@ -118,7 +116,7 @@ global $categoryTitle;
 ?>
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
-			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1><?php echo$categoryTitle?></span></td>
+			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1><?php echo NP_get_i18n($categoryTitle)?></span></td>
 
 			<td class="t-03" style="border-bottom:3px #DADADA solid;">
 			    <form action="listCategory.php" method="get" id="categoryForm">
@@ -127,7 +125,7 @@ global $categoryTitle;
 global $categories,$item;
 foreach ($categories as $cat) { 
 ?>					    
-						<option value="<?php echo$cat[0]?>" <?php echo $item->categoryId==$cat[0]?"selected":""?>><?php echo$cat[1]?></option>
+						<option value="<?php echo $cat[0]?>" <?php echo $item->categoryId==$cat[0]?"selected":""?>><?php echo NP_get_i18n($cat[1])?></option>
 <?php
 }
 ?>
@@ -143,32 +141,32 @@ foreach ($categories as $cat) {
 			<table width="100%" cellpadding="5" cellspacing="0" border="0">
 				<tr>
 
-					<td width="100%" colspan="2" valign="top">&nbsp;&nbsp;&nbsp;<B><?php echo $item->name ?></B></td>
+					<td width="100%" colspan="2" valign="top">&nbsp;&nbsp;&nbsp;<B><?php echo NP_get_i18n($item->name) ?></B></td>
 				</tr>
 				<tr>
 					<td valign="top" colspan="2"><p class="p-center"><img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_g.jpg" border=0 width="540"></p><br></td>
 				</tr>
 				<tr>
 					<td  width="34%" valign="top" class="tienda" >
-						<p>&nbsp;&nbsp;&nbsp;<span class=negro><strong>Datos técnicos:</strong></span>
+						<p>&nbsp;&nbsp;&nbsp;<span class=negro><strong><?= _("Datos técnicos:") ?></strong></span>
 
 							<ul>
-						    <li><B><?php echo $item->name ?></B>
-							<li>Ref. <?php echo $item->id ?>							
+						    <li><B><?php echo NP_get_i18n($item->name) ?></B>
+							<li><?= _("Ref.") ?> <?php echo $item->id ?>							
 					        <?php /*if (showValue($item->tradeMark)) { ?><li><?php echo $item->tradeMark ?><br><?php }*/ ?>
-							<?php if (showValue($item->height)) { ?><li>Altura: <?php echo $item->height ?> mm <br><?php } ?>
-							<?php if (showValue($item->depth)) { ?><li>Profundidad: <?php echo $item->depth ?> mm <br><?php } ?>
-							<?php if (showValue($item->length)) { ?><li>Longitud: <?php echo $item->length ?> mm <br><?php } ?>								    
-							<?php if (showValue($item->weight)) { ?><li>Peso: <?php echo $item->weight ?> gr <br><?php } ?>								    
-							<?php if (showValue($item->complement)) { ?><li><?php echo $item->complement ?><br><?php } ?>
-							<?php if (showValue($item->complement2)) { ?><li><?php echo $item->complement2 ?><br><?php } ?>
+							<?php if (showValue($item->height)) { ?><li><?= _("Altura:") ?> <?php echo $item->height ?> mm <br><?php } ?>
+							<?php if (showValue($item->depth)) { ?><li><?= _("Profundidad:") ?> <?php echo $item->depth ?> mm <br><?php } ?>
+							<?php if (showValue($item->length)) { ?><li><?= _("Longitud:") ?> <?php echo $item->length ?> mm <br><?php } ?>								    
+							<?php if (showValue($item->weight)) { ?><li><?= _("Peso:") ?> <?php echo $item->weight ?> gr <br><?php } ?>								    
+							<?php if (showValue($item->complement)) { ?><li><?php echo NP_get_i18n($item->complement) ?><br><?php } ?>
+							<?php if (showValue($item->complement2)) { ?><li><?php echo NP_get_i18n($item->complement2) ?><br><?php } ?>
 
 							<br><li class="li-blanco"><span class=titulo6><?php echo $item->prize ?> €</span>
 						</ul>
 <?php if ($item->stock > 0) { ?>
-						<a href="cart.php?action=add&itemId=<?php echo $item->id ?>" onmouseover="rollOn('b1_');" onmouseout="rollOff('b1_');chequear('b1_');" target=_self><img src="/interface/b01-anadir-off.gif" border=0  align=left name=b1_></a>
+						<a href="cart.php?action=add&itemId=<?php echo $item->id ?>" onmouseover="rollOn('b1_');" onmouseout="rollOff('b1_');chequear('b1_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b01-anadir-off.gif" border=0  align=left name=b1_></a>
 <?php } else { ?>
-                        AGOTADO TEMPORALMENTE
+                        <?= _("AGOTADO TEMPORALMENTE") ?>
 <?php } ?>
 					</td>
 
@@ -190,7 +188,7 @@ foreach ($categories as $cat) {
 													<tr>
 														<td width="100%" valign="top">
 											
-												<p><?php echo $item->description ?></p>
+												<p><?php echo NP_get_i18n($item->description) ?></p>
 
 														</td>
 													</tr>
@@ -210,7 +208,7 @@ foreach ($categories as $cat) {
 				</tr>
 				<tr>
 					<td class="t-02" valign="top" colspan="2">
-											<p>&nbsp;&nbsp;&nbsp;<span class=negro><strong>Cómo se coge:</strong></span>
+											<p>&nbsp;&nbsp;&nbsp;<span class=negro><strong><?= _("Cómo se coge:") ?></strong></span>
 											<p class="p-center"><img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_v.jpg" border=0 width="540"></p></td>
 
 				</tr>
@@ -219,7 +217,7 @@ foreach ($categories as $cat) {
 
 
 </center>
-<p class=p-dere><a class=negro href="javascript:history.back()">< volver</a>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+<p class=p-dere><a class=negro href="javascript:history.back()"><?= _("< volver") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
 
 
 
@@ -246,7 +244,7 @@ foreach ($categories as $cat) {
 		<td height="10" valign=top colspan="5"><img src="/interface/pie.gif" border=0></td>
 	</tr>
 	<tr>
-		<td height="31"  valign=top colspan="5" align=center><p class=pie>General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail: <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
+		<td height="31"  valign=top colspan="5" align=center><p class=pie><?= _("General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail:") ?> <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
 
 	</tr>
 

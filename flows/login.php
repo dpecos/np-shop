@@ -22,7 +22,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] != null) {
 			
 		} else {
 			$action = "loginForm";
-			$errorMsg = "Usuario o contraseña incorrectos";
+			$errorMsg = _("Usuario o contraseña incorrectos.");
 		}
 		
 		showSkin(basename(__FILE__), $action);
@@ -44,7 +44,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] != null) {
 			
 		} else {
 			$action = "loginForm";
-			$errorMsg = "Passwords no coinciden o son vacíos";
+			$errorMsg = _("Passwords no coinciden o son vacíos.");
 		}
 		
 		showSkin(basename(__FILE__), $action);

@@ -11,20 +11,20 @@ if (!isset($_GET['categoryId']) || $_GET['categoryId'] == null)
     $_GET['categoryId']="new";
 
 function buildSQL($categoryId = null) {
-    global $sqlProducts, $sqlCategories, $ddbb_mapping;
+    global $sqlProducts, $sqlCategories, $ddbb;
     
-    $sqlProducts = "SELECT ".$ddbb_mapping["Item"]["id"]." FROM NPS_PRODUCTOS";
+    $sqlProducts = "SELECT ".$ddbb->getMapping("Item", "id")." FROM NPS_PRODUCTOS";
     if (isset($categoryId)) {
     		if ($categoryId == "all") 
     			$sqlProducts .= " WHERE ";
     		else if ($categoryId == "new") 
-    			$sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["new"]."=".encodeSQLValue('true', "BOOL")." AND ";
+    			$sqlProducts .= " WHERE ".$ddbb->getMapping("Item", "new")."=".NP_DDBB::encodeSQLValue('true', "BOOL")." AND ";
     		else
-        	$sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".encodeSQLValue($categoryId, "STRING")." AND ";
+        	$sqlProducts .= " WHERE ".$ddbb->getMapping("Item", "categoryId")."=".NP_DDBB::encodeSQLValue($categoryId, "STRING")." AND ";
     } else {
         $sqlProducts .= " WHERE ";
     }
-    $sqlProducts .= $ddbb_mapping["Item"]["retired"]."=".encodeSQLValue('false', "BOOL")." ORDER BY ".$ddbb_mapping["Item"]["order"];
+    $sqlProducts .= $ddbb->getMapping("Item", "retired")."=".NP_DDBB::encodeSQLValue('false', "BOOL")." ORDER BY ".$ddbb->getMapping("Item", "order");
     
     $sqlCategories = "SELECT * FROM NPS_CATEGORIAS ORDER BY 1";
 }
@@ -35,35 +35,35 @@ $categoryTitle = null;
 //$sourceCategoryTitle = "Todas las categorías";
 
 if ($_GET['categoryId'] == "all")
-  $categoryTitle = "Todas las categorías";
+  $categoryTitle = array(NP_LANG => _("Todas las categorías"));
 else if ($_GET['categoryId'] == "new")
-  $categoryTitle = "Novedades";
-
-array_push($categories, array("all", "Todas las categorías"));
-array_push($categories, array("new", "Novedades"));
+  $categoryTitle = array(NP_LANG => _("Novedades"));
+  
+array_push($categories, array("all", array(NP_LANG => _("Todas las categorías"))));
+array_push($categories, array("new", array(NP_LANG => _("Novedades"))));
 
 
 function fetchProducts($data) {
-    global $itemIds, $ddbb_mapping;
-    array_push($itemIds, $data[$ddbb_mapping["Item"]["id"]]);
+    global $itemIds, $ddbb;
+    array_push($itemIds, $data[$ddbb->getMapping("Item", "id")]);
 }
 
 function fetchCategories($data) {
     global $categories, $categoryTitle; //, $sourceCategoryTitle;
     if ($_GET['categoryId'] == $data['CAT_CO_CODIGO'])
-        $categoryTitle = $data['CAT_VA_NOMBRE'];
+        $categoryTitle = NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N");
     // if (isset($_GET['sourceCategoryId']) && $_GET['sourceCategoryId'] == $data['CAT_CO_CODIGO'])
     //     $sourceCategoryTitle = $data['CAT_VA_NOMBRE'];
-    array_push($categories, array($data['CAT_CO_CODIGO'], $data['CAT_VA_NOMBRE']));
+    array_push($categories, array($data['CAT_CO_CODIGO'], NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N")));
 }
 
 if (isset($_GET['categoryId']))
     buildSQL($_GET['categoryId']);
 else
     buildSQL();
-NP_executeSelect($sqlProducts, "fetchProducts");
+$ddbb->executeSelectQuery($sqlProducts, "fetchProducts");
 
-NP_executeSelect($sqlCategories, "fetchCategories");
+$ddbb->executeSelectQuery($sqlCategories, "fetchCategories");
 
 if (count($itemIds) == 0) {
     /*
@@ -83,7 +83,7 @@ if (count($itemIds) == 0) {
     $msg = $sourceCategoryTitle." a la venta próximamente.";
     */
     
-    $msg = $categoryTitle." a la venta próximamente.";
+    $msg = sprintf(_("%s a la venta próximamente."), NP_get_i18n($categoryTitle));
 }
 
 $items = array();

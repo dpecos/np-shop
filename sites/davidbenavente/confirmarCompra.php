@@ -2,8 +2,8 @@
 require_once("npshop/skin.php");
 $cart = get_cart();
 ?>
-<html><head><title>David Benavente. Estudio de bonsái</title>
-<link rel=stylesheet href="/interface/estilos.css"> 
+<html><head><title><?= _("David Benavente. Estudio de bonsái") ?></title>
+<link rel=stylesheet href="<?= SKIN_ROOT ?>include/estilos.css"> 
 			<script language="javascript">
 			<!--
 			function doRedirect(myObject) {
@@ -15,7 +15,9 @@ $cart = get_cart();
 			}			
 			// -->
 			</script>
-<script language="javaScript" SRC="/interface/botonera.js"></SCRIPT> 
+<script>
+    <?php include_once('include/javascript.php'); ?>
+</script>
 </head>
 <body text=#000000 marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
 <center>
@@ -56,7 +58,7 @@ $cart = get_cart();
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><br><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
 																<PARAM NAME=movie VALUE="/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
@@ -87,9 +89,9 @@ $cart = get_cart();
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php">Ayuda</a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
+			<a class="negro" href="account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php"><?= _("Ayuda") ?></a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>
 	</tr>
@@ -100,14 +102,14 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 <table width="100%" cellpadding="3" cellspacing="0" border="0" >
 	<tr>
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
-			<span class="pie">1. Selección de productos</span>&nbsp;
-			<span class="pie">2. Datos facturación y envío</span>&nbsp;
+			<span class="pie"><?= _("1. Selección de productos") ?></span>&nbsp;
+			<span class="pie"><?= _("2. Datos facturación y envío") ?></span>&nbsp;
 <?php if (isset($paymentResult)) { ?>
-			<span class="pie">3. Comprobación y compra</span>&nbsp;
-			<span><strong>4. Resultado</strong></span>&nbsp;
+			<span class="pie"><?= _("3. Comprobación y compra") ?></span>&nbsp;
+			<span><strong><?= _("4. Resultado") ?></strong></span>&nbsp;
 <?php } else { ?>
-			<span><strong>3. Comprobación y compra</strong></span>&nbsp;
-			<span class="pie">4. Resultado</span>&nbsp;
+			<span><strong><?= _("3. Comprobación y compra") ?></strong></span>&nbsp;
+			<span class="pie"><?= _("4. Resultado") ?></span>&nbsp;
 <?php } ?>
 		</td>
 	</tr>
@@ -119,24 +121,24 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
     <tr>
         <td colspan="2">
 <?php if (isset($paymentResult)) { 
-    if ($paymentResult == "ok") { ?>
-<p class="rojo">Muchas gracias. La compra ha sido realizada con éxito.<br>
-		Estos son los datos de tu pedido, que también te los enviaremos por e-mail:</p>
+    if ($paymentResult === "ok") { ?>
+<p class="rojo"><?= _("Muchas gracias. La compra ha sido realizada con éxito.") ?><br>
+		<?= _("Estos son los datos de tu pedido, que también te los enviaremos por e-mail:") ?></p>
 <?php   } else { ?>
-<p class="rojo">Se ha producido algún error en el proceso de pago con la entidad bancaria.</p>
+<p class="rojo"><?= _("Se ha producido algún error en el proceso de pago con la entidad bancaria.") ?></p>
 <?php   }?>
 <?php } else { ?>
 <?php   if (isset($errorMsg)) { ?>
-<p class="rojo">ERROR: <?php echo $errorMsg ?></p>
+<p class="rojo"><?= _("ERROR:") ?> <?php echo $errorMsg ?></p>
 <?php   }?>
-<p>Por favor, comprueba que los datos de tu pedido son correctos:</p>
+<p><?= _("Por favor, comprueba que los datos de tu pedido son correctos:") ?></p>
 <?php }?>
         </td>
     </tr>
 	<tr>
 		<td width="50%" valign="top"  height="100%">
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  height="100%"  >
-				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>Datos de facturación</span></td></tr>
+				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2><?= _("Datos de facturación") ?></span></td></tr>
 				<tr>
 					<td class="t-01" valign="top" height="100%" width=100% align=right style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 						<br><ul>
@@ -157,7 +159,7 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 
 		<td width="50%" valign="top" height="100%">
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  height="100%"   >
-				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2" valign="top"><span class=titulo2>Datos de envío</span></td></tr>
+				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2" valign="top"><span class=titulo2><?= _("Datos de envío") ?></span></td></tr>
 				<tr>
 					<td class="t-01"  height="100%" valign="top" width=35% align=right style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">
 						<br><ul>
@@ -179,8 +181,8 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 	</tr>
 	<tr>
 		<td colspan="2">&nbsp;
-<?php if (!isset($paymentResult)) { ?>
-			<span class=p-dere><a href="personalData.php" onmouseover="rollOn('b6_');" onmouseout="rollOff('b6_');chequear('b6_');" target=_self><img src="/interface/b06-modificar-datos-off.gif" border=0  align=right name=b6_></a>
+<?php if ($paymentResult === "error" || !isset($paymentResult)) { ?>
+			<span class=p-dere><a href="personalData.php" onmouseover="rollOn('b6_');" onmouseout="rollOff('b6_');chequear('b6_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b06-modificar-datos-off.gif" border=0  align=right name=b6_></a>
 <?php } ?>
 		</td>
 	</tr>
@@ -191,21 +193,21 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
 
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
-			<td class="t-01" width=500 colspan="5" style="border-bottom:3px #DADADA solid;"><span class=titulo2>Tu pedido</span></td>
+			<td class="t-01" width=500 colspan="5" style="border-bottom:3px #DADADA solid;"><span class=titulo2><?= _("Tu pedido") ?></span></td>
 	</tr>
 	<tr>
 			<td class="t-01" width=500 colspan="5" style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;">
 <?php if (isset($paymentResult)) { ?>
-                <span>Nº de tu pedido: <?php echo formatOrderId($cart) ?></span>
+                <span><?= _("Nº de tu pedido:") ?> <?php echo formatOrderId($cart) ?></span>
 <?php } ?>
 				<!--span>El plazo de entrega de tu pedido es de <?php echo $cart->shippingDays ?> días</span-->
 			</td>
 	</tr>
 	<tr>
-			<td class="t-02" width=500 colspan="2" style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;"><span class=titulo2>Productos</span></td>
-			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;"><span class=titulo2>Cantidad</span></td>
-			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;"><span class=titulo2>Precio</span></td>
-			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;"><span class=titulo2 >Total</span></td>
+			<td class="t-02" width=500 colspan="2" style="border-left:1px #DADADA solid;" style="border-bottom:1px #DADADA solid;"><span class=titulo2><?= _("Productos") ?></span></td>
+			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;"><span class=titulo2><?= _("Cantidad") ?></span></td>
+			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;"><span class=titulo2><?= _("Precio") ?></span></td>
+			<td class="t-02" width=50 style="border-bottom:1px #DADADA solid;" style="border-right:1px #DADADA solid;"><span class=titulo2 ><?= _("Total") ?></span></td>
 	</tr>
 <?php
 foreach ($cart->items as $itemId => $item) {
@@ -215,9 +217,9 @@ foreach ($cart->items as $itemId => $item) {
 			<img src="<?php echo SKIN_ROOT; ?>../../images/<?php echo $item->id ?>_p.jpg" border=0>
 		</td>
 		<td class="t-01" width=300 style="border-bottom:1px #DADADA solid;">
-				<B><?php echo $item->name ?></B><br>
-				Ref. <?php echo $item->id ?></a> <br>
-				<?php if (showValue($item->weight)) { ?>Peso: <?php echo $item->weight ?> gr<br><?php } ?>
+				<B><?php echo NP_get_i18n($item->name) ?></B><br>
+				<?= _("Ref.") ?> <?php echo $item->id ?></a> <br>
+				<?php if (showValue($item->weight)) { ?><?= _("Peso:") ?> <?php echo $item->weight ?> gr<br><?php } ?>
 		</td>
 		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?php echo $item->quantity ?></td>
 		<td class="t-02" style="border-bottom:1px #DADADA solid;"><?php echo $item->prize ?> €</td>
@@ -230,21 +232,21 @@ foreach ($cart->items as $itemId => $item) {
 
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
-		<td class="t-03" style="border-left:1px #DADADA solid;"><B>Subtotal:</B></td>
+		<td class="t-03" style="border-left:1px #DADADA solid;"><B><?= _("Subtotal:") ?></B></td>
 		<td class="t-03" style="border-right:1px #DADADA solid;"><B><?php echo $cart->getSubTotal() ?> €</B></td>
 	</tr>
 	<tr>
-		<td class="t-03" style="border-left:1px #DADADA solid;">Gastos de envío:</td>
+		<td class="t-03" style="border-left:1px #DADADA solid;"><?= _("Gastos de envío:") ?></td>
 		<td class="t-03" style="border-right:1px #DADADA solid;"><?php echo $cart->getShippingCost(1) ?> €</td>
 	</tr>
 	<tr>
-		<td class="t-03" style="border-left:1px #DADADA solid;"><span class=titulo3>Total de tu pedido:</span></td>
+		<td class="t-03" style="border-left:1px #DADADA solid;"><span class=titulo3><?= _("Total de tu pedido:") ?></span></td>
 		<td class="t-03" style="border-right:1px #DADADA solid;"><span class=titulo3><?php echo $cart->getTotal(1) ?> €</span></td>
 	</tr>
 	<tr>
 		<td colspan="2" class="t-03" style="border-bottom:1px #DADADA solid;" style="border-left:1px #DADADA solid;" style="border-right:1px #DADADA solid;">&nbsp;
-<?php if (!isset($paymentResult)) { ?>
-		    <a href="cart.php" onmouseover="rollOn('b7_');" onmouseout="rollOff('b7_');chequear('b7_');" target=_self><img src="/interface/b07-modificar-pedido-off.gif" border=0  align=right name=b7_></a>
+<?php if ($paymentResult === "error" || !isset($paymentResult)) { ?>
+		    <a href="cart.php" onmouseover="rollOn('b7_');" onmouseout="rollOff('b7_');chequear('b7_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b07-modificar-pedido-off.gif" border=0  align=right name=b7_></a>
 <?php } ?>
 		</td>	
 	</tr>
@@ -253,8 +255,8 @@ foreach ($cart->items as $itemId => $item) {
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
 		<td colspan="2" class="t-03">&nbsp;
-<?php if (!isset($paymentResult)) { ?>
-		    <a href="payment.php" onmouseover="rollOn('b4_');" onmouseout="rollOff('b4_');chequear('b4_');" target=_self><img src="/interface/b04-finalizar-compra-off.gif" border=0  align=right name=b4_></a>
+<?php if ($paymentResult === "error" || !isset($paymentResult)) { ?>
+		    <a href="payment.php" onmouseover="rollOn('b4_');" onmouseout="rollOff('b4_');chequear('b4_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b04-finalizar-compra-off.gif" border=0  align=right name=b4_></a>
 <?php } ?>
 		</td>	
 	</tr>
@@ -292,7 +294,7 @@ foreach ($cart->items as $itemId => $item) {
 		<td height="10" valign=top colspan="5"><img src="/interface/pie.gif" border=0></td>
 	</tr>
 	<tr>
-		<td height="31"  valign=top colspan="5" align=center><p class=pie>General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail: <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
+		<td height="31"  valign=top colspan="5" align=center><p class=pie><?= _("General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail:") ?> <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
 	</tr>
 
 

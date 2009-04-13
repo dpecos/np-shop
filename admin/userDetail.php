@@ -12,17 +12,18 @@ if (isset($_GET["userId"])) {
     $user->_dbLoad($id);
 }
 
-$provinces = array();
+$provinces = array("-1" => "-");
 function fetchProvinces($data) {
     global $provinces;
     $provinces[$data['PVC_CO_CODIGO']] = $data['PVC_VA_NOMBRE'];
 }
+global $ddbb;
 $sqlProvinces = "SELECT * FROM NPS_PROVINCIAS ORDER BY 2";
-NP_executeSelect($sqlProvinces, "fetchProvinces");
+$ddbb->executeSelectQuery($sqlProvinces, "fetchProvinces");
 
 if (isset($user) && isset($user->id) && $user->id != null) {
     showSkin("admin_".basename(__FILE__)); 
 } else {
-    die("Usuario con identificador \"".$id."\" no encontrado");
+    die(sprintf(_("Usuario con identificador \"%s\" no encontrado."), $id));
 }
 ?>

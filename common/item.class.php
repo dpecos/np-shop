@@ -1,17 +1,16 @@
 <?php
 require_once(APP_ROOT."/config/main.php");
-require_once(APP_ROOT."/lib/NPLib_Sql.php");
 require_once(APP_ROOT."/config/item.sql.php");
 
 class Item {    
 
     var $quantity; // not in DDBB
     
-    function Item($id, $quantity=1) {
-        global $ddbb_mapping;
+    function Item($id = null, $quantity=1) {
+        global $ddbb;
         
         //$classVars = get_class_vars("Item");
-        foreach (array_keys($ddbb_mapping["Item"]) as $var) {
+        foreach (array_keys($ddbb->getMapping("Item", null)) as $var) {
         	if (!isset($this->$var))
         		$this->$var = null;
         }
@@ -19,144 +18,105 @@ class Item {
         $this->id = $id;
         $this->quantity = $quantity;
         
-        if ($this->id != null)
+        if ($this->id != null) {
             $this->_dbLoad();
+        }
     }
   
     function _dbStore() { //TODO: no está completado
-  	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
-		$varNames = "";
-		$varValues = "";
-		$first = true;	
-		foreach (get_object_vars($this) as $var => $value) {
-			if (array_key_exists($var, $ddbb_mapping["Item"])) {
-				if (!$first) {
-					$varNames .= ", ";
-					$varValues .= ", ";
-				} else
-					$first = false;
-				$varNames .= $ddbb_mapping["Item"][$var];
-				$varValues .= encodeSQLValue($value, $ddbb_types["Item"][$var]);
-			} else {
-				//TODO: ERROR
-			}
-		}
-		$sql = "INSERT INTO ".$ddbb_table["Item"]." ($varNames) VALUES ($varValues)";	
-		NP_executeInsertUpdate($sql);
+        global $ddbb;
+        $ddbb->insertObject($this);
 	}
 	
 	function _dbUpdate() { 
-  	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
+  	    global $ddbb;
 		$varNames = "";
 		$first = true;	
 		foreach (get_object_vars($this) as $var => $value) {
-			if (array_key_exists($var, $ddbb_mapping["Item"])) {
+			if (array_key_exists($var, $ddbb->getMapping("Item", null))) {
 				if ($var != "id") {
 					if (!$first) {
 						$varNames .= ", ";
 					} else
 						$first = false;
-					$varNames .= $ddbb_mapping["Item"][$var]."=".encodeSQLValue($value, $ddbb_types["Item"][$var]);
+					$varNames .= $ddbb->getMapping("Item", $var)."=".NP_DDBB::encodeSQLValue($value, $ddbb->getType("Item", $var));
 				}
 			} else {
 				//TODO: ERROR
 			}
 		}
-		$sql = "UPDATE ".$ddbb_table["Item"]." SET ".$varNames. " WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");	
-		NP_executeInsertUpdate($sql);
+		$sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$varNames. " WHERE ".$ddbb->getMapping("Item", "id")."=".NP_DDBB::encodeSQLValue($this->id, "STRING");	
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 	
 	function _dbLoad() {
-    	global $ddbb_table, $ddbb_mapping, $ddbb_types;
-		$objectVars = get_object_vars($this);
-		
-		$first = true;
-		$sql = "SELECT ";
-		foreach (array_keys($objectVars) as $var) {
-			if (array_key_exists($var, $ddbb_mapping["Item"])) {
-				if (!$first) 
-					$sql .= ", ";
-				else
-					$first = false;
-				$sql .= $ddbb_mapping["Item"][$var];
-			} else {
-				//TODO: ERROR
-			}
-		}
-		$sql .= " FROM ".$ddbb_table["Item"]." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
-		
-		$data = NP_executePKSelect($sql);
+	    global $ddbb;
+	    
+	    $sql = $ddbb->buildSELECT($this, $ddbb->getMapping("Item",'id')."='".$this->id."'");
 	
-		if (is_array($data)) {
-			foreach (array_keys($data) as $dbFieldName) {
-				$objectFieldName = _obtainKeyForValue($ddbb_mapping["Item"], $dbFieldName);
-				if ($objectFieldName && array_key_exists($objectFieldName, $objectVars)) {
-					$this->$objectFieldName = decodeSQLValue($data[$dbFieldName], $ddbb_types["Item"][$objectFieldName]);	
-				} else 
-					die("El campo ".$objectFieldName."(".$dbFieldName.") no se ha definido en el objeto "."Item");
-				
-			}
-		} else {
-			//die("Producto con identificador \"".$this->id."\" no encontrado");
-			$this->id = null;
-		}
-		//print_r($this);
+		$data = $ddbb->executePKSelectQuery($sql);
+
+		if (is_array($data)) {	  
+	       $ddbb->loadData($this, $data);
+	    } else {
+	       $this->id = null;
+	    }
 	}
 	
 	function _dbDelete() {
-	    global $ddbb_table, $ddbb_mapping;
-		$sql = "DELETE FROM ".$ddbb_table["Item"]." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING")." LIMIT 1";
-		return NP_executeDelete($sql);
+	    global $ddbb;
+		$sql = "DELETE FROM ".$ddbb->getTable("Item")." WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING")." LIMIT 1";
+		return $ddbb->executeDeleteQuery($sql);
 	}
 	
 	function storeIntoOrder($orderId, $lineNumber) {
-		global $npshop,$ddbb_table,$ddbb_mapping;
+		global $npshop,$ddbb;
 		$sql = "INSERT INTO ".$npshop["ddbb"]["PREFIX"]."PEDIDOSLINEAS ".
 			" VALUES (".
-			encodeSQLValue($orderId, "INT").", ".
-			encodeSQLValue($lineNumber, "INT").", ".
-			encodeSQLValue($this->id, "STRING").", ".
-			encodeSQLValue($this->quantity, "INT").", ".
-			encodeSQLValue($this->prize, "FLOAT").", ".
-			encodeSQLValue($this->quantity * $this->prize, "FLOAT").
+			NP_DDBB::encodeSQLValue($orderId, "INT").", ".
+			NP_DDBB::encodeSQLValue($lineNumber, "INT").", ".
+			NP_DDBB::encodeSQLValue($this->id, "STRING").", ".
+			NP_DDBB::encodeSQLValue($this->quantity, "INT").", ".
+			NP_DDBB::encodeSQLValue($this->prize, "FLOAT").", ".
+			NP_DDBB::encodeSQLValue($this->quantity * $this->prize, "FLOAT").
 			")";
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 		
-		//$sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$ddbb_mapping["Item"]['stock']."-1 WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+		//$sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", 'stock')."=".$ddbb->getMapping("Item", 'stock')."-1 WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING");
 		//NP_executeInsertUpdate($sql);
 	}
 	
 	function deleteFromOrder($orderId) {
-		global $npshop,$ddbb_table,$ddbb_mapping;
+		global $npshop,$ddbb;
 		
 		$sql = "DELETE FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSLINEAS ".
-			" WHERE PED_CO_CODIGO=".encodeSQLValue($orderId, "INT");
-		NP_executeDelete($sql);
+			" WHERE PED_CO_CODIGO=".NP_DDBB::encodeSQLValue($orderId, "INT");
+		$ddbb->executeDeleteQuery($sql);
 
 	}
 	
 	
 	function modifyStock($quantity) {
-	    global $ddbb_table, $ddbb_mapping;
-	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$quantity." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+	    global $ddbb;
+	    $sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", 'stock')."=".$quantity." WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING");
 		
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 	
 	function addToStock($quantity) {
-	    global $ddbb_table, $ddbb_mapping;
-	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['stock']."=".$ddbb_mapping["Item"]['stock']."-".$quantity." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, "STRING");
+	    global $ddbb;
+	    $sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", 'stock')."=".$ddbb->getMapping("Item", 'stock')."-".$quantity." WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING");
 		
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 	
 	function setRetired($isRetired) {
-	    global $ddbb_table, $ddbb_mapping, $ddbb_types;
+	    global $ddbb;
 	    $this->retired = $isRetired;
 	    
-	    $sql = "UPDATE ".$ddbb_table["Item"]." SET ".$ddbb_mapping["Item"]['retired']."=".encodeSQLValue($this->retired, $ddbb_types["Item"]['retired'])." WHERE ".$ddbb_mapping["Item"]['id']."=".encodeSQLValue($this->id, $ddbb_types["Item"]['id']);
+	    $sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", "retired")."=".NP_DDBB::encodeSQLValue($this->retired, $ddbb->getType("Item", "retired"))." WHERE ".$ddbb->getMapping("Item", "id")."=".NP_DDBB::encodeSQLValue($this->id, $ddbb->getType("Item", "id"));
 		
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 	
 	function storeSpecialShippingCost($orderId, $lineNumber) {
@@ -164,14 +124,14 @@ class Item {
 		$sql = "INSERT INTO ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES ".
 			//"(PED_CO_CODIGO, PEL_NU_LINEA, PRO_CO_CODIGO, PEL_NU_CANTIDAD, PEL_IM_PRECIO, PEL_IM_IMPORTE)".
 			" VALUES (".
-			encodeSQLValue($orderId, "INT").", ".
-			encodeSQLValue($lineNumber, "INT").", ".
-			encodeSQLValue($this->id, "STRING").", ".
-			encodeSQLValue($this->quantity, "INT").", ".
-			encodeSQLValue($this->specialShippingCost, "FLOAT").", ".
-			encodeSQLValue($this->quantity * $this->specialShippingCost, "FLOAT").
+			NP_DDBB::encodeSQLValue($orderId, "INT").", ".
+			NP_DDBB::encodeSQLValue($lineNumber, "INT").", ".
+			NP_DDBB::encodeSQLValue($this->id, "STRING").", ".
+			NP_DDBB::encodeSQLValue($this->quantity, "INT").", ".
+			NP_DDBB::encodeSQLValue($this->specialShippingCost, "FLOAT").", ".
+			NP_DDBB::encodeSQLValue($this->quantity * $this->specialShippingCost, "FLOAT").
 			")";
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 	
 	function getSubTotal() {
