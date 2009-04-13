@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: npshop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-07 21:24+0200\n"
-"PO-Revision-Date: 2009-04-07 21:28+0200\n"
+"POT-Creation-Date: 2009-04-13 23:05+0200\n"
+"PO-Revision-Date: 2009-04-13 23:11+0200\n"
 "Last-Translator: Daniel Pecos <dani@email.com>\n"
 "Language-Team: English <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -47,66 +47,66 @@ msgstr "No image was uploaded."
 msgid "Todas las categorías"
 msgstr "All the categories"
 
-#: ../src/common/cart.class.php:304
+#: ../src/common/cart.class.php:257
 #, php-format
 msgid "Hola %s"
 msgstr "Hello %s"
 
-#: ../src/common/cart.class.php:305
+#: ../src/common/cart.class.php:258
 #, php-format
 msgid "Estos son los productos asociados al pedido %s:"
 msgstr "These are the items related to the order %s:"
 
-#: ../src/common/cart.class.php:309
+#: ../src/common/cart.class.php:262
 msgid "Ref."
 msgstr "Ref."
 
-#: ../src/common/cart.class.php:309
+#: ../src/common/cart.class.php:262
 msgid "Cantidad"
 msgstr "Quantity"
 
-#: ../src/common/cart.class.php:309
+#: ../src/common/cart.class.php:262
 msgid "Precio por unidad"
 msgstr "Price per unit"
 
-#: ../src/common/cart.class.php:314
+#: ../src/common/cart.class.php:267
 msgid "Subtotal"
 msgstr "Subtotal"
 
-#: ../src/common/cart.class.php:315
+#: ../src/common/cart.class.php:268
 msgid "Gastos de envío"
 msgstr "Shipping costs"
 
-#: ../src/common/cart.class.php:316
+#: ../src/common/cart.class.php:269
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#: ../src/common/cart.class.php:321
+#: ../src/common/cart.class.php:274
 msgid "Datos personales"
 msgstr "Personal data"
 
-#: ../src/common/cart.class.php:325
+#: ../src/common/cart.class.php:278
 msgid "Datos de facturación"
 msgstr "Billing data"
 
-#: ../src/common/cart.class.php:354
+#: ../src/common/cart.class.php:307
 msgid "El pedido <b>queda confirmado</b>."
 msgstr "The order is <b>confirmed</b>."
 
-#: ../src/common/cart.class.php:356
+#: ../src/common/cart.class.php:309
 msgid "El pedido <b>no ha podido ser confirmado</b>."
 msgstr "The order <b>could not be confirmed</b>."
 
-#: ../src/common/cart.class.php:358
+#: ../src/common/cart.class.php:311
 #, php-format
 msgid "El pedido queda con estado <b>%s</b>."
 msgstr "The order status is <b>%s</b>."
 
-#: ../src/common/cart.class.php:361
+#: ../src/common/cart.class.php:314
 msgid "Un saludo"
 msgstr "Yours sincerely"
 
-#: ../src/flows/cart.php:23
+#: ../src/flows/cart.php:23 ../src/flows/payment.php:58
 #, php-format
 msgid "No hay suficiente stock disponible (%s disponibles)"
 msgstr "There isn't enough stock available (%s available)"
@@ -144,3 +144,43 @@ msgstr "There was problems storing the order."
 #: ../src/flows/personalData.php:48
 msgid "El password antiguo no es correcto o los nuevos no coinciden."
 msgstr "Previous password incorrect or new passwords don't match."
+
+#: ../src/config/main.php:19
+msgid "PROCESO DE PAGO"
+msgstr "PROCESO DE PAGO"
+
+#: ../src/config/main.php:20
+msgid "PAGO TPV OK"
+msgstr "PAGO TPV OK"
+
+#: ../src/config/main.php:21
+msgid "PAGO TPV ERROR"
+msgstr "PAGO TPV ERROR"
+
+#: ../src/config/main.php:22
+msgid "PDTE ENVIO A CLIENTE"
+msgstr "PDTE ENVIO A CLIENTE"
+
+#: ../src/config/main.php:23
+msgid "ENVIADO A CLIENTE"
+msgstr "ENVIADO A CLIENTE"
+
+#: ../src/config/main.php:24
+msgid "DEVOLUCION CLIENTE"
+msgstr "DEVOLUCION CLIENTE"
+
+#: ../src/config/main.php:25
+msgid "FINALIZADO"
+msgstr "FINALIZADO"
+
+#: ../src/config/main.php:27
+msgid "Pedidos DavidBenavente.com <pedidos@davidbenavente.com>"
+msgstr "Orders DavidBenavente.com <pedidos@davidbenavente.com>"
+
+#: ../src/config/main.php:28
+msgid "Pedido en la tienda de David Benavente: "
+msgstr "Orders in the shop of David Benavente: "
+
+#: ../src/config/main.php:66
+msgid "Pedido David Benavente - "
+msgstr "Order David Benavente - "
