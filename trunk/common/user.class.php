@@ -1,6 +1,5 @@
 <?php
 require_once(APP_ROOT."/config/main.php");
-require_once(APP_ROOT."/lib/NPLib_Sql.php");
 require_once(APP_ROOT."/config/user.sql.php");
 
 class User {
@@ -21,14 +20,14 @@ class User {
 	}
 	
 	function _initialize() {
-	 	global $ddbb_mapping;
+	 	global $ddbb;
 		
     	//$classVars = get_class_vars("User");
-    	foreach (array_keys($ddbb_mapping["User"]) as $var) {
+    	foreach (array_keys($ddbb->getMapping("User",null)) as $var) {
     		if (!isset($this->$var)) {
-				if (is_array($ddbb_mapping["User"][$var])) {					
+				if (is_array($ddbb->getMapping("User",$var))) {					
 					$this->$var = array();
-					foreach (array_keys($ddbb_mapping["User"][$var]) as $subvar) {
+					foreach (array_keys($ddbb->getMapping("User",$var)) as $subvar) {
 						$this->$var = array_merge($this->$var, array($subvar => null));
 					}
 				} else {
@@ -62,20 +61,20 @@ class User {
 	}
 	
 	function _dbLoad($id = null) {
-    	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+    	global $ddbb;
 
         if ($id != null) {
-		    $where = $ddbb_mapping["User"]['id']."=".$id;
+		    $where = $ddbb->getMapping("User",'id')."=".$id;
 		} else {
-		    $where = $ddbb_mapping["User"]['email']."='".$this->email."' AND ".$ddbb_mapping["User"]['password']."='".$this->password."'";
+		    $where = $ddbb->getMapping("User",'email')."='".$this->email."' AND ".$ddbb->getMapping("User",'password')."='".$this->password."'";
 		}
 		
-		$sql = NP_createSELECT($this, $ddbb_table["User"], $ddbb_mapping["User"], $ddbb_types["User"], $where);
+		$sql = $ddbb->buildSELECT($this, $where);
 		
-		$data = NP_executePKSelect($sql);
+		$data = $ddbb->executePKSelectQuery($sql);
 	
 		if (is_array($data)) {
-			 NP_loadData($this, $data, $ddbb_mapping["User"], $ddbb_types["User"]);
+			 $ddbb->loadData($this, $data);
 		} else {
 			$this->email = null;
 			$this->password = null;
@@ -84,24 +83,29 @@ class User {
 	}
 	
 	function _dbInsert() {
-		global $ddbb_table, $ddbb_mapping, $ddbb_types;
-		$objectVars = get_object_vars($this);
+		global $ddbb;
+		$this->id = $ddbb->insertObject($this);
+		
+		/*$objectVars = get_object_vars($this);
 		$first = true;
 	
-		$sql = "INSERT INTO ".$ddbb_table["User"]."";
+      $ddbb_mapping = $ddbb->getMapping("User", null);
+      $ddbb_types = $ddbb->getType("User", null);
+
+		$sql = "INSERT INTO ".$ddbb->getTable("User")."";
 		$names = "";
 		$values = "";
 		foreach (array_keys($objectVars) as $var) {
-			if (array_key_exists($var, $ddbb_mapping["User"])) {				
-				if (is_array($ddbb_mapping["User"][$var])) {	
-					foreach (array_keys($ddbb_mapping["User"][$var]) as $subvar) {
+			if (array_key_exists($var, $ddbb_mapping)) {				
+				if (is_array($ddbb_mapping[$var])) {	
+					foreach (array_keys($ddbb_mapping[$var]) as $subvar) {
 						if (!$first) {
 							$names .= ", ";
 							$values .= ", ";
 						} else
 							$first = false;
-						$names .= $ddbb_mapping["User"][$var][$subvar];
-						$values .= encodeSQLValue($objectVars[$var][$subvar], $ddbb_types["User"][$var][$subvar]);
+						$names .= $ddbb_mapping[$var][$subvar];
+						$values .= NP_DDBB::encodeSQLValue($objectVars[$var][$subvar], $ddbb_types[$var][$subvar]);
 					}
 				} else {
 					if (!$first) {
@@ -109,8 +113,8 @@ class User {
 						$values .= ", ";
 					} else
 						$first = false;
-					$names .= $ddbb_mapping["User"][$var];
-					$values .= encodeSQLValue($objectVars[$var], $ddbb_types["User"][$var]);
+					$names .= $ddbb_mapping[$var];
+					$values .= NP_DDBB::encodeSQLValue($objectVars[$var], $ddbb_types[$var]);
 				}
 			} else {
 				//TODO: ERROR
@@ -120,25 +124,28 @@ class User {
 		
 		//echo $sql;
 	
-		$this->id = NP_executeInsertUpdate($sql);
+		$this->id = $ddbb->executeInsertUpdateQuery($sql);*/
 	}
 	
 	function _dbUpdate() {
-		global $ddbb_table, $ddbb_mapping, $ddbb_types;
+		global $ddbb;
 		$objectVars = get_object_vars($this);
 		$first = true;
+
+      $ddbb_mapping = $ddbb->getMapping("User", null);
+      $ddbb_types = $ddbb->getType("User", null);
 	
-		$sql = "UPDATE ".$ddbb_table["User"]." SET ";
+		$sql = "UPDATE ".$ddbb->getTable("User")." SET ";
 		foreach (array_keys($objectVars) as $var) {
-			if (array_key_exists($var, $ddbb_mapping["User"])) {				
-				if (is_array($ddbb_mapping["User"][$var])) {	
-					foreach (array_keys($ddbb_mapping["User"][$var]) as $subvar) {
+			if (array_key_exists($var, $ddbb_mapping)) {				
+				if (is_array($ddbb_mapping[$var])) {	
+					foreach (array_keys($ddbb_mapping[$var]) as $subvar) {
 						if (!$first) 
 							$sql .= ", ";
 						else
 							$first = false;
 					    //echo $var.$subvar.$ddbb_types["User"][$var][$subvar].$objectVars[$var][$subvar]."-->".encodeSQLValue($objectVars[$var][$subvar], $ddbb_types["User"][$var][$subvar])."<br>";
-						$sql .= $ddbb_mapping["User"][$var][$subvar]."=".encodeSQLValue($objectVars[$var][$subvar], $ddbb_types["User"][$var][$subvar]);
+						$sql .= $ddbb_mapping[$var][$subvar]."=".NP_DDBB::encodeSQLValue($objectVars[$var][$subvar], $ddbb_types[$var][$subvar]);
 					}
 				} else {
 					if ($var != "id") {
@@ -146,16 +153,16 @@ class User {
 							$sql .= ", ";
 						else
 							$first = false;
-						$sql .= $ddbb_mapping["User"][$var]."=".encodeSQLValue($objectVars[$var], $ddbb_types["User"][$var]);
+						$sql .= $ddbb_mapping[$var]."=".NP_DDBB::encodeSQLValue($objectVars[$var], $ddbb_types[$var]);
 					}
 				}
 			} else {
 				//TODO: ERROR
 			}
 		}
-		$sql .= " WHERE ".$ddbb_mapping["User"]["id"]."=".encodeSQLValue($objectVars["id"], $ddbb_types["User"]["id"]);
+		$sql .= " WHERE ".$ddbb_mapping["id"]."=".NP_DDBB::encodeSQLValue($objectVars["id"], $ddbb_types["id"]);
 	
-		NP_executeInsertUpdate($sql);
+		$ddbb->executeInsertUpdateQuery($sql);
 	}
 }
 

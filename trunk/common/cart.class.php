@@ -1,6 +1,5 @@
 <?php
 require_once(APP_ROOT."/config/main.php");
-require_once(APP_ROOT."/lib/NPLib_Sql.php");
 require_once(APP_ROOT."/config/cart.sql.php");
 
 class Cart {
@@ -8,13 +7,13 @@ class Cart {
 	var $user;
 
 	function Cart($orderId = null) {
-		global $ddbb_mapping;
+		global $ddbb;
 		$this->items = array();
 		$this->user = null;
 		
-    	foreach (array_keys($ddbb_mapping["Cart"]) as $var) {
+    	foreach (array_keys($ddbb->getMapping("Cart", null)) as $var) {
     		if (!isset($this->$var)) {
-				if (!is_array($ddbb_mapping["Cart"][$var])) {					
+				if (!is_array($ddbb->getMapping("Cart",$var))) {					
 					$this->$var = null;
 				}
 			}
@@ -60,8 +59,42 @@ class Cart {
 		//return number_format($this->getSubTotal() + $this->getShippingCost($shippingAgentCode), 2, '.', '');
 		return $this->getSubTotal() + $this->getShippingCost($shippingAgentCode);
 	}
-	
-	function getShippingCost($shippingAgentCode) {
+
+	function getShippingCost() {
+		global $npshop, $ddbb; 
+
+		
+		if (!is_null($this->user) && !is_null($this->user->shippingData['country'])) {
+		    $country = $this->user->shippingData['country'];
+    		$sql = "SELECT c.* FROM NPS_PAISES p, NPS_COSTES_ZONA c WHERE p.costes_zona=c.zona AND p.id=".$country;
+    		$data = $ddbb->executePKSelectQuery($sql);
+    
+    		$precio_fijo = round($data["precio_fijo"] + 0.49);
+    		$precio_kilo = round($data["precio_kilo"] + 0.49);
+    
+    		$shippingCost = $precio_fijo;
+    		$normalWeight = 0;
+    
+    		foreach ($this->items as $itemId => $item) {
+    			if ($item->specialShipping) { 
+    				$shippingCost += $item->specialShippingCost * $item->quantity;
+    			} else {
+    				$normalWeight += $item->weight * $item->quantity;
+    			}
+    		}	
+        	if ($normalWeight > 0) 
+        		$normalWeight += $npshop['constants']['EXTRA_WEIGHT_SHIPPING_COST'];
+    
+    		$shippingCost += round($normalWeight/1000 + 0.49) * $precio_kilo;
+    	    
+    
+    		return $shippingCost;
+	    } else 
+	        return 0;
+	    
+	}
+
+	/*function getShippingCost($shippingAgentCode) {
 	    global $npshop;
 	    
 	    if (isset($this->totalShippingCost) && ($this->totalShippingCost != null)) {
@@ -86,6 +119,21 @@ class Cart {
 	    }
 	}
 	
+	function __obtainShippingCost($weight, $shippingAgentCode) {
+	    global $ddbb;
+	    if ($weight > 0) {
+    		$sql = "SELECT COS_IM_IMPORTE FROM NPS_COSTES WHERE COS_NU_PESOMIN < ".$weight." AND COS_NU_PESOMAX >= ".$weight." AND AGE_CO_CODIGO = ".$shippingAgentCode." AND PAI_CO_CODIGO = 56";
+    		
+    		$data = $ddbb->executePKSelectQuery($sql);
+    		
+    		if ($data)
+    			return NP_DDBB::decodeSQLValue($data["COS_IM_IMPORTE"], "FLOAT");
+    		else 
+    			die("No se encontro el coste para un peso: ".$weight." y el codigo de agente: ".$shippingAgentCode);
+		} else
+		    return 0;
+	}*/
+
 	function updateOrderShippingDays() {
 		$days = 0;
 		foreach ($this->items as $itemId => $item) {
@@ -95,82 +143,23 @@ class Cart {
 		$this->shippingDays = $days;
 	}
 	
-	function __obtainShippingCost($weight, $shippingAgentCode) {
-	    if ($weight > 0) {
-    		$sql = "SELECT COS_IM_IMPORTE FROM NPS_COSTES WHERE COS_NU_PESOMIN < ".$weight." AND COS_NU_PESOMAX >= ".$weight." AND AGE_CO_CODIGO = ".$shippingAgentCode." AND PAI_CO_CODIGO = 56";
-    		
-    		$data = NP_executePKSelect($sql);
-    		
-    		if ($data)
-    			return decodeSQLValue($data["COS_IM_IMPORTE"], "FLOAT");
-    		else 
-    			die("No se encontro el coste para un peso: ".$weight." y el codigo de agente: ".$shippingAgentCode);
-		} else
-		    return 0;
-	}
-	
 	function _dbStore() {
-    	global $ddbb_table, $ddbb_mapping, $ddbb_types;
+    	global $ddbb;
     	
-		$varNames = "";
-		$varValues = "";
-		$first = true;	
-		foreach (get_object_vars($this) as $var => $value) {
-			if (array_key_exists($var, $ddbb_mapping["Cart"])) {
-				if (is_array($ddbb_mapping["Cart"][$var])) {
-					foreach (get_object_vars($this->$var) as $objvar => $objvalue) {
-						if (array_key_exists($objvar, $ddbb_mapping["Cart"][$var])) {
-							if (is_array($ddbb_mapping["Cart"][$var][$objvar])) {
-								foreach ($this->$var->$objvar as $subobjvar => $subobjvalue) {
-									if (!$first) {
-										$varNames .= ", ";
-										$varValues .= ", ";
-									} else
-										$first = false;
-									$varNames .= $ddbb_mapping["Cart"][$var][$objvar][$subobjvar];
-									$varValues .= encodeSQLValue($subobjvalue, $ddbb_types["Cart"][$var][$objvar][$subobjvar]);
-								}
-							} else {
-								if (!$first) {
-									$varNames .= ", ";
-									$varValues .= ", ";
-								} else
-									$first = false;
-								$varNames .= $ddbb_mapping["Cart"][$var][$objvar];
-								$varValues .= encodeSQLValue($objvalue, $ddbb_types["Cart"][$var][$objvar]);
-							}
-						}
-					}
-				} else {
-					if ($value != null) {
-						if (!$first) {
-							$varNames .= ", ";
-							$varValues .= ", ";
-						} else
-							$first = false;
-						$varNames .= $ddbb_mapping["Cart"][$var];
-						$varValues .= encodeSQLValue($value, $ddbb_types["Cart"][$var]);
-					}
-				}
-			} else {
-				//TODO: ERROR
-			}
-		}
-		$sql = "INSERT INTO ".$ddbb_table["Cart"]." ($varNames) VALUES ($varValues)";	
-				
-		return NP_executeInsertUpdate($sql);
+    	return $ddbb->insertObject($this);
 	}
 	
 	function _dbLoad() {
-    	global $ddbb_table, $ddbb_mapping, $ddbb_types, $npshop;
+    	global $ddbb, $npshop;
 		
-		$sql = NP_createSELECT($this, $ddbb_table["Cart"], $ddbb_mapping["Cart"], $ddbb_types["Cart"], $ddbb_mapping["Cart"]['orderId']."=".$this->orderId);
+		//$sql = NP_createSELECT($this, $ddbb_table["Cart"], $ddbb_mapping["Cart"], $ddbb_types["Cart"], $ddbb_mapping["Cart"]['orderId']."=".$this->orderId);
+		$sql = $ddbb->buildSELECT($this, $ddbb->getMapping("Cart",'orderId')."=".$this->orderId);
+	
+		$data = $ddbb->executePKSelectQuery($sql);
 		
-		$data = NP_executePKSelect($sql);
-				
 	    if (is_array($data)) {	 
 	        
-	        NP_loadData($this, $data, $ddbb_mapping["Cart"], $ddbb_types["Cart"]);
+	        $ddbb->loadData($this, $data);
 	        
 			$GLOBALS['items'] = &$this->items; // pass by reference
 			
@@ -181,24 +170,23 @@ class Cart {
         	
         	$f = create_function('$data', $funcCode);
         	
-        	$sql = "SELECT * FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSLINEAS WHERE ".$ddbb_mapping["Cart"]['orderId']."=".encodeSQLValue($this->orderId, "STRING")." ORDER BY PEL_NU_LINEA";
+        	$sql = "SELECT * FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSLINEAS WHERE ".$ddbb->getMapping("Cart",'orderId')."=".$ddbb->encodeSQLValue($this->orderId, "STRING")." ORDER BY PEL_NU_LINEA";
         	
-        	NP_executeSelect($sql, $f);
+        	$ddbb->executeSelectQuery($sql, $f);
         	      	
-        	$sql = "SELECT SUM(PEC_IM_IMPORTE) AS COSTS FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES WHERE ".$ddbb_mapping["Cart"]['orderId']."=".encodeSQLValue($this->orderId, "STRING");
+        	$sql = "SELECT SUM(PEC_IM_IMPORTE) AS COSTS FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES WHERE ".$ddbb->getMapping("Cart",'orderId')."=".$ddbb->encodeSQLValue($this->orderId, "STRING");
         	
-        	$data = NP_executePKSelect($sql);
+        	$data = $ddbb->executePKSelectQuery($sql);
         	
             if (isset($data["COSTS"]) && trim($data["COSTS"]) != "")
         	    $this->totalShippingCost = $data["COSTS"];
         	else if (count($this->items) > 0)
         	    $this->totalShippingCost = "0";
-      
 		}
 	}
 	
 	function _dbStore_ShippingCost($shippingAgentCode) {
-		global $npshop;
+		global $npshop, $ddbb;
 		$normalWeight = 0;
 
 		$lineNumber = 1;
@@ -214,18 +202,18 @@ class Cart {
 		$shippingCost = 0.0;
 		
 		if ($normalWeight > 0) {
-    		$shippingCost = $this->__obtainShippingCost($normalWeight, $shippingAgentCode);
+    		$shippingCost = $this->getShippingCost($normalWeight, $shippingAgentCode);
     		
     		$sql = "INSERT INTO ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES ".
     			"VALUES (".
-    			encodeSQLValue($this->orderId, "INT").", ".
-    			encodeSQLValue($lineNumber, "INT").", ".
+    			NP_DDBB::encodeSQLValue($this->orderId, "INT").", ".
+    			NP_DDBB::encodeSQLValue($lineNumber, "INT").", ".
     			"NULL".", ".
     			"NULL".", ".
     			"NULL".", ".
-    			encodeSQLValue($shippingCost, "FLOAT").
+    			NP_DDBB::encodeSQLValue($shippingCost, "FLOAT").
     			")";
-    		NP_executeInsertUpdate($sql);
+    		$ddbb->executeInsertUpdateQuery($sql);
 	    }
 				
 		return $shippingCost;
@@ -249,15 +237,15 @@ class Cart {
 	}
 	
 	function deleteOrder() {
-	    global $npshop, $ddbb_table, $ddbb_mapping, $ddbb_types;
+	    global $npshop, $ddbb;
 	    
 	    foreach ($this->items as $item) {
 			$item->deleteFromOrder($this->orderId);
 		}		
-		$sqlShippingCost = "DELETE FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES WHERE PED_CO_CODIGO=".encodeSQLValue($this->orderId,$ddbb_types["Cart"]["orderId"]);
-		NP_executeDelete($sqlShippingCost);
-		$sqlOrder = "DELETE FROM ".$ddbb_table["Cart"]." WHERE ".$ddbb_mapping["Cart"]["orderId"]."=".encodeSQLValue($this->orderId,$ddbb_types["Cart"]["orderId"]);
-		NP_executeDelete($sqlOrder);
+		$sqlShippingCost = "DELETE FROM ".$npshop["ddbb"]["PREFIX"]."PEDIDOSCOSTES WHERE PED_CO_CODIGO=".NP_DDBB::encodeSQLValue($this->orderId,$ddbb->getType("Cart","orderId"));
+		$ddbb->executeDeleteQuery($sqlShippingCost);
+		$sqlOrder = "DELETE FROM ".$ddbb->getTable("Cart")." WHERE ".$ddbb->getMapping("Cart","orderId")."=".NP_DDBB::encodeSQLValue($this->orderId,$ddbb->getType("Cart","orderId"));
+		$ddbb->executeDeleteQuery($sqlOrder);
 		
 	}
 	
@@ -266,28 +254,28 @@ class Cart {
 	    
 	    $text = implode('', file(APP_ROOT.$npshop['skin']['path'].$npshop['skin']['name']."/npshop/email_header.php"));	    
 	    
-	    $text .= "Hola ".$this->user->billingData['name'].",<br><br>";
-	    $text .= "Estos son los productos asociados al pedido ".formatOrderId($this).":<br/>";
+	    $text .= sprintf(_("Hola %s"), $this->user->billingData['name']).",<br/><br/>";
+	    $text .= sprintf(_("Estos son los productos asociados al pedido %s:"), formatOrderId($this))."<br/>";
 
 	    $text .= "<ul>";
 	    foreach ($this->items as $item) {
-    	    $text .= "<li><b>".$item->name."</b> (Ref. ".$item->id."): Cantidad [".$item->quantity."], Precio por unidad [".$item->prize." &euro;]</li>";
+    	    $text .= "<li><b>".NP_get_i18n($item->name)."</b> ("._("Ref.")." ".$item->id."): "._("Cantidad")." [".$item->quantity."], "._("Precio por unidad")." [".$item->prize." &euro;]</li>";
     	}
     	$text .= "</ul>";
     	
     	$text .= "<blockquote>";
-    	$text .= "Subtotal: ".$this->getSubTotal()." &euro;<br/>";
-    	$text .= "Gastos de envío: ".$this->getShippingCost(1)." &euro;<br/>";
-    	$text .= "<br/><b>TOTAL: ".$this->getTotal(1)." &euro;</b><br/>";
+    	$text .= _("Subtotal").": ".$this->getSubTotal()." &euro;<br/>";
+    	$text .= _("Gastos de envío").": ".$this->getShippingCost(1)." &euro;<br/>";
+    	$text .= "<br/><b>"._("TOTAL").": ".$this->getTotal(1)." &euro;</b><br/>";
     	$text .= "</blockquote>";
     	
     	$text .= "<br/>";
     	
-    	$text .= "<p>Datos personales:</p>";
+    	$text .= "<p>"._("Datos personales").":</p>";
     	$text .= "<center><table border='0' width='70%'>";
     	$text .= "    <tr>";
     	$text .= "        <td width='50%' valign='top'>";
-    	$text .= "        <b>Datos de facturación</b><br/>";
+    	$text .= "        <b>"._("Datos de facturación")."</b><br/>";
         //$text .= "        <ul>";
     	$text .= "            <br/>".$this->user->billingData['name']." ".$this->user->billingData['surname'];
     	$text .= "            <br/>";
@@ -316,14 +304,14 @@ class Cart {
     	$text .= "</table></center><br/>";
     	
     	if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK'])
-    	    $text .= "El pedido <b>queda confirmado</b>.<br/>";
+    	    $text .= _("El pedido <b>queda confirmado</b>.")."<br/>";
     	else if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_ERROR'])
-    	    $text .= "El pedido <b>no ha podido ser confirmado</b>.<br/>";
+    	    $text .= _("El pedido <b>no ha podido ser confirmado</b>.")."<br/>";
     	else 
-    	    $text .= "El pedido queda con estado <b>".$this->orderStatus."</b>.<br/>";
+    	    $text .= sprintf(_("El pedido queda con estado <b>%s</b>."), $this->orderStatus)."<br/>";
     	
 	    $text .= "<br/>";
-	    $text .= "Un saludo";
+	    $text .= _("Un saludo");
 	    
 	    $text .= implode('', file(APP_ROOT.$npshop['skin']['path'].$npshop['skin']['name']."/npshop/email_footer.php"));	    
 
@@ -331,7 +319,7 @@ class Cart {
 	}
 	
 	function changeStatus($status, $tpvData = null, $sendMail = true) {
-	    global $ddbb_table, $ddbb_mapping, $ddbb_types, $npshop;
+	    global $ddbb, $npshop;
 	    
 	    // status changes history
 	    if ($this->orderStatus != $status) {
@@ -352,18 +340,20 @@ class Cart {
 	        }
 	    }
 	      
-	    $sql = "UPDATE ".$ddbb_table["Cart"].
-			" SET ".$ddbb_mapping['Cart']['orderStatus']."=".encodeSQLValue($status, $ddbb_types['Cart']['orderStatus']).", ".
-			$ddbb_mapping['Cart']['statusHistory']."=".encodeSQLValue($this->statusHistory, $ddbb_types['Cart']['statusHistory']).", ".
-			$ddbb_mapping['Cart']['date']."=".encodeSQLValue($this->date, $ddbb_types['Cart']['date']);
+	    /*$sql = "UPDATE ".$ddbb->getTable("Cart").
+			" SET ".$ddbb->getMapping('Cart','orderStatus')."=".NP_DDBB::encodeSQLValue($status, $ddbb->getType('Cart','orderStatus')).", ".
+			$ddbb->getMapping('Cart','statusHistory')."=".NP_DDBB::encodeSQLValue($this->statusHistory, $ddbb->getType('Cart','statusHistory')).", ".
+			$ddbb->getMapping('Cart','date')."=".NP_DDBB::encodeSQLValue($this->date, $ddbb->getType('Cart','date'));
 		if ($tpvData != null) {
 		    $this->tpvData = $tpvData;
 		    update_cart($this);
-		    $sql.= ", ".$ddbb_mapping['Cart']['tpvData']."=".encodeSQLValue($tpvData, $ddbb_types['Cart']['tpvData']); 
+		    $sql.= ", ".$ddbb->getMapping('Cart','tpvData')."=".NP_DDBB::encodeSQLValue($tpvData, $ddbb->getType('Cart','tpvData')); 
 		}
-		$sql.= " WHERE ".$ddbb_mapping['Cart']['orderId']."=".encodeSQLValue($this->orderId, $ddbb_types['Cart']['orderId']); 
+		$sql.= " WHERE ".$ddbb->getMapping('Cart','orderId')."=".NP_DDBB::encodeSQLValue($this->orderId, $ddbb->getType('Cart','orderId')); 
 
-	    NP_executeInsertUpdate($sql);
+	    $ddbb->executeInsertUpdateQuery($sql);*/
+	    
+	    $ddbb->updateObject($this);
 	       
 	    
 	    if ($status == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK']) {
@@ -378,14 +368,14 @@ class Cart {
     	    $user = new User();
     	    $user->_dbLoad($this->user->id);
     	    
-    	    $statusKey = _obtainKeyForValue($npshop['constants']['ORDER_STATUS'], $status);
-                    
+    	    $statusKey = array_search($status, $npshop['constants']['ORDER_STATUS']);
+                   
+            $mailContent = $this->_buildMail();
     	    if ($statusKey == "PAYMENT_OK") {
-    	        $mailContent = $this->_buildMail();
     	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
-    	        if ($statusKey == "PAYMENT_OK")
-    	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
+   	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
     	    }
+    	    sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_DEBUG'], "DEBUG (DavidBenavente): ".$npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
 	    }
 	}
 }

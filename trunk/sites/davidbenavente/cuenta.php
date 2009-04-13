@@ -3,8 +3,8 @@ require_once("npshop/skin.php");
 
 $cart = get_cart();
 ?>
-<html><head><title>David Benavente. Estudio de bonsái</title>
-<link rel=stylesheet href="/interface/estilos.css"> 
+<html><head><title><?= _("David Benavente. Estudio de bonsái") ?></title>
+<link rel=stylesheet href="<?= SKIN_ROOT ?>include/estilos.css"> 
 			<script language="javascript">
 			<!--
 			function doRedirect(myObject) {
@@ -16,7 +16,9 @@ $cart = get_cart();
 			}			
 			// -->
 			</script>
-<script language="javaScript" SRC="/interface/botonera.js"></SCRIPT> 
+<script>
+    <?php include_once('include/javascript.php'); ?>
+</script> 
 </head>
 <body text=#000000 marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
 <center>
@@ -60,7 +62,7 @@ $cart = get_cart();
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><br><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
 																<PARAM NAME=movie VALUE="/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
@@ -92,9 +94,9 @@ $cart = get_cart();
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php">Ayuda</a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
+			<a class="negro" href="account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php"><?= _("Ayuda") ?></a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>
 	</tr>
@@ -102,10 +104,10 @@ $cart = get_cart();
 <table width="100%" cellpadding="3" cellspacing="0" border="0" >
 	<tr>
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
-			<span class="pie">1. Selección de productos</span>&nbsp;
-			<span class="pie">2. Datos facturación y envío</span>&nbsp;
-			<span class="pie">3. Comprobación y compra</span>&nbsp;
-			<span class="pie">4. Resultado</span>&nbsp;
+			<span class="pie"><?= _("1. Selección de productos") ?></span>&nbsp;
+			<span class="pie"><?= _("2. Datos facturación y envío") ?></span>&nbsp;
+			<span class="pie"><?= _("3. Comprobación y compra") ?></span>&nbsp;
+			<span class="pie"><?= _("4. Resultado") ?></span>&nbsp;
 		</td>
 	</tr>
 </table>	
@@ -119,13 +121,13 @@ $cart = get_cart();
 	<tr>
 		<td width="100%" valign="top">
 			<table cellpadding=6 cellspacing=0 border=0 width=100%  >
-				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2>¿Qué tal <?php echo $cart->user->billingData["name"] ?>?</span></td></tr>
+				<tr><td class="t-01" width=100% style="border-bottom:3px #DADADA solid;" colspan="2"><span class=titulo2><?= sprintf(_("¿Qué tal %s ?"), $cart->user->billingData["name"]) ?></span></td></tr>
 				<tr>
 					<td class="t-01" width=35% >
-						<br><p>¿Qué quieres hacer?
+						<br><p><?= _("¿Qué quieres hacer?") ?>
 					<br><ul>
-						<li><a class="mas" href="personalData.php"><b>Modificar los datos de tu cuenta</b></a>					
-						<li><a class="mas" href="listCategory.php"><b>Comprar</b></a>					
+						<li><a class="mas" href="personalData.php"><b><?= _("Modificar los datos de tu cuenta") ?></b></a>					
+						<li><a class="mas" href="listCategory.php"><b><?= _("Comprar") ?></b></a>					
 					</td>
 
 				</tr>
@@ -173,7 +175,7 @@ $cart = get_cart();
 		<td height="10" valign=top colspan="5"><img src="/interface/pie.gif" border=0></td>
 	</tr>
 	<tr>
-		<td height="31"  valign=top colspan="5" align=center><p class=pie>General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail: <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
+		<td height="31"  valign=top colspan="5" align=center><p class=pie><?= _("General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail:") ?> <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
 	</tr>
 
 

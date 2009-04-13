@@ -1,10 +1,21 @@
 <?php
-define('APP_ROOT', "../../");
+define('APP_ROOT', "../..");
+require_once(APP_ROOT."/config/main.php");
+require_once(APP_ROOT."/common/commonFunctions.php");
 
 require_once("npshop/skin.php");
+
+	header("Expires: Sat, 01 Jan 2000 01:00:00 GMT");
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+    
+bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['name']."/npshop/i18n");
+
 ?>
-<html><head><title>David Benavente. Estudio de bonsái</title>
-<link rel=stylesheet href="/interface/estilos.css"> 
+<html><head><title><?= _("David Benavente. Estudio de bonsái") ?></title>
+<link rel=stylesheet href="<?= SKIN_ROOT ?>include/estilos.css"> 
 			<script language="javascript">
 			<!--
 			function doRedirect(myObject) {
@@ -16,7 +27,9 @@ require_once("npshop/skin.php");
 			}			
 			// -->
 			</script>
-<script language="javaScript" SRC="/interface/botonera.js"></SCRIPT> 
+<script>
+    <?php include_once('include/javascript.php'); ?>
+</script> 
 </head>
 <body text=#000000 marginwidth="0" marginheight="0" topmargin="0" leftmargin="0">
 <center>
@@ -60,7 +73,7 @@ require_once("npshop/skin.php");
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><br><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
 																<PARAM NAME=movie VALUE="/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
@@ -92,9 +105,9 @@ require_once("npshop/skin.php");
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/account.php">Tu cuenta</a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/cart.php">Ver la cesta</a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php">Ayuda</a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>../../flows/cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php"><?= _("Ayuda") ?></a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>
 	</tr>
@@ -102,10 +115,10 @@ require_once("npshop/skin.php");
 <table width="100%" cellpadding="3" cellspacing="0" border="0" >
 	<tr>
 		<td style="border-bottom:1px #DADADA solid;" ><p class=p-dere>
-			<span class="pie">1. Selección de productos</span>&nbsp;
-			<span class="pie">2. Datos facturación y envío</span>&nbsp;
-			<span class="pie">3. Comprobación y compra</span>&nbsp;
-			<span class="pie">4. Resultado</span>&nbsp;
+			<span class="pie"><?= _("1. Selección de productos") ?></span>&nbsp;
+			<span class="pie"><?= _("2. Datos facturación y envío") ?></span>&nbsp;
+			<span class="pie"><?= _("3. Comprobación y compra") ?></span>&nbsp;
+			<span class="pie"><?= _("4. Resultado") ?></span>&nbsp;
 		</td>
 	</tr>
 </table>	
@@ -114,7 +127,7 @@ require_once("npshop/skin.php");
 
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
-			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1>Ayuda</span></td>
+			<td class="t-01" width="70%" style="border-bottom:3px #DADADA solid;"><span class=titulo1><?= _("Ayuda") ?></span></td>
 	</tr>
 </table>
 
@@ -125,58 +138,58 @@ require_once("npshop/skin.php");
 
 <br>
 
-<p class=titulo1>Atención al cliente </p>
+<p class=titulo1><?= _("Atención al cliente") ?> </p>
 
-<p>Para cualquier consulta o información puedes contactar con nosotros: 
+<p><?= _("Para cualquier consulta o información puedes contactar con nosotros:") ?> 
 <ul>
-	<li>Telf: + 34 687 327 796 
-	<li>e-mail: <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a>
+	<li><?= _("Telf: + 34 687 327 796") ?> 
+	<li><?= _("e-mail:") ?> <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a>
 </ul>
 
 
-<p class=titulo1>Protección de datos personales </p>
+<p class=titulo1><?= _("Protección de datos personales") ?> </p>
 
-<p>Los datos personales facilitados al realizar un pedido de compra quedarán registrados en nuestro fichero de clientes. Los datos serán utilizados exclusivamente para enviarte los productos solicitados así como información sobre Novedades, Ofertas y Promociones en caso de autorizarnos. 
-<p>Estos datos personales son totalmente confidenciales y serán tratados de acuerdo con la Ley Orgánica de Regulación de Tratamiento Automatizado de los Datos de Carácter Personal (L.O.R.T.A.D).
+<p><?= _("Los datos personales facilitados al realizar un pedido de compra quedarán registrados en nuestro fichero de clientes. Los datos serán utilizados exclusivamente para enviarte los productos solicitados así como información sobre Novedades, Ofertas y Promociones en caso de autorizarnos.") ?> 
+<p><?= _("Estos datos personales son totalmente confidenciales y serán tratados de acuerdo con la Ley Orgánica de Regulación de Tratamiento Automatizado de los Datos de Carácter Personal (L.O.R.T.A.D).") ?>
 
-<p>Para ejercitar tus derechos de acceso, rectificación o cancelación de datos personales, puedes dirigirte por correo certificado a:
+<p><?= _("Para ejercitar tus derechos de acceso, rectificación o cancelación de datos personales, puedes dirigirte por correo certificado a:") ?>
 
 <ul>
-	<li>David Benavente<br>General Ramirez de Madrid 8-10 <br>28020 MADRID<br>España
+	<li><?= _("David Benavente<br>General Ramirez de Madrid 8-10 <br>28020 MADRID<br>España") ?>
 </ul>
 
 
-<p class=titulo1>Precios</p>
+<p class=titulo1><?= _("Precios") ?></p>
 
 
-<p>El precio de venta al público incluido IVA, está indicado en todos los productos y será el vigente en el momento de realizar el pedido de compra.
+<p><?= _("El precio de venta al público incluido IVA, está indicado en todos los productos y será el vigente en el momento de realizar el pedido de compra.") ?>
 
 
-<p class=titulo1>Gastos de envío</p>
+<p class=titulo1><?= _("Gastos de envío") ?></p>
 
 
 <table cellpadding=6 cellspacing=0 border=1 width=50%  BGCOLOR=#E8E8E8 BORDERCOLORDARK=#FFFFFF BORDERCOLORLIGHT=#FFFFFF>
 		<tr>
-			<td class="06" width=100% colspan="2">España </td>
+			<td class="06" width=100% colspan="2"><?= _("España") ?> </td>
 		</tr>
 		<tr>
-			<td class="07" width=50% style="padding-left: 17px" >Hasta  2 Kg. </td>
+			<td class="07" width=50% style="padding-left: 17px" ><?= _("Hasta  2 Kg.") ?> </td>
 			<td class="08" width=50%  >6 €</td>
 		</tr>
 		<tr>
-			<td class="07" width=50%  style="padding-left: 17px"  >Hasta  5 Kg. 
+			<td class="07" width=50%  style="padding-left: 17px"  ><?= _("Hasta  5 Kg.") ?> 
 			<td class="08" width=50%  >7 €
 		</tr>
 		<tr>
-			<td class="07" width=50%  style="padding-left: 17px"  >Hasta  10 Kg. 
+			<td class="07" width=50%  style="padding-left: 17px"  ><?= _("Hasta  10 Kg.") ?> 
 			<td class="08" width=50%  >8 €
 		</tr>
 		<tr>
-			<td class="07" width=50%  style="padding-left: 17px"  >Hasta  15 Kg. 
+			<td class="07" width=50%  style="padding-left: 17px"  ><?= _("Hasta  15 Kg.") ?> 
 			<td class="08" width=50%  >11 €
 		</tr>
 		<tr>
-			<td class="07" width=50%  style="padding-left: 17px"  >Hasta  20 Kg. 
+			<td class="07" width=50%  style="padding-left: 17px"  ><?= _("Hasta  20 Kg.") ?> 
 			<td class="08" width=50%  >13 €
 		</tr>
 
@@ -190,39 +203,39 @@ require_once("npshop/skin.php");
 
 
 
-<p class=titulo1>Forma de pago</p>
+<p class=titulo1><?= _("Forma de pago") ?></p>
 
-<p>TARJETA: Puedes realizar el pago de tu compra con las siguientes tarjetas: Todas las tarjetas Visa, Mastercard y Euro 6000. 
+<p><?= _("TARJETA: Puedes realizar el pago de tu compra con las siguientes tarjetas: Todas las tarjetas Visa, Mastercard y Euro 6000.") ?> 
 
-<p class=titulo1>Plazo de envío </p>
+<p class=titulo1><?= _("Plazo de envío") ?> </p>
 
-<p>Los pedidos se envían en un plazo aproximado de 7/10 días hábiles desde su fecha de recepción.
-
-
+<p><?= _("Los pedidos se envían en un plazo aproximado de 7/10 días hábiles desde su fecha de recepción.") ?>
 
 
 
-<p class=titulo1>Forma de envío </p>
 
-<p>Todos los pedidos se envían a través del servicio de Correos (Paquete Azul).
+
+<p class=titulo1><?= _("Forma de envío") ?> </p>
+
+<p><?= _("Todos los pedidos se envían a través del servicio de Correos (Paquete Azul).") ?>
 
  
 
 
-<p>El cartero te lo entregará en la dirección de envío que nos hayas indicado, en caso de que no pueda efectuar la entrega, te dejará un aviso para recogerlo en la oficina de Correos.
+<p><?= _("El cartero te lo entregará en la dirección de envío que nos hayas indicado, en caso de que no pueda efectuar la entrega, te dejará un aviso para recogerlo en la oficina de Correos.") ?>
 
 
 
-<p class=titulo1>Anulación de pedidos y productos</p>
+<p class=titulo1><?= _("Anulación de pedidos y productos") ?></p>
 
-<p>En caso de que quieras anular un pedido o un producto antes de que te lo enviemos, puedes hacerlo poniéndote en contacto con nosotros.
+<p><?= _("En caso de que quieras anular un pedido o un producto antes de que te lo enviemos, puedes hacerlo poniéndote en contacto con nosotros.") ?>
 
-<p>Si el pedido ha sido enviado, por favor consulta el apartado de Cambios y Devoluciones.
+<p><?= _("Si el pedido ha sido enviado, por favor consulta el apartado de Cambios y Devoluciones.") ?>
 
 
-<p class=titulo1>Cambios y devoluciones </p>
+<p class=titulo1><?= _("Cambios y devoluciones") ?> </p>
 
-<p>Para tu total tranquilidad y en cumplimiento de la legislación vigente, tienes derecho a cambiar o devolver los productos comprados en un plazo máximo de 15 días hábiles desde su fecha de recepción, siempre que éstos se encuentren en su envoltorio original sin desprecintar. Los gastos de devoluciones correran por cuenta del cliente.
+<p><?= _("Para tu total tranquilidad y en cumplimiento de la legislación vigente, tienes derecho a cambiar o devolver los productos comprados en un plazo máximo de 15 días hábiles desde su fecha de recepción, siempre que éstos se encuentren en su envoltorio original sin desprecintar. Los gastos de devoluciones correran por cuenta del cliente.") ?>
 
 
 
@@ -263,7 +276,7 @@ require_once("npshop/skin.php");
 		<td height="10" valign=top colspan="5"><img src="/interface/pie.gif" border=0></td>
 	</tr>
 	<tr>
-		<td height="31"  valign=top colspan="5" align=center><p class=pie>General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail: <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
+		<td height="31"  valign=top colspan="5" align=center><p class=pie><?= _("General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 796 · e-mail:") ?> <a class=mas href=mailto:info@davidbenavente.com>info@davidbenavente.com</a></td>
 
 	</tr>
 

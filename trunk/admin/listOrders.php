@@ -4,13 +4,13 @@ require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/common/commonFunctions.php");
 
 function buildSQL($type = null) {
-    global $ddbb_mapping, $ddbb_table, $npshop;
+    global $ddbb, $npshop;
     
-    $sql = "SELECT ".$ddbb_mapping['Cart']['orderId']." FROM ".$ddbb_table['Cart'];
+    $sql = "SELECT ".$ddbb->getMapping('Cart','orderId')." FROM ".$ddbb->getTable('Cart');
     if (isset($type) && $type != "all") {
-        $sql .= " WHERE ".$ddbb_mapping['Cart']['orderStatus']."='".$npshop['constants']["ORDER_STATUS"][$type]."'";
+        $sql .= " WHERE ".$ddbb->getMapping('Cart','orderStatus')."='".$npshop['constants']["ORDER_STATUS"][$type]."'";
     }
-    $sql .= " ORDER BY ".$ddbb_mapping['Cart']['date']." DESC";
+    $sql .= " ORDER BY ".$ddbb->getMapping('Cart','date')." DESC";
     
     return $sql;
 }
@@ -27,7 +27,8 @@ if (!isset($_GET['type']) || $_GET['type'] == null)
 
 $sql = buildSQL($_GET['type']);
 
-NP_executeSelect($sql, 'recoverOrders');
+//NP_executeSelect($sql, 'recoverOrders');
+$ddbb->executeSelectQuery($sql, 'recoverOrders');
 
 showSkin("admin_".basename(__FILE__)); 
 ?>

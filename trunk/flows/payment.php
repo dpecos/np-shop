@@ -13,11 +13,12 @@ if (isset($_GET["result"])) {
     $paymentResult = $_GET["result"];
     
     $cart = get_cart();
-    $userEmail = $cart->user->email;
-    $userPassword = $cart->user->password;
-    
+
     // do not update order! TPV will!    
-    if (isset($cart->orderId) && $cart->orderId != null) {
+    if (!is_null($cart) && isset($cart->orderId) && $cart->orderId != null) {
+        $userEmail = $cart->user->email;
+        $userPassword = $cart->user->password;
+        
         $cartN = new Cart($cart->orderId);
         $cartN->user->email = $userEmail;
         
@@ -28,7 +29,7 @@ if (isset($_GET["result"])) {
         
         showSkin(basename(__FILE__), "ok");
         
-        if ($_GET["result"] == "ok") {
+        if ($paymentResult == "ok") {
             //delete old order from session
             $cart = new Cart();
             $cart->user = new User($userEmail, $userPassword);
@@ -41,7 +42,7 @@ if (isset($_GET["result"])) {
 } else {
         
     $cart = get_cart();
-    
+
     if (isset($cart->orderId) && $cart->orderId != null) {
         $cart->deleteOrder();
         $cart->orderDate = null;
@@ -54,12 +55,12 @@ if (isset($_GET["result"])) {
 	foreach ($cart->items as $itemId => $item) {
 	    $item = new Item($item->id, $item->quantity);
 	    if ($item->quantity > $item->stock) {
-    	    $errors[$itemId] = "No hay suficiente stock disponible (".$item->stock." disponibles)";
+    	    $errors[$itemId] = sprintf(_("No hay suficiente stock disponible (%s disponibles)"), $item->stock);
     	}
 	}
 	 
 	if (count($errors) != 0) {
-	    $errorMsg = "No se pudo reservar el carrito correctamente.";
+	    $errorMsg = _("No se pudo reservar el carrito correctamente.");
 	    showSkin(basename(__FILE__), "error");
 	} else {
         
@@ -70,7 +71,7 @@ if (isset($_GET["result"])) {
         } else {
             update_cart($cart);
             
-            $errorMsg = "Hubo problemas al almacenar el pedido";
+            $errorMsg = _("Hubo problemas al almacenar el pedido.");
             showSkin(basename(__FILE__), "ok");
         }
     }

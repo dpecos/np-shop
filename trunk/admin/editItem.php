@@ -11,32 +11,35 @@ $item = null;
 
 if (isset($_POST['item_id'])) {
 
-    if (isset($_POST['isNew']) && $_POST['isNew'] == "true") {
-        $item = new Item(null);
-        NP_loadDataInto($item, $_POST, "item_");
-        $item->_dbStore();
-    } else {
-        $item = new Item($_POST["item_id"]);
-        NP_loadDataInto($item, $_POST, "item_");
-    	$item->_dbUpdate();
-    }
+	if (isset($_POST['isNew']) && $_POST['isNew'] == "true") {
+		$item = new Item(null);
+		NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
+		$item->_dbStore();
+	} else {
+		$item = new Item($_POST["item_id"]);
+		NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
+		$item->_dbUpdate();
+	}
 	$id = $_POST["item_id"];
 	$item = new Item($id);
-		
+
+	redirect("itemDetail.php?item_edit_ok=true&itemId=".$id);
+	exit();
+
 } else if (isset($_GET["itemId"])) {
-    $id = $_GET['itemId']; 
-    $item = new Item($id);
+	$id = $_GET['itemId']; 
+	$item = new Item($id);
 }
 
 function fetchCategories($data) {
     global $categories, $categoryTitle, $item;
     if (isset($item) && $item->categoryId == $data['CAT_CO_CODIGO'])
-        $categoryTitle = $data['CAT_VA_NOMBRE'];
-    array_push($categories, array($data['CAT_CO_CODIGO'], $data['CAT_VA_NOMBRE']));
+        $categoryTitle = NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N");
+    array_push($categories, array($data['CAT_CO_CODIGO'], NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N")));
 }
 
-
-NP_executeSelect($sqlCategories, "fetchCategories");
+global $ddbb;
+$ddbb->executeSelectQuery($sqlCategories, "fetchCategories");
 
 if (!isset($item))
      $categoryTitle = $categories[0][1];
@@ -45,7 +48,7 @@ if (isset($item) && isset($item->id) && $item->id != null) {
     showSkin("admin_".basename(__FILE__)); 
 } else {
     if (isset($id)) 
-        die("Producto con identificador \"".$id."\" no encontrado");
+        die(sprintf(_("Producto con identificador \"%s\" no encontrado."), $id));
     else
         showSkin("admin_".basename(__FILE__)); 
 }

@@ -10,7 +10,7 @@ global $_SERVER_DATA;
 
 $METHOD = "POST";
 
-if ($_SERVER_DATA["REQUEST_METHOD"] == $METHOD) {
+if ($_SERVER["REQUEST_METHOD"] == $METHOD) {
     // backend TPV response 
     
     $_DATA = null;
@@ -50,7 +50,7 @@ if ($_SERVER_DATA["REQUEST_METHOD"] == $METHOD) {
     	return $signature;
     }
     
-    function printForm() {
+    function TPV_printForm() {
         global $npshop, $_SERVER_DATA;
         
         $cart = get_cart();
@@ -73,10 +73,18 @@ if ($_SERVER_DATA["REQUEST_METHOD"] == $METHOD) {
     		<input type="hidden" name="DS_Merchant_MerchantCode" value="<?php echo $tpv['code'] ?>"/>
     		<input type="hidden" name="DS_Merchant_Terminal" value="<?php echo $tpv['terminal'] ?>"/>
     		<input type="hidden" name="DS_Merchant_MerchantSignature" value="<?php echo $signature ?>"/>
-    		<input type="hidden" name="DS_Merchant_MerchantURL" value="http://<?php echo $_SERVER_DATA["HTTP_HOST"].$scriptURL ?>/common/modules/payment/TPV_cajamadrid.php"/>
-    		<input type="hidden" name="DS_Merchant_URLOK" value="http://<?php echo $_SERVER_DATA["HTTP_HOST"].$scriptURL ?>/flows/payment.php?result=ok"/>
-    		<input type="hidden" name="DS_Merchant_URLKO" value="http://<?php echo $_SERVER_DATA["HTTP_HOST"].$scriptURL ?>/flows/payment.php?result=error"/> 
+    		<input type="hidden" name="DS_Merchant_MerchantURL" value="http://<?php echo $_SERVER["HTTP_HOST"].$scriptURL ?>/common/modules/payment/TPV_cajamadrid.php?LANG=<?= NP_LANG ?>"/>
+    		<input type="hidden" name="DS_Merchant_URLOK" value="http://<?php echo $_SERVER["HTTP_HOST"].$scriptURL ?>/flows/payment.php?result=ok&LANG=<?= NP_LANG ?>"/>
+    		<input type="hidden" name="DS_Merchant_URLKO" value="http://<?php echo $_SERVER["HTTP_HOST"].$scriptURL ?>/flows/payment.php?result=error&LANG=<?= NP_LANG ?>"/> 
     		<input type="hidden" name="DS_Merchant_MerchantData" value="<?php echo $cart->orderId ?>"/> 
+    		<input type="hidden" name="DS_Merchant_ConsumerLanguage" value="<?= NP_LANG === "es_ES" ? "001" : "002" ?>"/>
+    		<!-- 
+    		    Castellano-001, Inglés-002, Catalán-003,
+                Francés-004, Alemán-005, Holandés-006,
+                Italiano-007, Sueco-008, Portugués-009,
+                Valenciano-010, Polaco-011, Gallego-012 y
+                Euskera-013.
+            -->
     	</form>
 <?php
     }

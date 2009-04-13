@@ -3,6 +3,8 @@ define('APP_ROOT', "../");
 require_once(APP_ROOT."/config/main.php");
 require_once(APP_ROOT."/common/commonFunctions.php");
 
+global $ddbb;
+
 $sqlProducts = null;
 $sqlCategories = null;
 
@@ -17,43 +19,43 @@ if (!isset($_GET['categoryId']) || $_GET['categoryId'] == null)
     $_GET['categoryId']="all";
 
 function buildSQL($categoryId = null) {
-    global $sqlProducts, $sqlCategories, $ddbb_mapping;
+    global $sqlProducts, $sqlCategories, $ddbb;
     
-    $sqlProducts = "SELECT ".$ddbb_mapping["Item"]["id"]." FROM NPS_PRODUCTOS";
+    $sqlProducts = "SELECT ".$ddbb->getMapping("Item", "id")." FROM NPS_PRODUCTOS";
     if (isset($categoryId) && $categoryId!="all") {
-        $sqlProducts .= " WHERE ".$ddbb_mapping["Item"]["categoryId"]."=".$categoryId." ";
+        $sqlProducts .= " WHERE ".$ddbb->getMapping("Item", "categoryId")."=".$categoryId." ";
     } else {
         $sqlProducts .= " ";
     }
-    $sqlProducts .= " ORDER BY ".$ddbb_mapping["Item"]["order"];
+    $sqlProducts .= " ORDER BY ".$ddbb->getMapping("Item", "order");
     
     $sqlCategories = "SELECT * FROM NPS_CATEGORIAS ORDER BY 1";
 }
 
 $itemIds = array();
 $categories = array();
-$categoryTitle = "Todas las categorías";
-array_push($categories, array("all", $categoryTitle));
+$categoryTitle = _("Todas las categorías");
+array_push($categories, array("all", array(NP_LANG => $categoryTitle)));
 
 function fetchProducts($data) {
-    global $itemIds, $ddbb_mapping;
-    array_push($itemIds, $data[$ddbb_mapping["Item"]["id"]]);
+    global $itemIds, $ddbb;
+    array_push($itemIds, $data[$ddbb->getMapping("Item", "id")]);
 }
 
 function fetchCategories($data) {
     global $categories, $categoryTitle; 
     if ($_GET['categoryId'] == $data['CAT_CO_CODIGO'])
-        $categoryTitle = $data['CAT_VA_NOMBRE'];
-    array_push($categories, array($data['CAT_CO_CODIGO'], $data['CAT_VA_NOMBRE']));
+        $categoryTitle = NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N");
+    array_push($categories, array($data['CAT_CO_CODIGO'], NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N")));
 }
 
 if (isset($_GET['categoryId']))
     buildSQL($_GET['categoryId']);
 else
     buildSQL();
-NP_executeSelect($sqlProducts, "fetchProducts");
+$ddbb->executeSelectQuery($sqlProducts, "fetchProducts");
 
-NP_executeSelect($sqlCategories, "fetchCategories");
+$ddbb->executeSelectQuery($sqlCategories, "fetchCategories");
 
 $items = array();
 foreach ($itemIds as $id) {

@@ -15,30 +15,34 @@ if (isset($_GET["itemId"])) {
 }
 
 if ($item->categoryId == "all")
-  $categoryTitle = "Todas las categorías";
+  $categoryTitle = array(NP_LANG => _("Todas las categorías"));
 else if ($item->categoryId == "new")
-  $categoryTitle = "Novedades";
+  $categoryTitle = array(NP_LANG => _("Novedades"));
 
-array_push($categories, array("all", "Todas las categorías"));
-array_push($categories, array("new", "Novedades"));
+array_push($categories, array("all", array(NP_LANG => _("Todas las categorías"))));
+array_push($categories, array("new", array(NP_LANG => _("Novedades"))));
 
 function fetchCategories($data) {
     global $categories, $categoryTitle, $item;
     if ($item->categoryId == $data['CAT_CO_CODIGO'])
-        $categoryTitle = $data['CAT_VA_NOMBRE'];
-    array_push($categories, array($data['CAT_CO_CODIGO'], $data['CAT_VA_NOMBRE']));
+        $categoryTitle = NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N");
+    array_push($categories, array($data['CAT_CO_CODIGO'], NP_DDBB::decodeSQLValue($data['CAT_VA_NOMBRE'], "STRING_I18N")));
 }
 
-NP_executeSelect($sqlCategories, "fetchCategories");
+global $ddbb;
+$ddbb->executeSelectQuery($sqlCategories, "fetchCategories");
 
-
-if ($item->categoryId == "30")
-    showSkin(basename(__FILE__), "macetas_japo");
-    elseif ($item->categoryId == "40")
-    showSkin(basename(__FILE__), "mesas");
+if (isset($item) && !is_null($item->id)) {
+    if ($item->categoryId == "30")
+        showSkin(basename(__FILE__), "macetas_japo");
+    else if ($item->categoryId == "40")
+        showSkin(basename(__FILE__), "mesas");
     elseif ($item->categoryId == "50")
-    showSkin(basename(__FILE__), "macetas_japo");
+        showSkin(basename(__FILE__), "macetas_japo");
     else
-    showSkin(basename(__FILE__), "herramientas");   
+        showSkin(basename(__FILE__), "herramientas");   
+} else {
+    die(sprintf(_("Producto con identificador \"%s\" no encontrado."), $_GET["itemId"]));
+}
 
 ?>

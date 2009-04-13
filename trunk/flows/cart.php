@@ -20,7 +20,7 @@ function modifyItem($itemId, $quantity) {
     	$item = new Item($itemId, $quantity);
     	
     	if ($item->quantity > $item->stock) {
-    	    $errors[$itemId] = "No hay suficiente stock disponible (".$item->stock." disponibles)";
+    	    $errors[$itemId] = sprintf(_("No hay suficiente stock disponible (%s disponibles)"), $item->stock);
     	} else {
         	$cart = get_cart();
         	$cart->addItem($item);
@@ -56,7 +56,7 @@ if (isset($_REQUEST['action'])) {
 		}
 		
 		if (count($errors) != 0) {    
-		    $errorMsg = "No se pudo actualizar el carrito correctamente.";
+		    $errorMsg = _("No se pudo actualizar el carrito correctamente.");
 		}
 		
 		if ($_REQUEST['action'] == "update_confirm") {
