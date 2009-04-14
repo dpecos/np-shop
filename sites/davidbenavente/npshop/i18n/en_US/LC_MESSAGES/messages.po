@@ -1,233 +1,236 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: DavidBenavente\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-06 21:31+0200\n"
-"PO-Revision-Date: 2009-04-07 23:26+0200\n"
+"POT-Creation-Date: 2009-04-13 23:19+0200\n"
+"PO-Revision-Date: 2009-04-14 09:32+0200\n"
 "Last-Translator: Daniel Pecos <dani@email.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: ../src/acceso.php:4 ../src/ayuda.php:6 ../src/cesta.php:5
+#: ../src/acceso.php:4 ../src/ayuda.php:17 ../src/cesta.php:5
 #: ../src/confirmarCompra.php:5 ../src/cuenta.php:6
 #: ../src/fichamacetajapo.php:4 ../src/fichamesa.php:4 ../src/ficha.php:4
 #: ../src/modificarDatos.php:6 ../src/productos.php:4 ../src/tpv.php:7
 msgid "David Benavente. Estudio de bonsái"
-msgstr ""
+msgstr "David·Benavente. Bonsai study"
 
-#: ../src/acceso.php:94 ../src/ayuda.php:95 ../src/cesta.php:98
-#: ../src/confirmarCompra.php:90 ../src/cuenta.php:95
-#: ../src/fichamacetajapo.php:100 ../src/fichamesa.php:100
-#: ../src/ficha.php:100 ../src/modificarDatos.php:130 ../src/productos.php:96
+#: ../src/acceso.php:96 ../src/ayuda.php:108 ../src/cesta.php:97
+#: ../src/confirmarCompra.php:92 ../src/cuenta.php:97
+#: ../src/fichamacetajapo.php:95 ../src/fichamesa.php:95 ../src/ficha.php:95
+#: ../src/modificarDatos.php:132 ../src/productos.php:91
 msgid "Tu cuenta"
 msgstr "Your Account"
 
-#: ../src/acceso.php:95 ../src/ayuda.php:96 ../src/cesta.php:99
-#: ../src/confirmarCompra.php:91 ../src/cuenta.php:96
-#: ../src/fichamacetajapo.php:101 ../src/fichamesa.php:101
-#: ../src/ficha.php:101 ../src/modificarDatos.php:131 ../src/productos.php:97
+#: ../src/acceso.php:97 ../src/ayuda.php:109 ../src/cesta.php:98
+#: ../src/confirmarCompra.php:93 ../src/cuenta.php:98
+#: ../src/fichamacetajapo.php:96 ../src/fichamesa.php:96 ../src/ficha.php:96
+#: ../src/modificarDatos.php:133 ../src/productos.php:92
 msgid "Ver la cesta"
 msgstr "See your cart"
 
-#: ../src/acceso.php:96 ../src/ayuda.php:97 ../src/ayuda.php:117
-#: ../src/cesta.php:100 ../src/confirmarCompra.php:92 ../src/cuenta.php:97
-#: ../src/fichamacetajapo.php:102 ../src/fichamesa.php:102
-#: ../src/ficha.php:102 ../src/modificarDatos.php:132 ../src/productos.php:98
+#: ../src/acceso.php:98 ../src/ayuda.php:110 ../src/ayuda.php:130
+#: ../src/cesta.php:99 ../src/confirmarCompra.php:94 ../src/cuenta.php:99
+#: ../src/fichamacetajapo.php:97 ../src/fichamesa.php:97 ../src/ficha.php:97
+#: ../src/modificarDatos.php:134 ../src/productos.php:93
 msgid "Ayuda"
 msgstr "Help"
 
-#: ../src/acceso.php:104 ../src/ayuda.php:105 ../src/cesta.php:108
-#: ../src/confirmarCompra.php:103 ../src/cuenta.php:105
-#: ../src/fichamacetajapo.php:110 ../src/fichamesa.php:110
-#: ../src/ficha.php:110 ../src/modificarDatos.php:143 ../src/productos.php:106
+#: ../src/acceso.php:106 ../src/ayuda.php:118 ../src/cesta.php:107
+#: ../src/confirmarCompra.php:105 ../src/cuenta.php:107
+#: ../src/fichamacetajapo.php:105 ../src/fichamesa.php:105
+#: ../src/ficha.php:105 ../src/modificarDatos.php:145 ../src/productos.php:101
 msgid "1. Selección de productos"
 msgstr "1. Select your products"
 
-#: ../src/acceso.php:108 ../src/acceso.php:110 ../src/ayuda.php:106
-#: ../src/cesta.php:109 ../src/confirmarCompra.php:104 ../src/cuenta.php:106
-#: ../src/fichamacetajapo.php:111 ../src/fichamesa.php:111
-#: ../src/ficha.php:111 ../src/modificarDatos.php:145
-#: ../src/modificarDatos.php:147 ../src/productos.php:107
+#: ../src/acceso.php:110 ../src/acceso.php:112 ../src/ayuda.php:119
+#: ../src/cesta.php:108 ../src/confirmarCompra.php:106 ../src/cuenta.php:108
+#: ../src/fichamacetajapo.php:106 ../src/fichamesa.php:106
+#: ../src/ficha.php:106 ../src/modificarDatos.php:147
+#: ../src/modificarDatos.php:149 ../src/productos.php:102
 msgid "2. Datos facturación y envío"
 msgstr "2. Billing and shipping information"
 
-#: ../src/acceso.php:112 ../src/ayuda.php:107 ../src/cesta.php:110
-#: ../src/confirmarCompra.php:106 ../src/confirmarCompra.php:109
-#: ../src/cuenta.php:107 ../src/fichamacetajapo.php:112
-#: ../src/fichamesa.php:112 ../src/ficha.php:112 ../src/modificarDatos.php:149
-#: ../src/productos.php:108
+#: ../src/acceso.php:114 ../src/ayuda.php:120 ../src/cesta.php:109
+#: ../src/confirmarCompra.php:108 ../src/confirmarCompra.php:111
+#: ../src/cuenta.php:109 ../src/fichamacetajapo.php:107
+#: ../src/fichamesa.php:107 ../src/ficha.php:107 ../src/modificarDatos.php:151
+#: ../src/productos.php:103
 msgid "3. Comprobación y compra"
 msgstr "3. Check and buy"
 
-#: ../src/acceso.php:113 ../src/ayuda.php:108 ../src/cesta.php:111
-#: ../src/confirmarCompra.php:107 ../src/confirmarCompra.php:110
-#: ../src/cuenta.php:108 ../src/fichamacetajapo.php:113
-#: ../src/fichamesa.php:113 ../src/ficha.php:113 ../src/modificarDatos.php:150
-#: ../src/productos.php:109
+#: ../src/acceso.php:115 ../src/ayuda.php:121 ../src/cesta.php:110
+#: ../src/confirmarCompra.php:109 ../src/confirmarCompra.php:112
+#: ../src/cuenta.php:110 ../src/fichamacetajapo.php:108
+#: ../src/fichamesa.php:108 ../src/ficha.php:108 ../src/modificarDatos.php:152
+#: ../src/productos.php:104
 msgid "4. Resultado"
 msgstr "4. Result"
 
-#: ../src/acceso.php:126 ../src/cesta.php:122
+#: ../src/acceso.php:128 ../src/cesta.php:121
 msgid "ATENCIÓN:"
 msgstr "IMPORTANT:"
 
-#: ../src/acceso.php:141
+#: ../src/acceso.php:143
 msgid "Si ya tienes una cuenta con nosotros"
 msgstr "If you already have an account here"
 
-#: ../src/acceso.php:142 ../src/acceso.php:192 ../src/modificarDatos.php:177
+#: ../src/acceso.php:144 ../src/acceso.php:194 ../src/modificarDatos.php:179
 msgid "e-mail"
 msgstr "e-mail"
 
-#: ../src/acceso.php:143 ../src/acceso.php:193 ../src/modificarDatos.php:178
+#: ../src/acceso.php:145 ../src/acceso.php:195 ../src/modificarDatos.php:180
 msgid "Password (*)"
 msgstr "Password (*)"
 
-#: ../src/acceso.php:149
+#: ../src/acceso.php:151
 msgid "He olvidado mi password"
 msgstr "I forgot my password"
 
-#: ../src/acceso.php:157
+#: ../src/acceso.php:159
 msgid ""
 "Envíanos un e-mail a <a class=mas href=mailto:info@davidbenavente."
 "com>info@davidbenavente.com</a> desde la dirección de e-mail que usas en tu "
 "cuenta con nosotros, y te envíaremos un nuevo password."
 msgstr ""
+"Send us an email at <a·class=mas·href=mailto:info@davidbenavente."
+"com>info@davidbenavente.com</a> from your email address in our account and you will receive a new password."
 
-#: ../src/acceso.php:172
+#: ../src/acceso.php:174
 msgid "(*) Máximo 20 caracteres."
 msgstr "(*) Maximum 20 characters."
 
-#: ../src/acceso.php:191
+#: ../src/acceso.php:193
 msgid "Si eres un usuario nuevo"
 msgstr "If you are a new user"
 
-#: ../src/acceso.php:194 ../src/modificarDatos.php:188
+#: ../src/acceso.php:196 ../src/modificarDatos.php:190
 msgid "Repetir password"
 msgstr "Repeat password"
 
-#: ../src/acceso.php:208
+#: ../src/acceso.php:210
 msgid ""
 "Si eres un <B>usuario nuevo</B>, para acceder en el futuro a tu cuenta, "
 "podrás hacerlo con tu e-mail y password. No necesitarás meter de nuevo los "
 "datos de facturación y envío para las siguientes compras, aunque por "
 "supuesto podrás modificarlos cuando lo necesites."
 msgstr ""
+"If you are a <B>new user</B> and you want to access your account, you can do it with your email and password. There will be no need to type the shipping and billing information again for your next purchase. Of course you can do this if you need to change anything."
 
-#: ../src/acceso.php:242 ../src/ayuda.php:266 ../src/cesta.php:251
-#: ../src/confirmarCompra.php:295 ../src/cuenta.php:176
-#: ../src/fichamacetajapo.php:256 ../src/fichamesa.php:256
-#: ../src/ficha.php:252 ../src/modificarDatos.php:335 ../src/productos.php:229
+#: ../src/acceso.php:244 ../src/ayuda.php:279 ../src/cesta.php:250
+#: ../src/confirmarCompra.php:297 ../src/cuenta.php:178
+#: ../src/fichamacetajapo.php:251 ../src/fichamesa.php:251
+#: ../src/ficha.php:247 ../src/modificarDatos.php:337 ../src/productos.php:224
 msgid ""
 "General Ramirez de Madrid 8-10 28020 MADRID · España · Telf: + 34 687 327 "
 "796 · e-mail:"
 msgstr ""
+"General·Ramirez·de·Madrid·8-10·28020·MADRID· ·Spain· ·Phone:·+·34·687·327·"
+"796· ·e-mail:"
 
-#: ../src/ayuda.php:128
+#: ../src/ayuda.php:141
 msgid "Atención al cliente"
 msgstr "Customer service"
 
-#: ../src/ayuda.php:130
+#: ../src/ayuda.php:143
 msgid "Para cualquier consulta o información puedes contactar con nosotros:"
 msgstr "For any queries or information please contact us:"
 
-#: ../src/ayuda.php:132
+#: ../src/ayuda.php:145
 msgid "Telf: + 34 687 327 796"
 msgstr "Phone: +34 687 327 796"
 
-#: ../src/ayuda.php:133
+#: ../src/ayuda.php:146
 msgid "e-mail:"
 msgstr "e-mail:"
 
-#: ../src/ayuda.php:137
+#: ../src/ayuda.php:150
 msgid "Protección de datos personales"
 msgstr "Privacy Policy"
 
-#: ../src/ayuda.php:139
+#: ../src/ayuda.php:152
 msgid ""
 "Los datos personales facilitados al realizar un pedido de compra quedarán "
 "registrados en nuestro fichero de clientes. Los datos serán utilizados "
-"exclusivamente para enviarte los productos solicitados así como "
-"información sobre Novedades, Ofertas y Promociones en caso de autorizarnos."
+"exclusivamente para enviarte los productos solicitados así como información "
+"sobre Novedades, Ofertas y Promociones en caso de autorizarnos."
 msgstr ""
 "The personal data when making a purchase order will be recorded in our "
 "customer file. The data will be used only to send the requested products and "
 "information on News, Offers and Promotions if allowed.\t\t"
 
-#: ../src/ayuda.php:140
+#: ../src/ayuda.php:153
 msgid ""
 "Estos datos personales son totalmente confidenciales y serán tratados de "
-"acuerdo con la Ley Orgánica de Regulación de Tratamiento Automatizado de "
-"los Datos de Carácter Personal (L.O.R.T.A.D)."
+"acuerdo con la Ley Orgánica de Regulación de Tratamiento Automatizado de los "
+"Datos de Carácter Personal (L.O.R.T.A.D)."
 msgstr ""
 "These personal details are completely confidential and will be treated in "
 "accordance with the Organic Law on Regulation of Automatic Processing of "
 "Personal Data (L.O.R.T.A.D)."
 
-#: ../src/ayuda.php:142
+#: ../src/ayuda.php:155
 msgid ""
-"Para ejercitar tus derechos de acceso, rectificación o cancelación de "
-"datos personales, puedes dirigirte por correo certificado a:"
+"Para ejercitar tus derechos de acceso, rectificación o cancelación de datos "
+"personales, puedes dirigirte por correo certificado a:"
 msgstr ""
 "To exercise your rights of access, modification or cancellation of personal "
 "data, you can go by mail to:"
 
-#: ../src/ayuda.php:145
+#: ../src/ayuda.php:158
 msgid ""
 "David Benavente<br>General Ramirez de Madrid 8-10 <br>28020 MADRID<br>España"
-msgstr ""
+msgstr "David·Benavente<br>General·Ramirez·de·Madrid·8-10·<br>28020·MADRID<br>Spain"
 
-#: ../src/ayuda.php:149
+#: ../src/ayuda.php:162
 msgid "Precios"
 msgstr "Prices"
 
-#: ../src/ayuda.php:152
-#, fuzzy
+#: ../src/ayuda.php:165
 msgid ""
 "El precio de venta al público incluido IVA, está indicado en todos los "
 "productos y será el vigente en el momento de realizar el pedido de compra."
 msgstr ""
-"The retail price including VAT, is indicated for all products and be in "
-"force at the time of the purchase order."
+"The retail price including VAT, is indicated for all products and will be valid when you make the purchase order."
 
-#: ../src/ayuda.php:155
+#: ../src/ayuda.php:168
 msgid "Gastos de envío"
 msgstr "Shipping costs"
 
-#: ../src/ayuda.php:160 ../src/admin/detalleUsuario.php:49
+#: ../src/ayuda.php:173 ../src/admin/detalleUsuario.php:49
 #: ../src/admin/detalleUsuario.php:77 ../src/admin/edicionUsuario.php:73
 #: ../src/admin/edicionUsuario.php:101
 msgid "España"
 msgstr "Spain"
 
-#: ../src/ayuda.php:163
+#: ../src/ayuda.php:176
 msgid "Hasta  2 Kg."
 msgstr "Up to 2 Kg."
 
-#: ../src/ayuda.php:167
+#: ../src/ayuda.php:180
 msgid "Hasta  5 Kg."
 msgstr "Up to 5 kg."
 
-#: ../src/ayuda.php:171
+#: ../src/ayuda.php:184
 msgid "Hasta  10 Kg."
 msgstr "Up to 10 kg."
 
-#: ../src/ayuda.php:175
+#: ../src/ayuda.php:188
 msgid "Hasta  15 Kg."
 msgstr "Up to 15 kg."
 
-#: ../src/ayuda.php:179
+#: ../src/ayuda.php:192
 msgid "Hasta  20 Kg."
 msgstr "Up to 20 kg."
 
-#: ../src/ayuda.php:193
+#: ../src/ayuda.php:206
 msgid "Forma de pago"
 msgstr "Method of payment"
 
-#: ../src/ayuda.php:195
+#: ../src/ayuda.php:208
 msgid ""
 "TARJETA: Puedes realizar el pago de tu compra con las siguientes tarjetas: "
 "Todas las tarjetas Visa, Mastercard y Euro 6000."
@@ -235,43 +238,42 @@ msgstr ""
 "CARD: You can pay your purchase with the following cards: All cards Visa, "
 "Mastercard and Euro 6000."
 
-#: ../src/ayuda.php:197
+#: ../src/ayuda.php:210
 msgid "Plazo de envío"
 msgstr "Shipping term"
 
-#: ../src/ayuda.php:199
+#: ../src/ayuda.php:212
 msgid ""
-"Los pedidos se envían en un plazo aproximado de 7/10 días hábiles desde "
-"su fecha de recepción."
+"Los pedidos se envían en un plazo aproximado de 7/10 días hábiles desde su "
+"fecha de recepción."
 msgstr ""
 "Orders are shipped within approximately 7/10 working days from the date of "
 "receipt."
 
-#: ../src/ayuda.php:205
+#: ../src/ayuda.php:218
 msgid "Forma de envío"
 msgstr "Delivery form"
 
-#: ../src/ayuda.php:207
+#: ../src/ayuda.php:220
 msgid ""
-"Todos los pedidos se envían a través del servicio de Correos (Paquete "
-"Azul)."
+"Todos los pedidos se envían a través del servicio de Correos (Paquete Azul)."
 msgstr "All orders are sent through the mail service (Paquete Azul)."
 
-#: ../src/ayuda.php:212
+#: ../src/ayuda.php:225
 msgid ""
-"El cartero te lo entregará en la dirección de envío que nos hayas "
-"indicado, en caso de que no pueda efectuar la entrega, te dejará un aviso "
-"para recogerlo en la oficina de Correos."
+"El cartero te lo entregará en la dirección de envío que nos hayas indicado, "
+"en caso de que no pueda efectuar la entrega, te dejará un aviso para "
+"recogerlo en la oficina de Correos."
 msgstr ""
 "The postman will deliver the order to you at the address you have mentioned, "
 "if it can not be delivered, he will provide you with a notice to let you "
 "collect it the post office."
 
-#: ../src/ayuda.php:216
+#: ../src/ayuda.php:229
 msgid "Anulación de pedidos y productos"
 msgstr "Cancellation of orders and products"
 
-#: ../src/ayuda.php:218
+#: ../src/ayuda.php:231
 msgid ""
 "En caso de que quieras anular un pedido o un producto antes de que te lo "
 "enviemos, puedes hacerlo poniéndote en contacto con nosotros."
@@ -279,212 +281,214 @@ msgstr ""
 "If you want to cancel an order or a product before we send it to you, you "
 "can do so by contacting us."
 
-#: ../src/ayuda.php:220
+#: ../src/ayuda.php:233
 msgid ""
 "Si el pedido ha sido enviado, por favor consulta el apartado de Cambios y "
 "Devoluciones."
 msgstr "If the order has been shipped, please see Returns and Changes."
 
-#: ../src/ayuda.php:223
+#: ../src/ayuda.php:236
 msgid "Cambios y devoluciones"
 msgstr "Changes and returns"
 
-#: ../src/ayuda.php:225
+#: ../src/ayuda.php:238
 msgid ""
 "Para tu total tranquilidad y en cumplimiento de la legislación vigente, "
 "tienes derecho a cambiar o devolver los productos comprados en un plazo "
-"máximo de 15 días hábiles desde su fecha de recepción, siempre que "
-"éstos se encuentren en su envoltorio original sin desprecintar. Los gastos "
-"de devoluciones correran por cuenta del cliente."
+"máximo de 15 días hábiles desde su fecha de recepción, siempre que éstos se "
+"encuentren en su envoltorio original sin desprecintar. Los gastos de "
+"devoluciones correran por cuenta del cliente."
 msgstr ""
 "For your complete peace of mind and compliance with current legislation, you "
 "have the right to change or return the products within a maximum of 15 "
 "working days from the date of receipt, provided they are in their original "
 "packaging without unsealing. The costs of rebates paid by the customer."
 
-#: ../src/cesta.php:126
+#: ../src/cesta.php:125
 msgid "Tu cesta"
 msgstr "Your cart"
 
-#: ../src/cesta.php:127
+#: ../src/cesta.php:126
 msgid "Envío mediante: Paquete Azul de Correos"
-msgstr ""
+msgstr "Sending by: Paquete·Azul·de·Correos"
 
-#: ../src/cesta.php:136
+#: ../src/cesta.php:135
 msgid "Producto seleccionado"
 msgstr "Selected product"
 
-#: ../src/cesta.php:137 ../src/confirmarCompra.php:206
+#: ../src/cesta.php:136 ../src/confirmarCompra.php:208
 #: ../src/admin/detallePedido.php:72
 msgid "Cantidad"
 msgstr "Quantity"
 
-#: ../src/cesta.php:138 ../src/confirmarCompra.php:207
+#: ../src/cesta.php:137 ../src/confirmarCompra.php:209
 #: ../src/admin/productos.php:54
 msgid "Precio"
 msgstr "Price"
 
-#: ../src/cesta.php:139 ../src/confirmarCompra.php:208
+#: ../src/cesta.php:138 ../src/confirmarCompra.php:210
 #: ../src/admin/detallePedido.php:73
 msgid "Total"
 msgstr "Total"
 
-#: ../src/cesta.php:150 ../src/confirmarCompra.php:219
-#: ../src/fichamacetajapo.php:160 ../src/fichamesa.php:160
-#: ../src/ficha.php:160
+#: ../src/cesta.php:149 ../src/confirmarCompra.php:221
+#: ../src/fichamacetajapo.php:155 ../src/fichamesa.php:155
+#: ../src/ficha.php:155
 msgid "Ref."
-msgstr ""
+msgstr "Ref."
 
-#: ../src/cesta.php:151 ../src/fichamacetajapo.php:163
-#: ../src/fichamesa.php:163 ../src/ficha.php:162 ../src/productos.php:172
+#: ../src/cesta.php:150 ../src/fichamacetajapo.php:158
+#: ../src/fichamesa.php:158 ../src/ficha.php:157 ../src/productos.php:167
 #: ../src/admin/detalleProducto.php:150 ../src/admin/edicionProducto.php:103
 msgid "Altura:"
 msgstr "Height:"
 
-#: ../src/cesta.php:152 ../src/fichamacetajapo.php:164
-#: ../src/fichamesa.php:164 ../src/ficha.php:163 ../src/productos.php:173
+#: ../src/cesta.php:151 ../src/fichamacetajapo.php:159
+#: ../src/fichamesa.php:159 ../src/ficha.php:158 ../src/productos.php:168
 #: ../src/admin/detalleProducto.php:151 ../src/admin/edicionProducto.php:104
 msgid "Profundidad:"
 msgstr "Depth:"
 
-#: ../src/cesta.php:153 ../src/fichamacetajapo.php:165
-#: ../src/fichamesa.php:165 ../src/ficha.php:164 ../src/productos.php:174
+#: ../src/cesta.php:152 ../src/fichamacetajapo.php:160
+#: ../src/fichamesa.php:160 ../src/ficha.php:159 ../src/productos.php:169
 #: ../src/admin/detalleProducto.php:152 ../src/admin/edicionProducto.php:105
 msgid "Longitud:"
 msgstr "Length:"
 
-#: ../src/cesta.php:154 ../src/confirmarCompra.php:220
-#: ../src/fichamacetajapo.php:166 ../src/fichamesa.php:166
-#: ../src/ficha.php:165 ../src/admin/detalleProducto.php:153
+#: ../src/cesta.php:153 ../src/confirmarCompra.php:222
+#: ../src/fichamacetajapo.php:161 ../src/fichamesa.php:161
+#: ../src/ficha.php:160 ../src/admin/detalleProducto.php:153
 #: ../src/admin/edicionProducto.php:106
 msgid "Peso:"
 msgstr "Weight:"
 
-#: ../src/cesta.php:157
+#: ../src/cesta.php:156
 msgid "eliminar"
 msgstr "delete"
 
-#: ../src/cesta.php:168 ../src/confirmarCompra.php:233
+#: ../src/cesta.php:167 ../src/confirmarCompra.php:235
 msgid "Subtotal:"
 msgstr "Subtotal:"
 
-#: ../src/cesta.php:173
+#: ../src/cesta.php:172
 msgid ""
 "Entre con su cuenta de usuario para conocer los gastos de envio a su país."
 msgstr ""
+"Enter with your user account to see the shipping expenses for your country."
 
-#: ../src/cesta.php:176
-msgid "Gastos de envío en España (*):"
-msgstr "Shipping costs in Spain (*):"
+#: ../src/cesta.php:175
+#, php-format
+msgid "Gastos de envío a %s (*):"
+msgstr "Shipping costs to %s (*):"
 
-#: ../src/cesta.php:181
+#: ../src/cesta.php:180
 msgid "Gastos para envíos fuera de España"
 msgstr "Shipping costs outside Spain"
 
-#: ../src/cesta.php:182
+#: ../src/cesta.php:181
 msgid "Selecciona un país"
 msgstr "Select a country"
 
-#: ../src/cesta.php:195 ../src/confirmarCompra.php:241
+#: ../src/cesta.php:194 ../src/confirmarCompra.php:243
 msgid "Total de tu pedido:"
 msgstr "Total amount of your bill"
 
-#: ../src/cesta.php:222
+#: ../src/cesta.php:221
 msgid "(*) Envío mediante Paquete Azul de Correos"
-msgstr ""
+msgstr "(*)·Sending by ·Paquete·Azul·de·Correos"
 
-#: ../src/confirmarCompra.php:123
+#: ../src/confirmarCompra.php:125
 msgid "Muchas gracias. La compra ha sido realizada con éxito."
 msgstr "Thank you very much. The purchase has been completed successfully."
 
-#: ../src/confirmarCompra.php:124
+#: ../src/confirmarCompra.php:126
 msgid ""
 "Estos son los datos de tu pedido, que también te los enviaremos por e-mail:"
 msgstr ""
 "Here are the details of your order, which will be also sent to you by e-mail:"
 
-#: ../src/confirmarCompra.php:126
+#: ../src/confirmarCompra.php:128
 msgid ""
 "Se ha producido algún error en el proceso de pago con la entidad bancaria."
 msgstr "There was an error in the payment process with the bank."
 
-#: ../src/confirmarCompra.php:130 ../src/modificarDatos.php:162
+#: ../src/confirmarCompra.php:132 ../src/modificarDatos.php:164
 msgid "ERROR:"
 msgstr "ERROR:"
 
-#: ../src/confirmarCompra.php:132
+#: ../src/confirmarCompra.php:134
 msgid "Por favor, comprueba que los datos de tu pedido son correctos:"
 msgstr "Please check that your order is correct:"
 
-#: ../src/confirmarCompra.php:139 ../src/modificarDatos.php:53
-#: ../src/modificarDatos.php:214 ../src/admin/detalleUsuario.php:26
+#: ../src/confirmarCompra.php:141 ../src/modificarDatos.php:53
+#: ../src/modificarDatos.php:216 ../src/admin/detalleUsuario.php:26
 #: ../src/admin/detalleUsuario.php:30 ../src/admin/edicionUsuario.php:54
 msgid "Datos de facturación"
 msgstr "Billing Information"
 
-#: ../src/confirmarCompra.php:160 ../src/modificarDatos.php:245
+#: ../src/confirmarCompra.php:162 ../src/modificarDatos.php:247
 #: ../src/admin/detalleUsuario.php:58 ../src/admin/edicionUsuario.php:82
 msgid "Datos de envío"
 msgstr "Shipping information"
 
-#: ../src/confirmarCompra.php:194
+#: ../src/confirmarCompra.php:196
 msgid "Tu pedido"
 msgstr "Your order"
 
-#: ../src/confirmarCompra.php:199
+#: ../src/confirmarCompra.php:201
 msgid "Nº de tu pedido:"
 msgstr "Your order number:"
 
-#: ../src/confirmarCompra.php:205
+#: ../src/confirmarCompra.php:207
 msgid "Productos"
 msgstr "Products"
 
-#: ../src/confirmarCompra.php:237
+#: ../src/confirmarCompra.php:239
 msgid "Gastos de envío:"
 msgstr "Shipping costs:"
 
-#: ../src/cuenta.php:122
+#: ../src/cuenta.php:124
 #, php-format
 msgid "¿Qué tal %s ?"
-msgstr ""
+msgstr "How are you, %s?"
 
-#: ../src/cuenta.php:125
+#: ../src/cuenta.php:127
 msgid "¿Qué quieres hacer?"
 msgstr "What do you want to do?"
 
-#: ../src/cuenta.php:127
+#: ../src/cuenta.php:129
 msgid "Modificar los datos de tu cuenta"
 msgstr "Modify your account information"
 
-#: ../src/cuenta.php:128
+#: ../src/cuenta.php:130
 msgid "Comprar"
 msgstr "Buy"
 
-#: ../src/fichamacetajapo.php:156 ../src/fichamesa.php:156
-#: ../src/ficha.php:156
+#: ../src/fichamacetajapo.php:151 ../src/fichamesa.php:151
+#: ../src/ficha.php:151
 msgid "Datos técnicos:"
 msgstr "Technical data:"
 
-#: ../src/fichamacetajapo.php:162 ../src/fichamesa.php:162
-#: ../src/productos.php:171
+#: ../src/fichamacetajapo.php:157 ../src/fichamesa.php:157
+#: ../src/productos.php:166
 msgid "Dimensiones:"
 msgstr "Dimensions:"
 
-#: ../src/fichamacetajapo.php:178 ../src/fichamesa.php:178
-#: ../src/ficha.php:174 ../src/productos.php:182
+#: ../src/fichamacetajapo.php:173 ../src/fichamesa.php:173
+#: ../src/ficha.php:169 ../src/productos.php:177
 msgid "AGOTADO TEMPORALMENTE"
 msgstr "TEMPORARILY OUT OF STOCK"
 
-#: ../src/fichamacetajapo.php:220 ../src/fichamesa.php:220
+#: ../src/fichamacetajapo.php:215 ../src/fichamesa.php:215
 msgid "Detalle:"
 msgstr "Detail:"
 
-#: ../src/fichamacetajapo.php:229 ../src/fichamesa.php:229
-#: ../src/ficha.php:225
+#: ../src/fichamacetajapo.php:224 ../src/fichamesa.php:224
+#: ../src/ficha.php:220
 msgid "< volver"
 msgstr "< go back"
 
-#: ../src/ficha.php:216
+#: ../src/ficha.php:211
 msgid "Cómo se coge:"
 msgstr "How you can take it:"
 
@@ -504,91 +508,86 @@ msgstr "You must fill out all the shipping information"
 msgid "Datos de facturación y envío"
 msgstr "Shipping and billing information"
 
-#: ../src/modificarDatos.php:176
+#: ../src/modificarDatos.php:178
 msgid "Datos de tu cuenta"
 msgstr "Information about your account"
 
-#: ../src/modificarDatos.php:186
+#: ../src/modificarDatos.php:188
 msgid "Si quieres cambiar tu password:"
 msgstr "If you want to change your password:"
 
-#: ../src/modificarDatos.php:187
+#: ../src/modificarDatos.php:189
 msgid "Nuevo password (*)"
 msgstr "New password (*)"
 
-#: ../src/modificarDatos.php:200
+#: ../src/modificarDatos.php:202
 msgid "(*) Máximo 20 caracteres para el password."
 msgstr "(*) Maximum 20 characters for the password."
 
-#: ../src/modificarDatos.php:207
+#: ../src/modificarDatos.php:209
 msgid "Los datos de envío son iguales a los datos de facturación"
 msgstr "The shipping data are the same as the billing ones"
 
-#: ../src/modificarDatos.php:215 ../src/modificarDatos.php:246
+#: ../src/modificarDatos.php:217 ../src/modificarDatos.php:248
 #: ../src/admin/detallePedido.php:70 ../src/admin/detalleUsuario.php:33
 #: ../src/admin/detalleUsuario.php:61 ../src/admin/edicionUsuario.php:57
 #: ../src/admin/edicionUsuario.php:85 ../src/admin/productos.php:51
 msgid "Nombre"
 msgstr "Name"
 
-#: ../src/modificarDatos.php:216 ../src/modificarDatos.php:247
+#: ../src/modificarDatos.php:218 ../src/modificarDatos.php:249
 #: ../src/admin/detalleUsuario.php:34 ../src/admin/detalleUsuario.php:62
 #: ../src/admin/edicionUsuario.php:58 ../src/admin/edicionUsuario.php:86
 msgid "Apellidos"
 msgstr "Surnames"
 
-#: ../src/modificarDatos.php:217 ../src/modificarDatos.php:248
+#: ../src/modificarDatos.php:219 ../src/modificarDatos.php:250
 #: ../src/admin/detalleUsuario.php:35 ../src/admin/detalleUsuario.php:63
 #: ../src/admin/edicionUsuario.php:59 ../src/admin/edicionUsuario.php:87
 msgid "Dirección"
 msgstr "Address"
 
-#: ../src/modificarDatos.php:218
-msgid "Letra, escalera, piso<"
-msgstr ""
+#: ../src/modificarDatos.php:220 ../src/modificarDatos.php:251
+#: ../src/admin/detalleUsuario.php:36 ../src/admin/detalleUsuario.php:64
+#: ../src/admin/edicionUsuario.php:60 ../src/admin/edicionUsuario.php:88
+msgid "Letra, escalera, piso"
+msgstr "Number, door, floor"
 
-#: ../src/modificarDatos.php:219 ../src/modificarDatos.php:250
+#: ../src/modificarDatos.php:221 ../src/modificarDatos.php:252
 #: ../src/admin/detalleUsuario.php:37 ../src/admin/detalleUsuario.php:65
 #: ../src/admin/edicionUsuario.php:61 ../src/admin/edicionUsuario.php:89
 msgid "Código Postal"
 msgstr "Postal Code"
 
-#: ../src/modificarDatos.php:220 ../src/modificarDatos.php:251
+#: ../src/modificarDatos.php:222 ../src/modificarDatos.php:253
 #: ../src/admin/detalleUsuario.php:38 ../src/admin/detalleUsuario.php:66
 #: ../src/admin/edicionUsuario.php:62 ../src/admin/edicionUsuario.php:90
 msgid "Localidad"
 msgstr "Town"
 
-#: ../src/modificarDatos.php:221 ../src/modificarDatos.php:252
+#: ../src/modificarDatos.php:223 ../src/modificarDatos.php:254
 #: ../src/admin/detalleUsuario.php:39 ../src/admin/detalleUsuario.php:67
 #: ../src/admin/edicionUsuario.php:63 ../src/admin/edicionUsuario.php:91
 msgid "Provincia"
 msgstr "Province"
 
-#: ../src/modificarDatos.php:230 ../src/modificarDatos.php:261
+#: ../src/modificarDatos.php:232 ../src/modificarDatos.php:263
 #: ../src/admin/detalleUsuario.php:48 ../src/admin/detalleUsuario.php:76
 #: ../src/admin/edicionUsuario.php:72 ../src/admin/edicionUsuario.php:100
 msgid "País"
 msgstr "Country"
 
-#: ../src/modificarDatos.php:239 ../src/modificarDatos.php:270
+#: ../src/modificarDatos.php:241 ../src/modificarDatos.php:272
 #: ../src/admin/detalleUsuario.php:52 ../src/admin/detalleUsuario.php:80
 #: ../src/admin/edicionUsuario.php:76 ../src/admin/edicionUsuario.php:104
 msgid "Teléfono fijo o móvil"
 msgstr "Mobile or fix phone"
 
-#: ../src/modificarDatos.php:249 ../src/admin/detalleUsuario.php:36
-#: ../src/admin/detalleUsuario.php:64 ../src/admin/edicionUsuario.php:60
-#: ../src/admin/edicionUsuario.php:88
-msgid "Letra, escalera, piso"
-msgstr ""
-
-#: ../src/modificarDatos.php:280 ../src/modificarDatos.php:282
+#: ../src/modificarDatos.php:282 ../src/modificarDatos.php:284
 msgid "Deseo recibir información de novedades y ofertas"
 msgstr "I would like to receive information updates and offers"
 
-#: ../src/productos.php:138
-#, fuzzy
+#: ../src/productos.php:133
 msgid "Todos los precios incluyen IVA"
 msgstr "All prices include VAT"
 
@@ -611,7 +610,7 @@ msgstr "Order summary"
 
 #: ../src/admin/detallePedido.php:17 ../src/admin/pedidos.php:54
 msgid "d/m/Y H:i:s"
-msgstr ""
+msgstr "d/m/Y H:i:s"
 
 #: ../src/admin/detallePedido.php:30
 msgid "Grabar"
@@ -619,7 +618,7 @@ msgstr "Save"
 
 #: ../src/admin/detallePedido.php:33
 msgid "Estado modificado correctamente."
-msgstr ""
+msgstr "Status modified correctly"
 
 #: ../src/admin/detallePedido.php:36
 msgid "Importe Total:"
@@ -671,20 +670,19 @@ msgstr "Shipping labels"
 
 #: ../src/admin/detalleProducto.php:24
 msgid "Formato de fichero incorrecto"
-msgstr ""
+msgstr "File format incorrect"
 
 #: ../src/admin/detalleProducto.php:28
 msgid "Preparado para subir"
-msgstr ""
+msgstr "Ready to upload"
 
 #: ../src/admin/detalleProducto.php:35
 msgid "Subiendo imagen..."
-msgstr ""
+msgstr "Uploading image..."
 
 #: ../src/admin/detalleProducto.php:74
-#, fuzzy
 msgid "¿Seguro que desea borrar esta imagen?"
-msgstr "Are you sure you want to delete the product with identification %s?"
+msgstr "Are you sure you want to delete this image?"
 
 #: ../src/admin/detalleProducto.php:84
 #, php-format
@@ -781,7 +779,7 @@ msgstr "Withdrawn:"
 
 #: ../src/admin/detalleProducto.php:138
 msgid "Indicador modificado correctamente."
-msgstr ""
+msgstr "Correctly modified indicator."
 
 #: ../src/admin/detalleProducto.php:141 ../src/admin/edicionProducto.php:94
 msgid "Novedad:"
@@ -808,38 +806,36 @@ msgid "Detalle 2"
 msgstr "Detail 2"
 
 #: ../src/admin/detalleProducto.php:162
-#, fuzzy
 msgid "Imágenes del producto"
-msgstr "Information about the product"
+msgstr "Images of the product"
 
 #: ../src/admin/detalleProducto.php:169
-#, fuzzy
 msgid "Selecciona la imagen a subir:"
-msgstr "Select a country"
+msgstr "Select the image to upload:"
 
 #: ../src/admin/detalleProducto.php:173
 msgid "Tipo de imagen:"
-msgstr ""
+msgstr "Image type:"
 
 #: ../src/admin/detalleProducto.php:175
 msgid "Pequeña"
-msgstr ""
+msgstr "Little"
 
 #: ../src/admin/detalleProducto.php:176
 msgid "Grande"
-msgstr ""
+msgstr "Big"
 
 #: ../src/admin/detalleProducto.php:177
 msgid "Uso"
-msgstr ""
+msgstr "Use"
 
 #: ../src/admin/detalleProducto.php:181
 msgid "Subir imagen"
-msgstr ""
+msgstr "Upload image"
 
 #: ../src/admin/detalleProducto.php:182
 msgid "No se ha seleccionado ninguna imagen"
-msgstr ""
+msgstr "No image selected"
 
 #: ../src/admin/detalleUsuario.php:9
 #, php-format
@@ -960,7 +956,7 @@ msgstr "Amount"
 
 #: ../src/admin/pedidos.php:45
 msgid "Num. Productos"
-msgstr ""
+msgstr "Num. Products"
 
 #: ../src/admin/pedidos.php:46 ../src/admin/usuarios.php:23
 msgid "Datos facturación"
