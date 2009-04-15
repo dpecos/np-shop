@@ -83,7 +83,7 @@ $sqlProvinces = "SELECT * FROM NPS_PROVINCIAS ORDER BY 2";
 $ddbb->executeSelectQuery($sqlProvinces, "fetchProvinces");
 
 $countries = array();
-$sqlCountries = "SELECT * FROM NPS_PAISES";
+$sqlCountries = "SELECT * FROM NPS_PAISES ORDER BY ISO3";
 function fetchCountries($data) {
     global $countries;
     $countries[$data['id']] = NP_DDBB::decodeSQLValue($data['name'], "STRING_I18N");

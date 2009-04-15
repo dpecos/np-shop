@@ -49,7 +49,7 @@
         
         <h2><?= _("Datos de facturación / envío") ?></h2>
         <center>
-        	<table style="float:left; margin-left: 15%">
+        	<table style="float:left; margin-left: 5%">
         	    <thead>
         	        <tr><th colspan="2" style="font-weight:bold"><?= _("Datos de facturación") ?></th></tr>
         	    </thead>
@@ -69,15 +69,21 @@
     				<?php } ?>
     						</select></td>
     				</tr>
-    				<tr><td align="left"><?= _("País") ?></td><td><select name="user_billingData_country">
-    						<option value="1" selected><?= _("España") ?></option>
-    						</select></td>
-    				</tr>
+    				<tr><td align="left"><?= _("País") ?></td><td>
+    				    <select name="user_billingData_country">
+        				<?php
+        				    global $countries;
+        				    foreach ($countries as $cId => $cName) { 
+        			  	?>
+        						<option value="<?php echo $cId ?>" <?= ($user->billingData['country'] == $cId)?"selected":"" ?>><?= NP_get_i18N($cName) ?></option>
+        				<?php } ?>
+						</select>
+    				</td></tr>
     				<tr><td align="left"><?= _("Teléfono fijo o móvil") ?></td><td><input type="text" name="user_billingData_phone" value="<?php echo $user->billingData['phone'] ?>"/></td></tr>
 				</tbody>
 			</table>	
 			
-			<table style="float:right; margin-right: 15%">
+			<table style="float:right; margin-right: 5%">
 			    <thead>
         	        <tr><th colspan="2" style="font-weight:bold"><?= _("Datos de envío") ?></th></tr>
         	    </thead>
@@ -97,16 +103,23 @@
     				<?php } ?>
     						</select></td>
     				</tr>
-    				<tr><td align="left"><?= _("País") ?></td><td><select name="user_shippingData_country">
-    						<option value="1" selected><?= _("España") ?></option>
-    						</select></td>
-    				</tr>
+    				<tr><td align="left"><?= _("País") ?></td><td>
+    				    <select name="user_shippingData_country">
+        				<?php
+        				    global $countries;
+        				    foreach ($countries as $cId => $cName) { 
+        			  	?>
+        						<option value="<?php echo $cId ?>" <?= ($user->shippingData['country'] == $cId)?"selected":"" ?>><?= NP_get_i18N($cName) ?></option>
+        				<?php } ?>
+						</select>
+    				</td></tr>
     				<tr><td align="left"><?= _("Teléfono fijo o móvil") ?></td><td><input type="text" name="user_shippingData_phone" value="<?php echo $user->shippingData['phone'] ?>"/></td></tr>
 				</tbody>
 			</table>
 		</center>
-		<input type="button" value="<?= _("Guardar") ?>" onclick="javascript:storeUser()"/>
+
         </form>
-			
+
+		<input type="button" value="<?= _("Guardar") ?>" onclick="javascript:storeUser()"/>
     </body>
 </html>
