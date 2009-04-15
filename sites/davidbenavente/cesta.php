@@ -218,7 +218,17 @@ if (sizeof($cart->items) > 0) {
 <br>
 <table cellpadding=6 cellspacing=0 border=0 width=550>
     <tr>
-		<td class="t-03" style="text-align: left"><?= _("(*) Envío mediante Paquete Azul de Correos") ?></td>
+		<td class="t-03" style="text-align: left">
+		    <? 
+		    if (!is_null($cart->user->shippingData['country'])) {
+		        if ($cart->user->shippingData['country'] === 73) { // España
+    	   	        echo _("(*) Envío mediante Paquete Azul de Correos");
+    		    } else { 
+    		        echo _("(*) Envío mediante Paquete Internacional Prioritario de Correos");
+    		    }
+		    }
+		    ?>
+		</td>
 	</tr>
 </table>
 <br><br>
