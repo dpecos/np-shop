@@ -180,7 +180,7 @@ foreach ($categories as $cat) {
 									<table cellpadding="0" cellspacing="0" border="0" width="100%">
 
 										<tr>
-											<td width="350" height="42" valign="top" colspan="2" ><img src="/interface/porque.gif" border=0 width="350" height="42" ></td>
+											<td width="350" height="42" valign="top" colspan="2" ><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/porque.gif" border=0 width="350" height="42" ></td>
 										</tr>
 										<tr>
 											<td width="265" valign="top" >
