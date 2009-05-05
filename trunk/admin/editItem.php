@@ -11,24 +11,24 @@ $item = null;
 
 if (isset($_POST['item_id'])) {
 
-	if (isset($_POST['isNew']) && $_POST['isNew'] == "true") {
-		$item = new Item(null);
-		NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
-		$item->_dbStore();
-	} else {
-		$item = new Item($_POST["item_id"]);
-		NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
-		$item->_dbUpdate();
-	}
-	$id = $_POST["item_id"];
-	$item = new Item($id);
+    if (isset($_POST['isNew']) && $_POST['isNew'] == "true") {
+        $item = new Item(null);
+        NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
+        $item->_dbStore();
+    } else {
+        $item = new Item($_POST["item_id"]);
+        NP_loadDataInto($item, $_POST, "item_", $ddbb->getType("Item", null));
+        $item->_dbUpdate();
+    }
+    $id = $_POST["item_id"];
+    $item = new Item($id);
 
-	redirect("itemDetail.php?item_edit_ok=true&itemId=".$id);
-	exit();
+    redirect("itemDetail.php?item_edit_ok=true&itemId=".$id);
+    exit();
 
 } else if (isset($_GET["itemId"])) {
-	$id = $_GET['itemId']; 
-	$item = new Item($id);
+    $id = $_GET['itemId']; 
+    $item = new Item($id);
 }
 
 function fetchCategories($data) {

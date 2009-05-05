@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: npshop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-13 23:05+0200\n"
-"PO-Revision-Date: 2009-04-13 23:11+0200\n"
+"POT-Creation-Date: 2009-05-05 22:32+0200\n"
+"PO-Revision-Date: 2009-05-05 22:37+0200\n"
 "Last-Translator: Daniel Pecos <dani@email.com>\n"
 "Language-Team: English <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/admin/editItem.php:51 ../src/admin/itemDetail.php:79
+#: ../src/admin/editItem.php:51 ../src/admin/itemDetail.php:81
 #: ../src/flows/showItem.php:45
 #, php-format
 msgid "Producto con identificador \"%s\" no encontrado."
@@ -29,15 +29,19 @@ msgstr "Passwords do not match. Data wasn't stored."
 msgid "Usuario con identificador \"%s\" no encontrado."
 msgstr "User with identifier %s not found."
 
-#: ../src/admin/itemDetail.php:33
+#: ../src/admin/itemDetail.php:17
+msgid "Imagen borrada correctamente."
+msgstr "Image deleted correctly."
+
+#: ../src/admin/itemDetail.php:35
 msgid "Imagen subida correctamente."
 msgstr "Image uploaded correctly."
 
-#: ../src/admin/itemDetail.php:37
+#: ../src/admin/itemDetail.php:39
 msgid "Se produjo un error al subir la imagen."
 msgstr "There was an error uploading the image."
 
-#: ../src/admin/itemDetail.php:40
+#: ../src/admin/itemDetail.php:42
 msgid "No se subió ninguna imagen."
 msgstr "No image was uploaded."
 
@@ -106,45 +110,6 @@ msgstr "The order status is <b>%s</b>."
 msgid "Un saludo"
 msgstr "Yours sincerely"
 
-#: ../src/flows/cart.php:23 ../src/flows/payment.php:58
-#, php-format
-msgid "No hay suficiente stock disponible (%s disponibles)"
-msgstr "There isn't enough stock available (%s available)"
-
-#: ../src/flows/cart.php:59
-msgid "No se pudo actualizar el carrito correctamente."
-msgstr "Basket could not be updated correctly."
-
-#: ../src/flows/listCategory.php:40 ../src/flows/listCategory.php:43
-#: ../src/flows/showItem.php:20 ../src/flows/showItem.php:23
-msgid "Novedades"
-msgstr "Novelty"
-
-#: ../src/flows/listCategory.php:86
-#, php-format
-msgid "%s a la venta próximamente."
-msgstr "%s on sale soon."
-
-#: ../src/flows/login.php:25
-msgid "Usuario o contraseña incorrectos."
-msgstr "User or password incorrect."
-
-#: ../src/flows/login.php:47
-msgid "Passwords no coinciden o son vacíos."
-msgstr "Passwords don't match or they are empty."
-
-#: ../src/flows/payment.php:63
-msgid "No se pudo reservar el carrito correctamente."
-msgstr "Basket could not be reserved correctly."
-
-#: ../src/flows/payment.php:74
-msgid "Hubo problemas al almacenar el pedido."
-msgstr "There was problems storing the order."
-
-#: ../src/flows/personalData.php:48
-msgid "El password antiguo no es correcto o los nuevos no coinciden."
-msgstr "Previous password incorrect or new passwords don't match."
-
 #: ../src/config/main.php:19
 msgid "PROCESO DE PAGO"
 msgstr "PROCESO DE PAGO"
@@ -184,3 +149,42 @@ msgstr "Orders in the shop of David Benavente: "
 #: ../src/config/main.php:66
 msgid "Pedido David Benavente - "
 msgstr "Order David Benavente - "
+
+#: ../src/flows/cart.php:23 ../src/flows/payment.php:58
+#, php-format
+msgid "No hay suficiente stock disponible (%s disponibles)"
+msgstr "There isn't enough stock available (%s available)"
+
+#: ../src/flows/cart.php:59
+msgid "No se pudo actualizar el carrito correctamente."
+msgstr "Basket could not be updated correctly."
+
+#: ../src/flows/listCategory.php:40 ../src/flows/listCategory.php:43
+#: ../src/flows/showItem.php:20 ../src/flows/showItem.php:23
+msgid "Novedades"
+msgstr "Novelty"
+
+#: ../src/flows/listCategory.php:86
+#, php-format
+msgid "%s a la venta próximamente."
+msgstr "%s on sale soon."
+
+#: ../src/flows/login.php:25
+msgid "Usuario o contraseña incorrectos."
+msgstr "User or password incorrect."
+
+#: ../src/flows/login.php:47
+msgid "Passwords no coinciden o son vacíos."
+msgstr "Passwords don't match or they are empty."
+
+#: ../src/flows/payment.php:63
+msgid "No se pudo reservar el carrito correctamente."
+msgstr "Basket could not be reserved correctly."
+
+#: ../src/flows/payment.php:74
+msgid "Hubo problemas al almacenar el pedido."
+msgstr "There was problems storing the order."
+
+#: ../src/flows/personalData.php:48
+msgid "El password antiguo no es correcto o los nuevos no coinciden."
+msgstr "Previous password incorrect or new passwords don't match."

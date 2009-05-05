@@ -14,7 +14,8 @@ if (array_key_exists("deleteImage", $_GET)) {
     unlink("../images/".$_GET["deleteImage"]);
     echo '<html><head></head><body>'."\n";
     echo '<script language="JavaScript" type="text/javascript">'."\n";
-    echo 'parent.removeImage("'.$_GET["deleteImage"].'");'."\n";
+    $msg = _("Imagen borrada correctamente.");
+    echo 'parent.removeImage("'.$_GET["deleteImage"].'","'.$msg.'");'."\n";
     echo '</script></body></html>'."\n";
     exit();
 } else if (isset($_FILES) && array_key_exists('product_image', $_FILES)) {
@@ -29,6 +30,7 @@ if (array_key_exists("deleteImage", $_GET)) {
         if (array_key_exists("filename_mask", $_POST))
             $destFile = sprintf($_POST["filename_mask"], $_POST['item_id']);
         if (move_uploaded_file($tmpFile, "../images/".$destFile)) {
+        	  chmod("../images/".$destFile, 644);
             // OK
             $msg = _("Imagen subida correctamente.");
             $ok = true;

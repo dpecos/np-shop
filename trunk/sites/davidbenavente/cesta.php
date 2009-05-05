@@ -81,7 +81,7 @@ $cart = get_cart();
 			<table  width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
 
 				<tr>
-					<td valign=top><img src="/interface/banner-venta.gif" border=0 width="584" height="55"></td>
+					<td valign=top><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/banner-venta.gif" border=0 width="584" height="55"></td>
 				</tr>
 				<tr>
 					<td valign=top width="100%" height="100%">
