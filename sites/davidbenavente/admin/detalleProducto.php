@@ -74,9 +74,11 @@
                 if (confirm("<?= _("¿Seguro que desea borrar esta imagen?") ?>")) 
                     document.getElementById("upload_iframe").src="<?= $_SERVER['PHP_SELF'] ?>?deleteImage=" + img;
             }
-            function removeImage(img) {
+            function removeImage(img, msg) {
                 var tr = document.getElementById(img);
                 tr.parentNode.removeChild(tr);
+                
+                document.getElementById("upload_status").innerHTML = "<font color='green'><b>" + msg + "</b></font>";
             }
         </script>
     </head>
