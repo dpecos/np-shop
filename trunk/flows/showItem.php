@@ -33,12 +33,10 @@ global $ddbb;
 $ddbb->executeSelectQuery($sqlCategories, "fetchCategories");
 
 if (isset($item) && !is_null($item->id)) {
-    if ($item->categoryId == "30")
+    if ($item->categoryId == "20" || $item->categoryId == "30" || $item->categoryId == "35")
         showSkin(basename(__FILE__), "macetas_japo");
     else if ($item->categoryId == "40")
         showSkin(basename(__FILE__), "mesas");
-    elseif ($item->categoryId == "50")
-        showSkin(basename(__FILE__), "macetas_japo");
     else
         showSkin(basename(__FILE__), "herramientas");   
 } else {
