@@ -249,7 +249,7 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 </tr>
 </table>
 
-<p class=p-dere><a class=negro href="javascript:history.back()">< volver</a>
+<p class=p-dere><a class=negro href="javascript:history.back()"><?=_("< volver")?></a>
 
 <br><br>
 
