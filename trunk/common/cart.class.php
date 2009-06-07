@@ -338,6 +338,7 @@ class Cart {
 	        if (isset($this->tpvData) && $this->tpvData != null) {
 	            $tpvData = $this->tpvData." @ ".$tpvData;
 	        }
+	        $this->tpvData = $tpvData;
 	    }
 	      
 	    /*$sql = "UPDATE ".$ddbb->getTable("Cart").

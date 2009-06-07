@@ -45,17 +45,17 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 					<td valign=top><img src="/interface/02-izq.gif" border=0 width="11" height="60"></td>
 					<td valign=top>
 						<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="311" HEIGHT="60" id="fondo" ALIGN="">
-							<PARAM NAME=movie VALUE="/interface/iconos.swf">
+							<PARAM NAME=movie VALUE="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/iconos.swf">
 							<PARAM NAME=quality VALUE=high>
 							<PARAM NAME=bgcolor VALUE=#FFFFFF>
 							<PARAM NAME=wmode VALUE=transparent>
 							<PARAM NAME=menu VALUE=false>
-							<EMBED src="/interface/iconos.swf" quality=high bgcolor=#FFFFFF  WIDTH="311" HEIGHT="60" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+							<EMBED src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/iconos.swf" quality=high bgcolor=#FFFFFF  WIDTH="311" HEIGHT="60" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
 						</OBJECT>
 
 					</td>
 					<td valign=top><img src="/interface/02-cen.gif" border=0 width="229" height="60"></td>
-					<td valign=top align="right"><img src="/interface/logo.gif" border=0 width="228" height="60"></td>
+					<td valign=top align="right"><img src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/logo.gif" border=0 width="228" height="60"></td>
 				</tr>				
 			</table>
 		</td>
@@ -67,14 +67,14 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
-																<PARAM NAME=movie VALUE="/interface/botonera.swf">
+																<PARAM NAME=movie VALUE="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
 																<PARAM NAME=bgcolor VALUE=#FFFFFF>
 																<PARAM NAME=wmode VALUE=transparent>
 																<PARAM NAME=menu VALUE=false>
-																<EMBED src="/interface/botonera.swf" quality=high bgcolor=#FFFFFF  WIDTH="167" HEIGHT="390" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+																<EMBED src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/botonera.swf" quality=high bgcolor=#FFFFFF  WIDTH="167" HEIGHT="390" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
 													</OBJECT>
 
 		</td>
@@ -98,8 +98,8 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 <table width="100%" cellpadding="5" cellspacing="0" border="1" BGCOLOR=F3F2F2 BORDERCOLORDARK=F3F2F2 BORDERCOLORLIGHT=F3F2F2>
 	<tr>
 		<td class="02" ><p class=p-dere>
-			<a class="negro" href="account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
-			<a class="negro" href="cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?= APP_ROOT ?>/flows/account.php"><?= _("Tu cuenta") ?></a><img src="/interface/cuenta.gif" border=0 align=absmiddle hspace=5>&nbsp;
+			<a class="negro" href="<?= APP_ROOT ?>/flows/cart.php"><?= _("Ver la cesta") ?></a><img src="/interface/cesta.gif" border=0 align=absmiddle hspace=5>&nbsp;
 			<a class="negro" href="<?php echo SKIN_ROOT; ?>ayuda.php"><?= _("Ayuda") ?></a><img src="/interface/ayuda.gif" border=0 align=absmiddle hspace=5>
 			</p>
 		</td>
@@ -121,18 +121,18 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 <table width="90%"  cellpadding="10" cellspacing="0" border="0">
 
 				<tr>
-							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=10"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/herramientas.jpg" border=0 width="226" height="182"></a></td>
-							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=30"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/macetas.jpg" border=0 width="226" height="182"></a></td>
+							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=10&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/herramientas.jpg" border=0 width="226" height="182"></a></td>
+							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=30&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/macetas.jpg" border=0 width="226" height="182"></a></td>
         </tr>
 
 				<tr>
-							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=20"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/tokoname.jpg" border=0 width="226" height="182"></a></td>
-							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=35"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/usadas.jpg" border=0 width="226" height="182"></a></td>
+							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=20&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/tokoname.jpg" border=0 width="226" height="182"></a></td>
+							<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=35&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/usadas.jpg" border=0 width="226" height="182"></a></td>
 				</tr>
 
         <tr>
-              <td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=40"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/mesas.jpg" border=0 width="226" height="182"></a></td>
-        			<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=50"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/libros.jpg" border=0 width="226" height="182"></a></td>
+              <td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=40&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/mesas.jpg" border=0 width="226" height="182"></a></td>
+        			<td align="center"><a href="<?= APP_ROOT ?>/flows/listCategory.php?categoryId=50&LANG=<?= NP_LANG ?>"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/libros.jpg" border=0 width="226" height="182"></a></td>
         </tr>
 
 </table>

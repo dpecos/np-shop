@@ -10,8 +10,8 @@ p				{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode,
 .combo			{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: left; line-height:1.5; }
 .pie			{color:C6C6C6; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: center; line-height:1.5; }
 
-li				{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: left; line-height:1.5; vertical-align:bottom; list-style-image: url(flechita-ref.gif);}
-.li-blanco		{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: left; line-height:1.5; vertical-align:bottom; list-style-image: url(blanco.gif);}
+li				{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: left; line-height:1.5; vertical-align:bottom; list-style-image: url(/interface/flechita-ref.gif);}
+.li-blanco		{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: left; line-height:1.5; vertical-align:bottom; list-style-image: url(/interface/blanco.gif);}
 .1				{color:8C8B8B; font-size:7.5pt; font-family: "verdana, lucida sans unicode, arial"; text-align: center; line-height:1.5; padding:3; }
 .14				{color:#000000; font-size: 7.5pt;  font-family: "verdana"; text-align: left; background color=#E6E6E6;}		
 	
