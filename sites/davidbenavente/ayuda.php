@@ -50,18 +50,18 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 					<td valign=top>
 						<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="311" HEIGHT="60" id="fondo" ALIGN="">
 
-							<PARAM NAME=movie VALUE="/interface/iconos.swf">
+							<PARAM NAME=movie VALUE="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/iconos.swf">
 							<PARAM NAME=quality VALUE=high>
 							<PARAM NAME=bgcolor VALUE=#FFFFFF>
 							<PARAM NAME=wmode VALUE=transparent>
 							<PARAM NAME=menu VALUE=false>
-							<EMBED src="/interface/iconos.swf" quality=high bgcolor=#FFFFFF  WIDTH="311" HEIGHT="60" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+							<EMBED src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/iconos.swf" quality=high bgcolor=#FFFFFF  WIDTH="311" HEIGHT="60" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
 						</OBJECT>
 
 					</td>
 
 					<td valign=top><img src="/interface/02-cen.gif" border=0 width="229" height="60"></td>
-					<td valign=top align="right"><img src="/interface/logo.gif" border=0 width="228" height="60"></td>
+					<td valign=top align="right"><img src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/logo.gif" border=0 width="228" height="60"></td>
 				</tr>				
 			</table>
 		</td>
@@ -73,15 +73,15 @@ bindtextdomain("messages", APP_ROOT.$npshop['skin']['path'].$npshop['skin']['nam
 
 	<!------------------BOTONERA------------------->
 
-		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br>
+		<td valign=top width="167" height="100%"><br><br><a href="javascript:switchLanguage('<?= NP_LANG ?>')"><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>.gif" border=0 width="167" height="21"></a><br><br><br>
 													<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="167" HEIGHT="390" id="fondo" ALIGN="">
-																<PARAM NAME=movie VALUE="/interface/botonera.swf">
+																<PARAM NAME=movie VALUE="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/botonera.swf">
 																<PARAM NAME=quality VALUE=high>
 																<PARAM NAME=bgcolor VALUE=#FFFFFF>
 																<PARAM NAME=wmode VALUE=transparent>
 																<PARAM NAME=menu VALUE=false>
 
-																<EMBED src="/interface/botonera.swf" quality=high bgcolor=#FFFFFF  WIDTH="167" HEIGHT="390" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+																<EMBED src="<?= NP_LANG == "en_US" ? "/ingles" : "" ?>/interface/botonera.swf" quality=high bgcolor=#FFFFFF  WIDTH="167" HEIGHT="390" NAME="fondo" ALIGN=""  TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
 													</OBJECT>
 
 		</td>
