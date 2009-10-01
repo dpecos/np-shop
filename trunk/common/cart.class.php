@@ -65,16 +65,9 @@ class Cart {
 
 		
 		if (!is_null($this->user) && !is_null($this->user->shippingData['country'])) {
-		    $country = $this->user->shippingData['country'];
-    		$sql = "SELECT c.* FROM NPS_PAISES p, NPS_COSTES_ZONA c WHERE p.costes_zona=c.zona AND p.id=".$country;
-    		$data = $ddbb->executePKSelectQuery($sql);
-    
-    		$precio_fijo = round($data["precio_fijo"] + 0.49);
-    		$precio_kilo = round($data["precio_kilo"] + 0.49);
-    
-    		$shippingCost = $precio_fijo;
-    		$normalWeight = 0;
-    
+		      
+		   $normalWeight = 0; 
+		   
     		foreach ($this->items as $itemId => $item) {
     			if ($item->specialShipping) { 
     				$shippingCost += $item->specialShippingCost * $item->quantity;
@@ -82,12 +75,35 @@ class Cart {
     				$normalWeight += $item->weight * $item->quantity;
     			}
     		}	
-        	if ($normalWeight > 0) 
+    		
+    		$shippingCost = 0;
+    		
+        	if ($normalWeight > 0) {
         		$normalWeight += $npshop['constants']['EXTRA_WEIGHT_SHIPPING_COST'];
-    
-    		$shippingCost += round($normalWeight/1000 + 0.49) * $precio_kilo;
-    	    
-    
+       
+            $country = $this->user->shippingData['country'];
+            
+            if ($country != 73) {
+          		$sql = "SELECT c.* FROM NPS_PAISES p, NPS_COSTES_ZONA c WHERE p.costes_zona=c.zona AND p.id=".$country;
+          		$data = $ddbb->executePKSelectQuery($sql);
+          
+          		$precio_fijo = round($data["precio_fijo"] + 0.49);
+          		$precio_kilo = round($data["precio_kilo"] + 0.49);
+          
+          		$shippingCost = $precio_fijo;
+          		$normalWeight = 0;
+          		
+          		$shippingCost += round($normalWeight/1000 + 0.49) * $precio_kilo;
+       	   } else {
+       	      $sql = "SELECT * FROM NPS_COSTES_ESP WHERE $normalWeight >= COS_NU_PESOMIN AND $normalWeight < COS_NU_PESOMAX";
+       	      $data = $ddbb->executePKSelectQuery($sql);
+       	      if ($data != null) {
+       	         $shippingCost = $data['COS_IM_IMPORTE'];
+       	      } else {
+       	         // no habrá envios de +20 kg
+       	      }
+       	   }
+         }
     		return $shippingCost;
 	    } else 
 	        return 0;
