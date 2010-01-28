@@ -220,7 +220,7 @@ if (sizeof($cart->items) > 0) {
     <tr>
 		<td class="t-03" style="text-align: left">
 		    <? 
-		    if (!is_null($cart->user->shippingData['country'])) {
+		    if (isset($cart->user->shippingData) && array_key_exists('country', $cart->user->shippingData)) {
 		        if ($cart->user->shippingData['country'] === 73) { // España
     	   	        echo _("(*) Envío mediante Paquete Azul de Correos");
     		    } else { 

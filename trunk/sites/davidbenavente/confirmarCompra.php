@@ -13,6 +13,10 @@ $cart = get_cart();
 					return false;
 				}
 			}			
+            function doPayment() {
+                payment = document.getElementById("payment_method");
+                top.location.href = "payment.php?method=" + payment.value;
+            }
 			// -->
 			</script>
 <script>
@@ -122,8 +126,19 @@ global $billingData_province ,$billingData_country, $shippingData_province, $shi
         <td colspan="2">
 <?php if (isset($paymentResult)) { 
     if ($paymentResult === "ok") { ?>
-<p class="rojo"><?= _("Muchas gracias. La compra ha sido realizada con éxito.") ?><br>
-		<?= _("Estos son los datos de tu pedido, que también te los enviaremos por e-mail:") ?></p>
+<?        if ($cart->orderStatus == $npshop["constants"]["ORDER_STATUS"]["PAYMENT_TRANSFER"]) { ?>
+        <p class="rojo"><?= _("La compra queda pendiente de pago por transferencia a la cuenta:") ?></p>
+        <blockquote>
+            <p class="rojo"><?= _("Titular") ?>: David Benavente<p/>
+            <p class="rojo"><?= _("Entidad") ?>: Cajamadrid<p/>
+            <p class="rojo">2038-1576-52-6000042530</p>
+        </blockquote>
+<?        } else if ($cart->orderStatus == $npshop["constants"]["ORDER_STATUS"]["PENDING_SENT_ONDELIVERY"]) { ?>
+        <p class="rojo"><?= _("El pedido ha sido realizado con éxito y será enviado contrareembolso a la dirección que has indicado.") ?></p>
+<?        } else { ?>
+        <p class="rojo"><?= _("Muchas gracias. La compra ha sido realizada con éxito.") ?></p>
+<?        } ?>
+		<p class="rojo"><?= _("Te remitiremos los datos de tu pedido por email:") ?></p>
 <?php   } else { ?>
 <p class="rojo"><?= _("Se ha producido algún error en el proceso de pago con la entidad bancaria.") ?></p>
 <?php   }?>
@@ -252,11 +267,27 @@ foreach ($cart->items as $itemId => $item) {
 	</tr>
 </table>
 
+
+<?php if ($paymentResult === "error" || !isset($paymentResult)) { ?>
+<table cellpadding=6 cellspacing=0 border=0 width=550  >
+    <tr>
+        <td colspan="2" class="t-03">&nbsp;
+        <?= _("Seleccione la forma de pago que desee utilizar") ?>:&nbsp;
+        <select id="payment_method">
+            <option value="credit_card"><?= _("Tarjeta de crédito") ?></option>
+            <option value="transfer"><?= _("Transferencia bancaria") ?></option>
+            <option value="on_delivery"><?= _("Contrareembolso") ?></option>
+        </select>
+        </td>
+    </tr>
+</table>
+<?php } ?>
+
 <table cellpadding=6 cellspacing=0 border=0 width=550  >
 	<tr>
 		<td colspan="2" class="t-03">&nbsp;
 <?php if ($paymentResult === "error" || !isset($paymentResult)) { ?>
-		    <a href="payment.php" onmouseover="rollOn('b4_');" onmouseout="rollOff('b4_');chequear('b4_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b04-finalizar-compra-off.gif" border=0  align=right name=b4_></a>
+		    <a href="javascript:doPayment()" onmouseover="rollOn('b4_');" onmouseout="rollOff('b4_');chequear('b4_');" target=_self><img src="<?= SKIN_ROOT ?>include/img/<?= NP_LANG ?>/b04-finalizar-compra-off.gif" border=0  align=right name=b4_></a>
 <?php } ?>
 		</td>	
 	</tr>

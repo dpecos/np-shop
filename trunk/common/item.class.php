@@ -105,7 +105,7 @@ class Item {
 	
 	function addToStock($quantity) {
 	    global $ddbb;
-	    $sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", 'stock')."=".$ddbb->getMapping("Item", 'stock')."-".$quantity." WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING");
+	    $sql = "UPDATE ".$ddbb->getTable("Item")." SET ".$ddbb->getMapping("Item", 'stock')."=".$ddbb->getMapping("Item", 'stock')."+".$quantity." WHERE ".$ddbb->getMapping("Item", 'id')."=".NP_DDBB::encodeSQLValue($this->id, "STRING");
 		
 		$ddbb->executeInsertUpdateQuery($sql);
 	}
