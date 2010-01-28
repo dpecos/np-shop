@@ -18,8 +18,10 @@ function doConfig() {
 	
 	$constants["ORDER_STATUS"]["PENDENT"] =         _("PROCESO DE PAGO");
 	$constants["ORDER_STATUS"]["PAYMENT_OK"] =      _("PAGO TPV OK");
+	$constants["ORDER_STATUS"]["PAYMENT_TRANSFER"] =      _("PAGO PDTE POR TRANSFERENCIA");
 	$constants["ORDER_STATUS"]["PAYMENT_ERROR"] =   _("PAGO TPV ERROR");
 	$constants["ORDER_STATUS"]["PENDING_SENT"] =    _("PDTE ENVIO A CLIENTE");
+	$constants["ORDER_STATUS"]["PENDING_SENT_ONDELIVERY"] =      _("PDTE ENVIO CONTRAREEMBOLSO");
 	$constants["ORDER_STATUS"]["SENT"] =            _("ENVIADO A CLIENTE");
 	$constants["ORDER_STATUS"]["RETURNED"] =        _("DEVOLUCION CLIENTE");
 	$constants["ORDER_STATUS"]["CLOSED"] =          _("FINALIZADO");
@@ -50,8 +52,8 @@ function doConfig() {
 
     // DEVEL
     $ddbb["HOST"] = "localhost";
-	$ddbb["USER"] = "root";
-	$ddbb["PASSWD"] = "";
+	$ddbb["USER"] = "npshop_user";
+	$ddbb["PASSWD"] = "npshop_password";
 	$ddbb["NAME"] = "npshop";
 
 	

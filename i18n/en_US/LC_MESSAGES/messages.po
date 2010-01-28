@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: npshop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 22:32+0200\n"
-"PO-Revision-Date: 2009-05-05 22:37+0200\n"
+"POT-Creation-Date: 2010-01-17 21:02+0100\n"
+"PO-Revision-Date: 2010-01-17 21:08+0100\n"
 "Last-Translator: Daniel Pecos <dani@email.com>\n"
 "Language-Team: English <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,177 +14,203 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/admin/editItem.php:51 ../src/admin/itemDetail.php:81
-#: ../src/flows/showItem.php:45
+#: ../admin/editItem.php:51 ../admin/itemDetail.php:81
+#: ../flows/showItem.php:43
 #, php-format
 msgid "Producto con identificador \"%s\" no encontrado."
 msgstr "Product with identifier %s not found."
 
-#: ../src/admin/editUser.php:22
+#: ../admin/editUser.php:22
 msgid "Los passwords introducidos no coinciden. No se grabaron los datos."
 msgstr "Passwords do not match. Data wasn't stored."
 
-#: ../src/admin/editUser.php:50 ../src/admin/userDetail.php:27
+#: ../admin/editUser.php:58 ../admin/userDetail.php:27
 #, php-format
 msgid "Usuario con identificador \"%s\" no encontrado."
 msgstr "User with identifier %s not found."
 
-#: ../src/admin/itemDetail.php:17
+#: ../admin/itemDetail.php:17
 msgid "Imagen borrada correctamente."
 msgstr "Image deleted correctly."
 
-#: ../src/admin/itemDetail.php:35
+#: ../admin/itemDetail.php:35
 msgid "Imagen subida correctamente."
 msgstr "Image uploaded correctly."
 
-#: ../src/admin/itemDetail.php:39
+#: ../admin/itemDetail.php:39
 msgid "Se produjo un error al subir la imagen."
 msgstr "There was an error uploading the image."
 
-#: ../src/admin/itemDetail.php:42
+#: ../admin/itemDetail.php:42
 msgid "No se subió ninguna imagen."
 msgstr "No image was uploaded."
 
-#: ../src/admin/listItems.php:37 ../src/flows/listCategory.php:38
-#: ../src/flows/listCategory.php:42 ../src/flows/showItem.php:18
-#: ../src/flows/showItem.php:22
+#: ../admin/listItems.php:37 ../flows/listCategory.php:38
+#: ../flows/listCategory.php:42 ../flows/showItem.php:18
+#: ../flows/showItem.php:22
 msgid "Todas las categorías"
 msgstr "All the categories"
 
-#: ../src/common/cart.class.php:257
+#: ../common/cart.class.php:273
 #, php-format
 msgid "Hola %s"
 msgstr "Hello %s"
 
-#: ../src/common/cart.class.php:258
+#: ../common/cart.class.php:274
 #, php-format
 msgid "Estos son los productos asociados al pedido %s:"
 msgstr "These are the items related to the order %s:"
 
-#: ../src/common/cart.class.php:262
+#: ../common/cart.class.php:278
 msgid "Ref."
 msgstr "Ref."
 
-#: ../src/common/cart.class.php:262
+#: ../common/cart.class.php:278
 msgid "Cantidad"
 msgstr "Quantity"
 
-#: ../src/common/cart.class.php:262
+#: ../common/cart.class.php:278
 msgid "Precio por unidad"
 msgstr "Price per unit"
 
-#: ../src/common/cart.class.php:267
+#: ../common/cart.class.php:283
 msgid "Subtotal"
 msgstr "Subtotal"
 
-#: ../src/common/cart.class.php:268
+#: ../common/cart.class.php:284
 msgid "Gastos de envío"
 msgstr "Shipping costs"
 
-#: ../src/common/cart.class.php:269
+#: ../common/cart.class.php:285
 msgid "TOTAL"
 msgstr "TOTAL"
 
-#: ../src/common/cart.class.php:274
+#: ../common/cart.class.php:290
 msgid "Datos personales"
 msgstr "Personal data"
 
-#: ../src/common/cart.class.php:278
+#: ../common/cart.class.php:294
 msgid "Datos de facturación"
 msgstr "Billing data"
 
-#: ../src/common/cart.class.php:307
+#: ../common/cart.class.php:323
 msgid "El pedido <b>queda confirmado</b>."
 msgstr "The order is <b>confirmed</b>."
 
-#: ../src/common/cart.class.php:309
+#: ../common/cart.class.php:325
+msgid ""
+"El pedido <b>queda confirmado</b> y pendiente de que realices una "
+"transferencia por la cantidad total del pedido a este número de cuenta: 2038-"
+"1576-52-6000042530 (Caja Madrid), Titular: David Benavente."
+msgstr ""
+"The order is <b>confirmed</b> and on hold for a money transfer of the total "
+"order ammount to this account number: 2038-1576-52-6000042530 (Caja Madrid), "
+"Owner: David Benavente."
+
+#: ../common/cart.class.php:327
+msgid ""
+"El pedido <b>queda confirmado</b> y será enviado contrareembolso a la "
+"dirección que has indicado."
+msgstr ""
+"The order is <b>confirmed</b> and will be payed on delivery to the address "
+"you have requested."
+
+#: ../common/cart.class.php:329
 msgid "El pedido <b>no ha podido ser confirmado</b>."
 msgstr "The order <b>could not be confirmed</b>."
 
-#: ../src/common/cart.class.php:311
+#: ../common/cart.class.php:331
 #, php-format
 msgid "El pedido queda con estado <b>%s</b>."
 msgstr "The order status is <b>%s</b>."
 
-#: ../src/common/cart.class.php:314
+#: ../common/cart.class.php:334
 msgid "Un saludo"
 msgstr "Yours sincerely"
 
-#: ../src/config/main.php:19
+#: ../config/main.php:19
 msgid "PROCESO DE PAGO"
 msgstr "PROCESO DE PAGO"
 
-#: ../src/config/main.php:20
+#: ../config/main.php:20
 msgid "PAGO TPV OK"
 msgstr "PAGO TPV OK"
 
-#: ../src/config/main.php:21
+#: ../config/main.php:21
+msgid "PAGO PDTE POR TRANSFERENCIA"
+msgstr "PAGO.PDTE.POR.TRANSFERENCIA"
+
+#: ../config/main.php:22
 msgid "PAGO TPV ERROR"
 msgstr "PAGO TPV ERROR"
 
-#: ../src/config/main.php:22
+#: ../config/main.php:23
 msgid "PDTE ENVIO A CLIENTE"
 msgstr "PDTE ENVIO A CLIENTE"
 
-#: ../src/config/main.php:23
+#: ../config/main.php:24
+msgid "PDTE ENVIO CONTRAREEMBOLSO"
+msgstr "PDTE ENVIO CONTRAREEMBOLSO"
+
+#: ../config/main.php:25
 msgid "ENVIADO A CLIENTE"
 msgstr "ENVIADO A CLIENTE"
 
-#: ../src/config/main.php:24
+#: ../config/main.php:26
 msgid "DEVOLUCION CLIENTE"
 msgstr "DEVOLUCION CLIENTE"
 
-#: ../src/config/main.php:25
+#: ../config/main.php:27
 msgid "FINALIZADO"
 msgstr "FINALIZADO"
 
-#: ../src/config/main.php:27
+#: ../config/main.php:29
 msgid "Pedidos DavidBenavente.com <pedidos@davidbenavente.com>"
 msgstr "Orders DavidBenavente.com <pedidos@davidbenavente.com>"
 
-#: ../src/config/main.php:28
+#: ../config/main.php:30
 msgid "Pedido en la tienda de David Benavente: "
 msgstr "Orders in the shop of David Benavente: "
 
-#: ../src/config/main.php:66
+#: ../config/main.php:68
 msgid "Pedido David Benavente - "
 msgstr "Order David Benavente - "
 
-#: ../src/flows/cart.php:23 ../src/flows/payment.php:58
+#: ../flows/cart.php:23 ../flows/payment.php:58
 #, php-format
 msgid "No hay suficiente stock disponible (%s disponibles)"
 msgstr "There isn't enough stock available (%s available)"
 
-#: ../src/flows/cart.php:59
+#: ../flows/cart.php:59
 msgid "No se pudo actualizar el carrito correctamente."
 msgstr "Basket could not be updated correctly."
 
-#: ../src/flows/listCategory.php:40 ../src/flows/listCategory.php:43
-#: ../src/flows/showItem.php:20 ../src/flows/showItem.php:23
+#: ../flows/listCategory.php:40 ../flows/listCategory.php:43
+#: ../flows/showItem.php:20 ../flows/showItem.php:23
 msgid "Novedades"
 msgstr "Novelty"
 
-#: ../src/flows/listCategory.php:86
+#: ../flows/listCategory.php:86
 #, php-format
 msgid "%s a la venta próximamente."
 msgstr "%s on sale soon."
 
-#: ../src/flows/login.php:25
+#: ../flows/login.php:25
 msgid "Usuario o contraseña incorrectos."
 msgstr "User or password incorrect."
 
-#: ../src/flows/login.php:47
+#: ../flows/login.php:47
 msgid "Passwords no coinciden o son vacíos."
 msgstr "Passwords don't match or they are empty."
 
-#: ../src/flows/payment.php:63
+#: ../flows/payment.php:63
 msgid "No se pudo reservar el carrito correctamente."
 msgstr "Basket could not be reserved correctly."
 
-#: ../src/flows/payment.php:74
+#: ../flows/payment.php:82
 msgid "Hubo problemas al almacenar el pedido."
 msgstr "There was problems storing the order."
 
-#: ../src/flows/personalData.php:48
+#: ../flows/personalData.php:48
 msgid "El password antiguo no es correcto o los nuevos no coinciden."
 msgstr "Previous password incorrect or new passwords don't match."

@@ -321,6 +321,10 @@ class Cart {
     	
     	if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK'])
     	    $text .= _("El pedido <b>queda confirmado</b>.")."<br/>";
+    	else if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_TRANSFER'])
+    	    $text .= _("El pedido <b>queda confirmado</b> y pendiente de que realices una transferencia por la cantidad total del pedido a este número de cuenta: 2038-1576-52-6000042530 (Caja Madrid), Titular: David Benavente.")."<br/>";
+    	else if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PENDING_SENT_ONDELIVERY'])
+    	    $text .= _("El pedido <b>queda confirmado</b> y será enviado contrareembolso a la dirección que has indicado.")."<br/>";
     	else if ($this->orderStatus == $npshop['constants']['ORDER_STATUS']['PAYMENT_ERROR'])
     	    $text .= _("El pedido <b>no ha podido ser confirmado</b>.")."<br/>";
     	else 
@@ -373,7 +377,9 @@ class Cart {
 	    $ddbb->updateObject($this);
 	       
 	    
-	    if ($status == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK']) {
+	    if ($status == $npshop['constants']['ORDER_STATUS']['PAYMENT_OK'] || 
+            $status == $npshop["constants"]["ORDER_STATUS"]["PAYMENT_TRANSFER"] ||
+            $status == $npshop["constants"]["ORDER_STATUS"]["PENDING_SENT_ONDELIVERY"]) {
     	    foreach ($this->items as $item) {
     			$item->addToStock(-1 * $item->quantity);
     		}	
@@ -388,7 +394,7 @@ class Cart {
     	    $statusKey = array_search($status, $npshop['constants']['ORDER_STATUS']);
                    
             $mailContent = $this->_buildMail();
-    	    if ($statusKey == "PAYMENT_OK") {
+    	    if ($statusKey == "PAYMENT_OK" || $statusKey == "PAYMENT_TRANSFER" || $statusKey == "PENDING_SENT_ONDELIVERY") {
     	        sendHTMLMail($npshop['constants']['EMAIL_FROM'], $user->email, $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
    	            sendHTMLMail($npshop['constants']['EMAIL_FROM'], $npshop['constants']['EMAIL_NOTIFICATION'], $npshop['constants']['EMAIL_SUBJECT'].$this->orderId, $mailContent);
     	    }
