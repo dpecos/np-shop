@@ -50,6 +50,7 @@ foreach ($categories as $cat) {
                     <th width="10%"><?= _("Codigo") ?></th>
                     <th width="40%"><?= _("Nombre") ?></th>
                     <th width="20%"><?= _("Marca") ?></th>
+                    <th width="10%"><?= _("Peso") ?></th>
                     <th width="10%"><?= _("Stock") ?></th>
                     <th width="10%"><?= _("Precio") ?></th>
                     <th width="10%"><?= _("Retirado") ?></th>
@@ -62,6 +63,7 @@ foreach ($categories as $cat) {
                     <td><a href="itemDetail.php?itemId=<?php echo $item->id ?>"><?php echo $item->id ?></a></td>
                     <td><?php echo NP_get_i18n($item->name) ?></td>
                     <td><?php echo $item->tradeMark ?></td>
+                    <td align="right"><?php echo $item->weight ?></td>
                     <td align="right"><?php echo $item->stock ?></td>
                     <td align="right"><?php echo $item->prize ?> &euro;</td>
                     <td align="center"><?php echo $item->retired?_("Sí"):_("No") ?></td>
